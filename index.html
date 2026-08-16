@@ -272,14 +272,16 @@
   /* ---------- CERTS ---------- */
   .cert-list{ display:flex; flex-direction:column; gap:0; }
   .cert-row{
-    display:flex; justify-content:space-between; align-items:center;
+    display:grid; 
+    grid-template-columns: 2fr 1fr auto; 
+    align-items:center;
     padding:14px 0; border-bottom:1px solid var(--hairline);
     font-size:14.5px;
   }
   .cert-row:last-child{ border-bottom:none; }
-  .cert-row .name{ color:var(--text); font-weight:500; }
-  .cert-row .issuer{ color:var(--muted); font-size:13px; }
-  .cert-row .year{ font-family:var(--mono-data); color:var(--dim); font-size:12.5px; }
+  .cert-row .name{ color:var(--text); font-weight:500; text-align: left; }
+  .cert-row .issuer{ color:var(--muted); font-size:13px; text-align: center; }
+  .cert-row .year{ font-family:var(--mono-data); color:var(--dim); font-size:12.5px; text-align: right; }
 
   /* ---------- FOOTER ---------- */
   footer{ padding:56px 0 70px; }
