@@ -273,14 +273,15 @@
   .cert-list{ display:flex; flex-direction:column; gap:0; }
   .cert-row{
     display:grid; 
-    grid-template-columns: 2fr 1fr auto; 
+    /* 1fr takes remaining space, 140px locks the issuer column, 50px locks the year */
+    grid-template-columns: 1fr 140px 50px; 
     align-items:center;
     padding:14px 0; border-bottom:1px solid var(--hairline);
     font-size:14.5px;
   }
   .cert-row:last-child{ border-bottom:none; }
   .cert-row .name{ color:var(--text); font-weight:500; text-align: left; }
-  .cert-row .issuer{ color:var(--muted); font-size:13px; text-align: center; }
+  .cert-row .issuer{ color:var(--muted); font-size:13px; text-align: left; } /* Left-align for a perfect edge */
   .cert-row .year{ font-family:var(--mono-data); color:var(--dim); font-size:12.5px; text-align: right; }
 
   /* ---------- FOOTER ---------- */
