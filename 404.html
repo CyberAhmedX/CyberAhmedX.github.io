@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Ahmed Sajid Butt</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0D12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0D12'/%3E%3Crect x='3' y='3' width='94' height='94' rx='19' fill='none' stroke='%235EB4E7' stroke-opacity='0.35' stroke-width='2'/%3E%3Ctext x='50' y='67' font-size='52' font-family='monospace' font-weight='800' fill='%235EB4E7' text-anchor='middle'%3E&gt;_%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0A0D12;
+    --panel:#131822;
+    --hairline:#232B38;
+    --text:#E9EDF2;
+    --muted:#7C8798;
+    --dim:#4B5568;
+    --signal:#5EB4E7;
+    --signal-dim:#3B7FA0;
+    --crit:#E8544A;
+    --ok:#4FBE8A;
+    --mono-display: 'JetBrains Mono', monospace;
+    --mono-data: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --ease: cubic-bezier(.19,1,.22,1);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scrollbar-color:var(--hairline) var(--void); scrollbar-width:thin; }
+  body{
+    min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    background:
+      radial-gradient(1100px 560px at 50% -8%, rgba(94,180,231,0.10), transparent 62%),
+      repeating-linear-gradient(0deg, rgba(94,180,231,0.015) 0px, rgba(94,180,231,0.015) 1px, transparent 1px, transparent 3px),
+      var(--void);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.55;
+    padding:28px;
+  }
+  a{ color:inherit; text-decoration:none; }
+  .panel{
+    max-width:560px; width:100%;
+    background:var(--panel);
+    border:1px solid var(--hairline);
+    border-radius:10px;
+    box-shadow:0 14px 34px -12px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
+    overflow:hidden;
+  }
+  .head{
+    padding:14px 20px;
+    border-bottom:1px solid var(--hairline);
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:var(--mono-data); font-size:12px; color:var(--muted); letter-spacing:0.04em;
+  }
+  .status{
+    font-family:var(--mono-data); font-size:11px; text-transform:uppercase; letter-spacing:0.06em;
+    padding:3px 9px; border-radius:3px; font-weight:600;
+    background:rgba(232,84,74,0.14); color:var(--crit); box-shadow:0 0 0 1px rgba(232,84,74,0.12) inset;
+  }
+  .body{ padding:30px 26px 34px; }
+  .code{
+    font-family:var(--mono-display); font-weight:800; font-size:64px;
+    color:var(--signal); line-height:1; margin-bottom:6px;
+    text-shadow:0 0 28px rgba(94,180,231,0.35);
+  }
+  .title{ font-family:var(--mono-display); font-weight:700; font-size:18px; margin-bottom:18px; }
+  .log{
+    font-family:var(--mono-data); font-size:13px; color:var(--muted);
+    background:rgba(255,255,255,0.015); border:1px solid var(--hairline); border-radius:6px;
+    padding:14px 16px; margin-bottom:26px;
+  }
+  .log p{ margin-bottom:6px; }
+  .log p:last-child{ margin-bottom:0; }
+  .log .ok{ color:var(--ok); }
+  .log .crit{ color:var(--crit); }
+  .actions{ display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{
+    font-family:var(--mono-data); font-size:13px; letter-spacing:0.03em;
+    padding:11px 20px; border-radius:4px; border:1px solid var(--hairline);
+    transition:background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{ background:var(--signal); color:var(--void); border-color:var(--signal); font-weight:500; }
+  .btn-primary:hover{ background:#7CC5EF; transform:translateY(-2px); }
+  .btn-ghost{ background:rgba(255,255,255,0.015); }
+  .btn-ghost:hover{ border-color:var(--signal-dim); color:var(--signal); transform:translateY(-2px); }
+</style>
+</head>
+<body>
+  <div class="panel">
+    <div class="head">
+      <span>ASB::SOC-PORTFOLIO</span>
+      <span class="status">Alert</span>
+    </div>
+    <div class="body">
+      <div class="code">404</div>
+      <div class="title">Requested resource not found</div>
+      <div class="log">
+        <p><span class="crit">&gt;</span> GET <strong id="reqPath">/unknown</strong> — no match in route table</p>
+        <p><span class="ok">&gt;</span> No indicators of compromise. Just a bad link.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="/">Return to base ↩</a>
+        <a class="btn btn-ghost" href="/#work">View case files →</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    var el = document.getElementById('reqPath');
+    if (el) el.textContent = location.pathname || '/unknown';
+  </script>
+</body>
+</html>
