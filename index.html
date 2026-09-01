@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 <style>
   :root{
     --void:#0A0D12;
@@ -449,6 +450,37 @@
   .cert-badge.platform-tryhackme{ color:var(--crit); background:rgba(232,84,74,0.12); }
   .cert-badge.platform-kc7{ color:var(--signal); background:rgba(94,180,231,0.12); }
 
+  /* ---------- CONTACT FORM ---------- */
+  .contact-form{
+    background:var(--panel); border:1px solid var(--hairline); border-radius:10px;
+    padding:28px; box-shadow:var(--shadow-sm); max-width:640px;
+  }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .field{ display:flex; flex-direction:column; gap:6px; margin-bottom:18px; }
+  .field label{
+    font-family:var(--mono-data); font-size:11.5px; color:var(--muted);
+    text-transform:uppercase; letter-spacing:0.06em;
+  }
+  .field input, .field textarea{
+    font-family:var(--sans); font-size:14px; color:var(--text);
+    background:rgba(255,255,255,0.02); border:1px solid var(--hairline); border-radius:4px;
+    padding:10px 12px; resize:vertical;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .field input:focus, .field textarea:focus{
+    outline:none; border-color:var(--signal); box-shadow:0 0 0 3px rgba(94,180,231,0.12);
+  }
+  .hp-field{ position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; overflow:hidden; }
+  .h-captcha{ margin-bottom:20px; }
+  .cf-status{
+    font-family:var(--mono-data); font-size:13px; margin-top:14px; min-height:18px; color:var(--muted);
+  }
+  .cf-status.ok{ color:var(--ok); }
+  .cf-status.err{ color:var(--crit); }
+  #cf-submit{ font-family:var(--mono-data); font-size:13px; border:1px solid var(--signal); cursor:pointer; }
+  #cf-submit:disabled{ opacity:0.55; cursor:not-allowed; transform:none !important; }
+  @media (max-width:700px){ .form-row{ grid-template-columns:1fr; } }
+
   /* ---------- FOOTER ---------- */
   footer{
     padding:56px 0 70px;
@@ -507,7 +539,7 @@
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
       <a href="assets/Ahmed_Sajid_Butt_Resume.pdf" download>Resume</a>
-      <a href="#contact" class="cta">Contact</a>
+      <a href="#message" class="cta">Contact</a>
     </nav>
   </div>
 </header>
@@ -754,6 +786,40 @@
     </div>
   </section>
 
+  <!-- MESSAGE -->
+  <section id="message">
+    <div class="sec-head"><span class="idx">05</span><h2>Send a Message</h2><span class="line"></span></div>
+    <form id="contactForm" class="contact-form" action="https://formspree.io/f/mnpqpvbq" method="POST">
+      <div class="form-row">
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" required autocomplete="email">
+        </div>
+      </div>
+      <div class="field">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" rows="5" required></textarea>
+      </div>
+
+      <!-- honeypot: hidden from real visitors, Formspree silently drops any submission where this is filled -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="cf-company">Company</label>
+        <input type="text" id="cf-company" name="_gotcha" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="h-captcha" data-sitekey="4fec1012-8a52-4ce4-8a60-7202f9145a8e"></div>
+
+      <input type="hidden" name="_subject" value="New message from cyberahmedx.github.io">
+
+      <button type="submit" class="btn btn-primary" id="cf-submit">Send Message →</button>
+      <p id="cf-status" class="cf-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
 </main>
 
 <footer id="contact">
@@ -781,6 +847,50 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.15 });
   document.querySelectorAll('.case').forEach(el => observer.observe(el));
+</script>
+
+<script>
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = document.getElementById('cf-submit');
+      const status = document.getElementById('cf-status');
+
+      submitBtn.disabled = true;
+      status.textContent = '> transmitting...';
+      status.className = 'cf-status';
+
+      const formData = new FormData(contactForm);
+
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          status.textContent = "> message sent. i'll get back to you soon.";
+          status.classList.add('ok');
+          contactForm.reset();
+          if (window.hcaptcha) hcaptcha.reset();
+        } else {
+          const data = await res.json().catch(() => ({}));
+          const msg = (data.errors && data.errors.map(x => x.message).join(', '))
+            || 'something went wrong. try again or email me directly.';
+          status.textContent = '> error: ' + msg;
+          status.classList.add('err');
+          if (window.hcaptcha) hcaptcha.reset();
+        }
+      } catch (err) {
+        status.textContent = '> network error. try again or email me directly.';
+        status.classList.add('err');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  }
 </script>
 
 </body>
