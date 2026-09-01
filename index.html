@@ -672,6 +672,20 @@
           <span class="tag">RSA-2048</span>
           <span class="tag">Client-Side Only</span>
         </div>
+        <div class="shot-grid">
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/ciphervault/login-screen.png" data-caption="Login screen — demo credentials, purely client-side, no real auth backend.">
+            <img src="assets/screenshots/ciphervault/login-screen.png" alt="CipherVault login screen" loading="lazy">
+          </button>
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/ciphervault/caesar-encryption.png" data-caption="Caesar cipher encryption in action, with the decryption panel below it.">
+            <img src="assets/screenshots/ciphervault/caesar-encryption.png" alt="CipherVault encrypting text with a Caesar cipher" loading="lazy">
+          </button>
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/ciphervault/rsa-key-export.png" data-caption="RSA-2048 key export via the Web Crypto API — public key shown, private key panel cropped out on purpose.">
+            <img src="assets/screenshots/ciphervault/rsa-key-export.png" alt="CipherVault RSA public key export modal" loading="lazy">
+          </button>
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/ciphervault/decrypt-result.png" data-caption="Base64 decrypt result, plus the saved-messages panel — the view the stored XSS fix protects.">
+            <img src="assets/screenshots/ciphervault/decrypt-result.png" alt="CipherVault decrypting a Base64 message" loading="lazy">
+          </button>
+        </div>
         <div class="case-links">
           <a href="https://github.com/CyberAhmedX/CipherVault" target="_blank" rel="noopener">View repository →</a>
         </div>
@@ -689,13 +703,22 @@
           A real time network scanner and firewall simulator built with Flask and Nmap.
           Supports TCP SYN, UDP, and service version scans with live WebSocket updates.
           When run with admin or root privileges, deny rules aren't just visual, they
-          execute real netsh or iptables commands that actually block traffic at the OS level.
+          execute a real netsh or iptables command scoped to that specific IP and port
+          pair, actually dropping matching traffic at the OS level.
         </p>
         <div class="tags">
           <span class="tag">Flask</span>
           <span class="tag">Nmap</span>
           <span class="tag">WebSockets</span>
           <span class="tag">iptables / netsh</span>
+        </div>
+        <div class="shot-grid">
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/netscan/landing.png" data-caption="The scanner UI — target/scan-type controls on top, the firewall rule simulator below.">
+            <img src="assets/screenshots/netscan/landing.png" alt="Network Security Scanner landing page" loading="lazy">
+          </button>
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/netscan/scan-results.png" data-caption="A live TCP SYN scan against localhost (this sandbox) returning a real open port and service — actual Nmap output, not staged.">
+            <img src="assets/screenshots/netscan/scan-results.png" alt="Live Nmap scan results in the Network Security Scanner" loading="lazy">
+          </button>
         </div>
         <div class="case-links">
           <a href="https://github.com/CyberAhmedX/Network-Security-Scanner-with-Firewall-Rule-Simulator" target="_blank" rel="noopener">View repository →</a>
@@ -720,6 +743,20 @@
           <span class="tag">Sysmon</span>
           <span class="tag">Kibana</span>
           <span class="tag">Mythic C2</span>
+        </div>
+        <div class="shot-grid">
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/sentinel-forge/project-overview.jpg" data-caption="Project overview — the 30-day build broken into Foundation, Detection & Visualization, and Response & Automation phases.">
+            <img src="assets/screenshots/sentinel-forge/project-overview.jpg" alt="Sentinel-Forge project overview infographic showing the 30-day build phases" loading="lazy">
+          </button>
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/sentinel-forge/network-diagram.jpg" data-caption="Lab architecture — Vultr VPC with an Elastic/Kibana server, Fleet-managed Windows and Ubuntu targets, an OSTicket server, and an external Mythic C2.">
+            <img src="assets/screenshots/sentinel-forge/network-diagram.jpg" alt="Logical network diagram of the Sentinel-Forge lab on Vultr" loading="lazy">
+          </button>
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/sentinel-forge/attack-diagram.jpg" data-caption="Attack chain — RDP brute force → discovery → defense evasion → Mythic C2 execution → exfiltration, the scenario each detection rule was built against.">
+            <img src="assets/screenshots/sentinel-forge/attack-diagram.jpg" alt="Six-phase attack diagram from initial access to exfiltration" loading="lazy">
+          </button>
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/sentinel-forge/title-card.jpg" data-caption="Sentinel-Forge — forging elite SOC capabilities in a 30-day detection lab.">
+            <img src="assets/screenshots/sentinel-forge/title-card.jpg" alt="Sentinel-Forge project title card" loading="lazy">
+          </button>
         </div>
         <div class="case-links">
           <a href="https://github.com/CyberAhmedX/Sentinel-Forge" target="_blank" rel="noopener">View repository →</a>
