@@ -342,6 +342,37 @@
   .tag:hover{ border-color:var(--signal-dim); color:var(--text); }
   .tag.mitre{ color:var(--crit); border-color:rgba(232,84,74,0.3); }
   .tag.mitre:hover{ border-color:var(--crit); }
+  /* ---------- SCREENSHOT GALLERY ---------- */
+  .shot-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:10px;
+    margin-bottom:16px;
+  }
+  .shot-thumb{
+    padding:0; border:1px solid var(--hairline); border-radius:6px; overflow:hidden;
+    background:var(--void); cursor:zoom-in; display:block; line-height:0;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .shot-thumb:hover{ border-color:var(--signal-dim); transform:translateY(-2px); }
+  .shot-thumb img{ width:100%; height:130px; object-fit:cover; object-position:top; display:block; }
+
+  .lightbox{
+    position:fixed; inset:0; z-index:200; display:none;
+    align-items:center; justify-content:center; padding:28px;
+    background:rgba(10,13,18,0.92); backdrop-filter:blur(4px);
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox-inner{ max-width:min(1100px, 92vw); max-height:88vh; display:flex; flex-direction:column; gap:12px; }
+  .lightbox-inner img{ max-width:100%; max-height:72vh; border-radius:8px; border:1px solid var(--hairline); box-shadow:var(--shadow-md); }
+  .lightbox-caption{ font-family:var(--mono-data); font-size:12.5px; color:var(--muted); }
+  .lightbox-close{
+    position:absolute; top:24px; right:28px;
+    font-family:var(--mono-data); font-size:13px; color:var(--muted);
+    background:var(--panel); border:1px solid var(--hairline); border-radius:4px; padding:8px 14px;
+    cursor:pointer; transition:color .15s ease, border-color .15s ease;
+  }
+  .lightbox-close:hover{ color:var(--text); border-color:var(--signal-dim); }
+  @media (max-width:480px){ .shot-thumb img{ height:100px; } }
+
   .case-links{ display:flex; gap:16px; }
   .case-links a{
     font-family:var(--mono-data); font-size:12.5px; color:var(--signal);
@@ -601,6 +632,20 @@
           <span class="tag mitre">T1059.007</span>
           <span class="tag mitre">T1213</span>
           <span class="tag mitre">T1486</span>
+        </div>
+        <div class="shot-grid">
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/vigil/sqli-alert-detected.png" data-caption="SQL injection payload detected — Wazuh flags the raw ' OR 1=1-- string in the nginx access log, rule level 12.">
+            <img src="assets/screenshots/vigil/sqli-alert-detected.png" alt="Wazuh alert detail showing a detected SQL injection payload" loading="lazy">
+          </button>
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/vigil/thehive-automated-alert.png" data-caption="Automated escalation — the Wazuh integration creates a TheHive alert the moment the rule fires, no manual step.">
+            <img src="assets/screenshots/vigil/thehive-automated-alert.png" alt="TheHive alert automatically created from a Wazuh detection" loading="lazy">
+          </button>
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/vigil/ransomware-critical-alert.png" data-caption="CRITICAL: mass file modification detected — the ransomware simulation stage, rule level 15.">
+            <img src="assets/screenshots/vigil/ransomware-critical-alert.png" alt="Wazuh critical alert for possible ransomware activity" loading="lazy">
+          </button>
+          <button type="button" class="shot-thumb" data-full="assets/screenshots/vigil/case-closed-verdict.png" data-caption="Case closed — TruePositive, High severity, resolved in 2 hours with full triage timing captured in TheHive.">
+            <img src="assets/screenshots/vigil/case-closed-verdict.png" alt="Closed TheHive case marked TruePositive with resolution time metrics" loading="lazy">
+          </button>
         </div>
         <div class="case-links">
           <a href="https://github.com/CyberAhmedX/Vigil" target="_blank" rel="noopener">View repository →</a>
@@ -909,6 +954,49 @@
     console.log('%cahmedsajid_bw@proton.me  |  github.com/CyberAhmedX  |  linkedin.com/in/a-sajid', line);
     console.log('%c> note', head);
     console.log('%cIf you check dev tools on a portfolio site, you probably read logs at work too. See you in the SOC.', line);
+  })();
+</script>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button type="button" class="lightbox-close" id="lightboxClose">Close ✕</button>
+  <div class="lightbox-inner">
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const closeBtn = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt, caption) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightboxCaption.textContent = caption;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.shot-thumb').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const img = btn.querySelector('img');
+        openLightbox(btn.dataset.full, img.alt, btn.dataset.caption);
+      });
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
   })();
 </script>
 
