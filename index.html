@@ -502,7 +502,7 @@
     outline:none; border-color:var(--signal); box-shadow:0 0 0 3px rgba(94,180,231,0.12);
   }
   .hp-field{ position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; overflow:hidden; }
-  .h-captcha{ margin-bottom:20px; }
+  .h-captcha{ margin-bottom:20px; max-width:100%; overflow-x:auto; }
   .cf-status{
     font-family:var(--mono-data); font-size:13px; margin-top:14px; min-height:18px; color:var(--muted);
   }
@@ -894,7 +894,7 @@
         <input type="text" id="cf-company" name="_gotcha" tabindex="-1" autocomplete="off">
       </div>
 
-      <div class="h-captcha" data-sitekey="4fec1012-8a52-4ce4-8a60-7202f9145a8e"></div>
+      <div class="h-captcha" data-sitekey="4fec1012-8a52-4ce4-8a60-7202f9145a8e" data-size="compact"></div>
 
       <input type="hidden" name="_subject" value="New message from cyberahmedx.github.io">
 
