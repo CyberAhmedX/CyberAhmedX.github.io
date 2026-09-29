@@ -371,6 +371,31 @@
     cursor:pointer; transition:color .15s ease, border-color .15s ease;
   }
   .lightbox-close:hover{ color:var(--text); border-color:var(--signal-dim); }
+
+  /* ---------- KONAMI ALERT ---------- */
+  .konami-alert{
+    position:fixed; right:24px; bottom:24px; z-index:250;
+    width:min(380px, calc(100vw - 32px));
+    background:var(--panel); border:1px solid rgba(232,84,74,0.45); border-left:3px solid var(--crit);
+    border-radius:8px; box-shadow:0 0 0 1px rgba(232,84,74,0.12), 0 18px 40px -12px rgba(232,84,74,0.35);
+    font-family:var(--mono-data); font-size:12.5px; color:var(--muted);
+    opacity:0; transform:translateY(16px); pointer-events:none;
+    transition:opacity .3s ease, transform .3s var(--ease);
+  }
+  .konami-alert.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  .konami-head{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:10px 14px; border-bottom:1px solid var(--hairline);
+    color:var(--crit); font-weight:500; letter-spacing:0.04em; text-transform:uppercase; font-size:11px;
+  }
+  .konami-head .dot{ width:7px; height:7px; border-radius:50%; background:var(--crit); box-shadow:0 0 8px var(--crit); display:inline-block; margin-right:8px; animation:pulseDot 1s ease-in-out infinite; }
+  .konami-close{ background:none; border:none; color:var(--dim); font-family:inherit; font-size:13px; cursor:pointer; }
+  .konami-close:hover{ color:var(--text); }
+  .konami-body{ padding:12px 14px 14px; line-height:1.7; }
+  .konami-body .k{ color:var(--dim); }
+  .konami-body .v{ color:var(--text); }
+  .konami-body .ok{ color:var(--ok); }
+  @media (max-width:480px){ .konami-alert{ right:16px; bottom:16px; } }
   @media (max-width:480px){ .shot-thumb img{ height:100px; } }
 
   .case-links{ display:flex; gap:16px; }
@@ -992,6 +1017,52 @@
     console.log('%cahmedsajid_bw@proton.me  |  github.com/CyberAhmedX  |  linkedin.com/in/a-sajid', line);
     console.log('%c> note', head);
     console.log('%cIf you check dev tools on a portfolio site, you probably read logs at work too. See you in the SOC.', line);
+    console.log('%c> hint', head);
+    console.log('%c↑ ↑ ↓ ↓ ← → ← → B A', line);
+  })();
+</script>
+
+<div class="konami-alert" id="konamiAlert" role="alert" aria-live="assertive" hidden>
+  <div class="konami-head">
+    <span><span class="dot"></span>Alert · Level 15 · Critical</span>
+    <button type="button" class="konami-close" id="konamiClose" aria-label="Dismiss alert">✕</button>
+  </div>
+  <div class="konami-body">
+    <div><span class="k">rule.id:</span> <span class="v">100777</span></div>
+    <div><span class="k">rule.description:</span> <span class="v">Unauthorized cheat code detected</span></div>
+    <div><span class="k">mitre.technique:</span> <span class="v">T1337 - Konami Code Execution</span></div>
+    <div><span class="k">src.user:</span> <span class="v">curious_visitor</span></div>
+    <div><span class="k">action:</span> <span class="ok">Analyst notified. Nice find.</span></div>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const sequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    const alertBox = document.getElementById('konamiAlert');
+    const closeBtn = document.getElementById('konamiClose');
+    let recent = [];
+    let hideTimer;
+
+    function hide() {
+      alertBox.classList.remove('show');
+      clearTimeout(hideTimer);
+      setTimeout(() => { alertBox.hidden = true; }, 300);
+    }
+    function show() {
+      alertBox.hidden = false;
+      requestAnimationFrame(() => alertBox.classList.add('show'));
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(hide, 8000);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.closest('input, textarea')) return;
+      const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      recent = [...recent, key].slice(-sequence.length);
+      if (recent.join() === sequence.join()) { recent = []; show(); }
+    });
+    closeBtn.addEventListener('click', hide);
   })();
 </script>
 
