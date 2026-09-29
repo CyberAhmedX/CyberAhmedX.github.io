@@ -82,6 +82,7 @@
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;
     background:var(--void);
     animation:bootOut 1.5s ease forwards;
+    user-select:none; -webkit-user-select:none;
   }
   .boot-ring{
     width:44px; height:44px; border-radius:50%;
@@ -108,17 +109,21 @@
   }
 
   body{
-    background:
-      radial-gradient(1100px 560px at 50% -8%, rgba(94,180,231,0.10), transparent 62%) no-repeat,
-      radial-gradient(760px 420px at 100% 0%, rgba(94,180,231,0.05), transparent 55%) no-repeat,
-      repeating-linear-gradient(0deg, rgba(94,180,231,0.015) 0px, rgba(94,180,231,0.015) 1px, transparent 1px, transparent 3px) repeat,
-      var(--void);
-    background-attachment:fixed;
+    background:var(--void);
     color:var(--text);
     font-family:var(--sans);
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+  }
+  /* fixed background on its own layer, so scrolling doesn't repaint it every frame */
+  body::before{
+    content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(1100px 560px at 50% -8%, rgba(94,180,231,0.10), transparent 62%) no-repeat,
+      radial-gradient(760px 420px at 100% 0%, rgba(94,180,231,0.05), transparent 55%) no-repeat,
+      repeating-linear-gradient(0deg, rgba(94,180,231,0.015) 0px, rgba(94,180,231,0.015) 1px, transparent 1px, transparent 3px) repeat;
+    transform:translateZ(0);
   }
 
   a{ color:inherit; text-decoration:none; }
@@ -211,7 +216,7 @@
   .hero h1{
     font-family:var(--mono-display);
     font-weight:800;
-    font-size:clamp(42px, 9vw, 88px);
+    font-size:clamp(42px, 9vw, 80px);
     line-height:0.98;
     letter-spacing:-0.02em;
     margin-bottom:20px;
@@ -230,6 +235,7 @@
     animation:cursorBlink 1s step-end infinite;
     user-select:none; -webkit-tap-highlight-color:transparent;
   }
+  .hero h1 .nowrap{ white-space:nowrap; }
   .boot.replay .boot-lines .max{ color:var(--signal); font-weight:500; }
   .hero h1 .role{
     display:block;
@@ -673,7 +679,7 @@
       <span class="pill"><span class="dot"></span> OPEN TO OPPORTUNITIES</span>
       <span>LAHORE, PAKISTAN</span>
     </div>
-    <h1>Ahmed Sajid <span class="accent">Butt</span><span class="cursor"></span>
+    <h1>Ahmed Sajid <span class="nowrap"><span class="accent">Butt</span><span class="cursor"></span></span>
       <span class="role">SOC Analyst L1 / Detection Engineer</span>
     </h1>
     <p class="summary">
@@ -1016,6 +1022,12 @@
 </footer>
 
 <script>
+  const introBoot = document.querySelector('.boot');
+  if (introBoot) {
+    introBoot.addEventListener('animationend', (e) => { if (e.target === introBoot) introBoot.remove(); });
+    setTimeout(() => introBoot.remove(), 2500);
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.15 });
