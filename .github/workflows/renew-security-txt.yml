@@ -1,0 +1,31 @@
+name: Renew security.txt
+
+# Runs every 1 September and moves the Expires date in
+# .well-known/security.txt one year ahead, so it never goes stale.
+on:
+  schedule:
+    - cron: '17 3 1 9 *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  renew:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Move Expires one year ahead
+        run: |
+          next=$(date -u -d '+1 year' +%Y-%m-%dT23:59:59.000Z)
+          sed -i "s/^Expires: .*/Expires: ${next}/" .well-known/security.txt
+          grep '^Expires:' .well-known/security.txt
+
+      - name: Commit and push
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "Ahmed Sajid Butt"
+          git config user.email "139685237+CyberAhmedX@users.noreply.github.com"
+          git commit -am "Renew security.txt expiry"
+          git push
