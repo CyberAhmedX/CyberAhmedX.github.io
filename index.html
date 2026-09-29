@@ -1187,6 +1187,12 @@
       cat(arg) {
         if (!arg) return line('usage: cat <case>. Try: ls', 'warn');
         if (arg === 'resume') return commands.resume();
+        if (arg === 'security.txt' || arg === '.well-known/security.txt') {
+          return fetch('.well-known/security.txt')
+            .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+            .then(t => { t.trimEnd().split('\n').forEach(l => line(l, l.startsWith('#') ? 'dim' : 'muted')); out.scrollTop = out.scrollHeight; })
+            .catch(() => line('cat: security.txt: could not be read', 'err'));
+        }
         const c = cases[arg.toLowerCase()];
         if (!c) return line('cat: ' + arg + ': No such case file. Try: ls', 'err');
         line(c.title, 'sig');
