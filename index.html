@@ -209,7 +209,9 @@
     vertical-align:-0.08em;
     box-shadow:0 0 18px rgba(94,180,231,0.6);
     animation:cursorBlink 1s step-end infinite;
+    user-select:none; -webkit-tap-highlight-color:transparent;
   }
+  .boot.replay .boot-lines .max{ color:var(--signal); font-weight:500; }
   .hero h1 .role{
     display:block;
     font-size:clamp(16px, 2.6vw, 24px);
@@ -1337,6 +1339,50 @@
     exitBtn.addEventListener('click', close);
     overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
     out.addEventListener('click', () => input.focus());
+  })();
+</script>
+
+<script>
+  (() => {
+    const cursor = document.querySelector('.hero h1 .cursor');
+    if (!cursor) return;
+    const needed = 5;
+    let clicks = 0;
+    let resetTimer;
+    let playing = false;
+
+    function replayBoot() {
+      if (playing || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      playing = true;
+      const boot = document.createElement('div');
+      boot.className = 'boot replay';
+      boot.setAttribute('aria-hidden', 'true');
+      boot.innerHTML =
+        '<div class="boot-ring"></div>' +
+        '<div class="boot-lines">' +
+          '<p>&gt; PRIVILEGE ESCALATION REQUESTED...</p>' +
+          '<p>&gt; VERIFYING ANALYST CLEARANCE...</p>' +
+          '<p class="ok">&gt; ACCESS GRANTED.</p>' +
+          '<p class="max">&gt; ANALYST MODE: MAX</p>' +
+        '</div>' +
+        '<div class="boot-bar"><span></span></div>';
+      boot.style.animationDuration = '2.4s';
+      boot.querySelector('.boot-bar span').style.animationDuration = '2.1s';
+      document.body.appendChild(boot);
+      boot.addEventListener('animationend', (e) => {
+        if (e.target !== boot) return;
+        boot.remove();
+        playing = false;
+      });
+    }
+
+    cursor.addEventListener('mousedown', (e) => { if (e.detail > 1) e.preventDefault(); });
+    cursor.addEventListener('click', () => {
+      clicks++;
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => { clicks = 0; }, 1500);
+      if (clicks >= needed) { clicks = 0; replayBoot(); }
+    });
   })();
 </script>
 
