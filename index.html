@@ -643,7 +643,42 @@
     .nav-links a:not(.cta){ display:none; }
     .footer-inner{ flex-direction:column; align-items:flex-start; }
     .footer-links{ align-items:flex-start; }
+    .atk-matrix{ min-width:820px; }
   }
+
+  /* ---------- ATT&CK COVERAGE MATRIX ---------- */
+  .atk-lead{ color:var(--muted); max-width:70ch; margin:-14px 0 22px; font-size:15px; }
+  .atk-meta{ display:flex; flex-wrap:wrap; gap:12px 22px; margin-bottom:20px; font-size:12.5px; color:var(--muted); }
+  .atk-meta .k{ display:inline-flex; align-items:center; gap:7px; }
+  .atk-sw{ width:12px; height:12px; border-radius:3px; display:inline-block; }
+  .atk-sw.hit{ background:var(--signal); } .atk-sw.det{ background:var(--ok); }
+  .atk-sw.exec{ background:var(--warn); } .atk-sw.idle{ background:#3A4455; }
+  .atk-scroll{ overflow-x:auto; padding:2px 2px 10px; }
+  .atk-matrix{ display:grid; grid-auto-flow:column; grid-auto-columns:minmax(138px,1fr); gap:9px; }
+  .atk-col .ct{ font-family:var(--mono-data); font-size:10.5px; text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--muted); padding:0 2px 9px; border-bottom:1px solid var(--hairline); margin-bottom:9px;
+    min-height:40px; display:flex; align-items:flex-end; }
+  .atk-tech{ display:block; width:100%; text-align:left; font-family:var(--mono-data); font-size:11px; color:var(--dim);
+    cursor:default; padding:9px 10px; border-radius:6px; background:var(--panel); border:1px solid var(--hairline);
+    margin-bottom:7px; line-height:1.3; transition:transform .12s ease, background .12s ease; }
+  .atk-tech .id{ display:block; font-weight:600; color:var(--muted); font-size:11.5px; }
+  .atk-tech .nm{ display:block; font-size:10px; margin-top:3px; opacity:0.85; }
+  .atk-tech[data-s]{ color:var(--text); cursor:pointer; }
+  .atk-tech[data-s="hit"]{ border-color:var(--signal-dim); box-shadow:inset 3px 0 0 var(--signal); }
+  .atk-tech[data-s="hit"] .id{ color:var(--signal); }
+  .atk-tech[data-s="det"]{ border-color:#2F6A4E; box-shadow:inset 3px 0 0 var(--ok); }
+  .atk-tech[data-s="det"] .id{ color:var(--ok); }
+  .atk-tech[data-s="exec"]{ border-color:#7A5A24; box-shadow:inset 3px 0 0 var(--warn); }
+  .atk-tech[data-s="exec"] .id{ color:var(--warn); }
+  .atk-tech[data-s]:hover{ transform:translateY(-2px); background:var(--panel-hi); }
+  .atk-tech:focus-visible{ outline:2px solid var(--signal); outline-offset:2px; }
+  .atk-readout{ margin-top:18px; background:var(--panel); border:1px solid var(--hairline);
+    border-left:3px solid var(--signal-dim); border-radius:8px; padding:16px 18px; min-height:70px; }
+  .atk-readout .tag{ font-family:var(--mono-data); font-size:11px; color:var(--dim); letter-spacing:0.04em; text-transform:uppercase; }
+  .atk-readout p{ margin-top:7px; color:var(--muted); font-size:14px; }
+  .atk-readout p b{ color:var(--text); font-weight:600; }
+  .atk-count{ display:flex; flex-wrap:wrap; gap:16px; margin-top:22px; font-family:var(--mono-data); font-size:12px; color:var(--dim); }
+  .atk-count b{ color:var(--text); font-weight:600; font-size:17px; margin-right:4px; }
 </style>
 </head>
 <body>
@@ -665,6 +700,7 @@
       <a href="#work">Work</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
+      <a href="#attack">ATT&amp;CK</a>
       <a href="assets/Ahmed_Sajid_Butt_Resume.pdf" download="Ahmed_Sajid_Butt_SOC_Analyst_L1_Resume.pdf">Resume</a>
       <a href="#message" class="cta">Contact</a>
     </nav>
@@ -952,9 +988,77 @@
     </div>
   </section>
 
+  <!-- ATT&CK COVERAGE -->
+  <section id="attack">
+    <div class="sec-head"><span class="idx">04</span><h2>ATT&amp;CK Coverage</h2><span class="line"></span></div>
+    <p class="atk-lead">MITRE ATT&amp;CK techniques I have worked hands-on across my detection labs and SOC internship, laid out by tactic. Each lit cell is something I detected, wrote a rule for, or executed myself. Select one to see the work behind it.</p>
+    <div class="atk-meta">
+      <span class="k"><span class="atk-sw hit"></span>Detected in my lab</span>
+      <span class="k"><span class="atk-sw det"></span>Detection rule written</span>
+      <span class="k"><span class="atk-sw exec"></span>Executed (Atomic Red Team)</span>
+      <span class="k"><span class="atk-sw idle"></span>Adjacent / learning</span>
+    </div>
+    <div class="atk-scroll">
+      <div class="atk-matrix" id="atkMatrix">
+        <div class="atk-col">
+          <div class="ct">Initial Access</div>
+          <button class="atk-tech" data-s="hit" data-tag="T1190 · Exploit Public-Facing App" data-note="<b>Vigil lab.</b> Detected an SQL injection against a public web app in Wazuh, stage 1 of a 4-stage compromise."><span class="id">T1190</span><span class="nm">Exploit Public-Facing App</span></button>
+          <button class="atk-tech" data-s="det" data-tag="T1133 · External Remote Services" data-note="<b>Sentinel-Forge.</b> Exposed RDP/SSH to the internet as the entry point, then wrote detection for the brute force against it."><span class="id">T1133</span><span class="nm">External Remote Services</span></button>
+        </div>
+        <div class="atk-col">
+          <div class="ct">Credential Access</div>
+          <button class="atk-tech" data-s="det" data-tag="T1110 · Brute Force" data-note="<b>Sentinel-Forge.</b> Built threshold and advanced Kibana rules for SSH and RDP brute force, verified against live attack traffic."><span class="id">T1110</span><span class="nm">Brute Force</span></button>
+          <button class="atk-tech" data-tag="T1003 · OS Credential Dumping" data-note="Adjacent - studied as part of post-exploitation, not yet executed in a lab."><span class="id">T1003</span><span class="nm">OS Credential Dumping</span></button>
+        </div>
+        <div class="atk-col">
+          <div class="ct">Execution</div>
+          <button class="atk-tech" data-s="hit" data-tag="T1059.007 · JavaScript" data-note="<b>Vigil lab.</b> Detected malicious JavaScript execution during the web compromise chain."><span class="id">T1059.007</span><span class="nm">JavaScript</span></button>
+          <button class="atk-tech" data-s="exec" data-tag="T1059.001 · PowerShell" data-note="<b>Internship.</b> Ran PowerShell techniques via Atomic Red Team; 3 blocked by EDR, 3 caught on behavior alone."><span class="id">T1059.001</span><span class="nm">PowerShell</span></button>
+        </div>
+        <div class="atk-col">
+          <div class="ct">Defense Evasion</div>
+          <button class="atk-tech" data-s="det" data-tag="T1562.001 · Disable or Modify Tools" data-note="<b>Sentinel-Forge.</b> Adversary disabled Defender real-time protection; built a dashboard panel to flag &quot;Defender Disabled&quot; events."><span class="id">T1562.001</span><span class="nm">Impair Defenses</span></button>
+          <button class="atk-tech" data-s="exec" data-tag="T1070 · Indicator Removal" data-note="<b>Internship.</b> Part of the Atomic Red Team set executed and reviewed for detection gaps."><span class="id">T1070</span><span class="nm">Indicator Removal</span></button>
+        </div>
+        <div class="atk-col">
+          <div class="ct">Discovery</div>
+          <button class="atk-tech" data-s="det" data-tag="T1057 · Process Discovery" data-note="<b>Sentinel-Forge.</b> Wrote a &quot;suspicious process creation&quot; detection panel covering post-access discovery commands."><span class="id">T1057</span><span class="nm">Process Discovery</span></button>
+          <button class="atk-tech" data-tag="T1016 · System Network Config" data-note="Adjacent - observed in the attack chain, no dedicated rule yet."><span class="id">T1016</span><span class="nm">System Network Config</span></button>
+        </div>
+        <div class="atk-col">
+          <div class="ct">Command &amp; Control</div>
+          <button class="atk-tech" data-s="det" data-tag="T1071.001 · Web Protocols" data-note="<b>Sentinel-Forge.</b> Simulated C2 over HTTP with Mythic, then wrote detection for the beacon's process and network behavior."><span class="id">T1071.001</span><span class="nm">Web Protocols (C2)</span></button>
+          <button class="atk-tech" data-tag="T1105 · Ingress Tool Transfer" data-note="Adjacent - part of the C2 chain, studied but not separately detected."><span class="id">T1105</span><span class="nm">Ingress Tool Transfer</span></button>
+        </div>
+        <div class="atk-col">
+          <div class="ct">Collection</div>
+          <button class="atk-tech" data-s="hit" data-tag="T1213 · Data from Info Repositories" data-note="<b>Vigil lab.</b> Detected data gathering from an internal information repository during the compromise."><span class="id">T1213</span><span class="nm">Data from Info Repos</span></button>
+        </div>
+        <div class="atk-col">
+          <div class="ct">Exfiltration</div>
+          <button class="atk-tech" data-s="det" data-tag="T1041 · Exfiltration Over C2 Channel" data-note="<b>Sentinel-Forge.</b> Exfil staged over the C2 channel; alert fired and auto-created an osTicket case for triage."><span class="id">T1041</span><span class="nm">Exfil Over C2 Channel</span></button>
+        </div>
+        <div class="atk-col">
+          <div class="ct">Impact</div>
+          <button class="atk-tech" data-s="hit" data-tag="T1486 · Data Encrypted for Impact" data-note="<b>Vigil lab.</b> Detected ransomware-style encryption as the final stage, raised a critical alert, and closed the case with a written verdict."><span class="id">T1486</span><span class="nm">Data Encrypted for Impact</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="atk-readout" id="atkReadout">
+      <span class="tag">Select a technique</span>
+      <p>Click any highlighted cell above to read what I actually did on that technique.</p>
+    </div>
+    <div class="atk-count">
+      <span><b>13</b>techniques worked</span>
+      <span><b>5</b>detection rules written</span>
+      <span><b>5</b>detected in lab</span>
+      <span><b>9</b>ATT&amp;CK tactics covered</span>
+    </div>
+  </section>
+
   <!-- CERTS -->
   <section id="certs">
-    <div class="sec-head"><span class="idx">04</span><h2>Certifications</h2><span class="line"></span></div>
+    <div class="sec-head"><span class="idx">05</span><h2>Certifications</h2><span class="line"></span></div>
     <div class="cert-list">
       <a class="cert-row" href="https://kc7cyber.com/badges/earned/53957" target="_blank" rel="noopener"><span class="cert-badge platform-kc7">KC7</span><span class="name">KC7 Security Analyst II</span><span class="issuer">KC7</span><span class="year">2026</span></a>
       <a class="cert-row" href="https://kc7cyber.com/badges/earned/52218" target="_blank" rel="noopener"><span class="cert-badge platform-kc7">KC7</span><span class="name">KC7 Security Analyst I</span><span class="issuer">KC7</span><span class="year">2026</span></a>
@@ -967,7 +1071,7 @@
 
   <!-- MESSAGE -->
   <section id="message">
-    <div class="sec-head"><span class="idx">05</span><h2>Send a Message</h2><span class="line"></span></div>
+    <div class="sec-head"><span class="idx">06</span><h2>Send a Message</h2><span class="line"></span></div>
     <form id="contactForm" class="contact-form" action="https://formspree.io/f/mnpqpvbq" method="POST">
       <div class="form-row">
         <div class="field">
@@ -1032,6 +1136,20 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.15 });
   document.querySelectorAll('.case').forEach(el => observer.observe(el));
+
+  // ATT&CK matrix readout
+  const atkReadout = document.getElementById('atkReadout');
+  if (atkReadout) {
+    const atkTechs = document.querySelectorAll('.atk-tech[data-s]');
+    atkTechs.forEach(t => t.addEventListener('click', () => {
+      atkTechs.forEach(x => { x.style.outline = ''; });
+      t.style.outline = '2px solid var(--signal)';
+      t.style.outlineOffset = '2px';
+      atkReadout.innerHTML = '<span class="tag"></span><p></p>';
+      atkReadout.querySelector('.tag').textContent = t.dataset.tag;
+      atkReadout.querySelector('p').innerHTML = t.dataset.note;
+    }));
+  }
 </script>
 
 <script>
