@@ -1003,7 +1003,7 @@
         <div class="atk-col">
           <div class="ct">Initial Access</div>
           <button class="atk-tech" data-s="hit" data-tag="T1190 · Exploit Public-Facing App" data-note="<b>Vigil lab.</b> Detected an SQL injection against a public web app in Wazuh, stage 1 of a 4-stage compromise."><span class="id">T1190</span><span class="nm">Exploit Public-Facing App</span></button>
-          <button class="atk-tech" data-s="det" data-tag="T1133 · External Remote Services" data-note="<b>Sentinel-Forge.</b> Exposed RDP/SSH to the internet as the entry point, then wrote detection for the brute force against it."><span class="id">T1133</span><span class="nm">External Remote Services</span></button>
+          <button class="atk-tech" data-tag="T1133 · External Remote Services" data-note="Adjacent - RDP/SSH exposure was the entry point in Sentinel-Forge; the rule I wrote targets the brute force (T1110), not the service itself."><span class="id">T1133</span><span class="nm">External Remote Services</span></button>
         </div>
         <div class="atk-col">
           <div class="ct">Credential Access</div>
@@ -1013,12 +1013,11 @@
         <div class="atk-col">
           <div class="ct">Execution</div>
           <button class="atk-tech" data-s="hit" data-tag="T1059.007 · JavaScript" data-note="<b>Vigil lab.</b> Detected malicious JavaScript execution during the web compromise chain."><span class="id">T1059.007</span><span class="nm">JavaScript</span></button>
-          <button class="atk-tech" data-s="exec" data-tag="T1059.001 · PowerShell" data-note="<b>Internship.</b> Ran PowerShell techniques via Atomic Red Team; 3 blocked by EDR, 3 caught on behavior alone."><span class="id">T1059.001</span><span class="nm">PowerShell</span></button>
+          <button class="atk-tech" data-s="exec" data-tag="T1059.001 · PowerShell" data-note="<b>Internship.</b> One of 7 ATT&amp;CK techniques I ran via Atomic Red Team and reviewed for detection coverage."><span class="id">T1059.001</span><span class="nm">PowerShell</span></button>
         </div>
         <div class="atk-col">
           <div class="ct">Defense Evasion</div>
-          <button class="atk-tech" data-s="det" data-tag="T1562.001 · Disable or Modify Tools" data-note="<b>Sentinel-Forge.</b> Adversary disabled Defender real-time protection; built a dashboard panel to flag &quot;Defender Disabled&quot; events."><span class="id">T1562.001</span><span class="nm">Impair Defenses</span></button>
-          <button class="atk-tech" data-s="exec" data-tag="T1070 · Indicator Removal" data-note="<b>Internship.</b> Part of the Atomic Red Team set executed and reviewed for detection gaps."><span class="id">T1070</span><span class="nm">Indicator Removal</span></button>
+          <button class="atk-tech" data-s="det" data-tag="T1562.001 · Disable or Modify Tools" data-note="<b>Sentinel-Forge.</b> Adversary disabled Defender real-time protection; built a dashboard panel to flag &quot;Defender Disabled&quot; events."><span class="id">T1562.001</span><span class="nm">Disable or Modify Tools</span></button>
         </div>
         <div class="atk-col">
           <div class="ct">Discovery</div>
@@ -1049,9 +1048,9 @@
       <p>Click any highlighted cell above to read what I actually did on that technique.</p>
     </div>
     <div class="atk-count">
-      <span><b>13</b>techniques worked</span>
+      <span><b>10</b>techniques worked</span>
       <span><b>5</b>detection rules written</span>
-      <span><b>5</b>detected in lab</span>
+      <span><b>4</b>detected in lab</span>
       <span><b>9</b>ATT&amp;CK tactics covered</span>
     </div>
   </section>
