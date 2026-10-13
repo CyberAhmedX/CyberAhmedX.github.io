@@ -838,7 +838,9 @@
           Supports TCP SYN, UDP, and service version scans with live WebSocket updates.
           When run with admin or root privileges, deny rules aren't just visual, they
           execute a real netsh or iptables command scoped to that specific IP and port
-          pair, actually dropping matching traffic at the OS level.
+          pair, actually dropping matching traffic at the OS level. Later added a scan
+          diff that flags newly opened ports, auto-expiring blocks with an audit log,
+          subnet and port-range rules, and fixed a command injection found in self-review.
         </p>
         <div class="tags">
           <span class="tag">Flask</span>
@@ -1258,7 +1260,7 @@
       },
       netscan: {
         title: 'Network Security Scanner with Firewall Rule Simulator',
-        summary: 'Flask + Nmap scanner with live WebSocket updates. With admin rights, deny rules run real netsh or iptables commands scoped to an IP and port pair.',
+        summary: 'Flask + Nmap scanner with live WebSocket updates. With admin rights, deny rules run real netsh or iptables commands. Scan diff flags newly opened ports, blocks can auto-expire with an audit log, and a command injection found in self-review was fixed.',
         tags: 'Flask, Nmap, WebSockets, iptables / netsh',
         url: 'https://github.com/CyberAhmedX/Network-Security-Scanner-with-Firewall-Rule-Simulator'
       },
