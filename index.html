@@ -606,12 +606,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   /* scroll spy */
   const navs = $$('aside nav a');
   const ids = navs.map(a => a.getAttribute('href').slice(1));
+  // A tapped item stays bold until the visitor scrolls by hand. Near the bottom the page
+  // can't scroll a short section to the top, so position alone would pick the wrong one.
+  let picked = null;
+  const mark = id => navs.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + id));
   function spy() {
+    if (picked) return mark(picked);
     let cur = 'top';
     for (const id of ids.slice(1)) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight * 0.4) cur = id; }
     if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = 'contact';
-    navs.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + cur));
+    mark(cur);
   }
+  navs.forEach(a => a.addEventListener('click', () => { picked = a.getAttribute('href').slice(1); mark(picked); }));
+  const release = () => { picked = null; };
+  ['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, release, { passive: true }));
   addEventListener('scroll', spy, { passive: true }); spy();
 
   /* ATT&CK readout */
