@@ -76,9 +76,9 @@ aside{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;padding:40px
 .avail{display:flex;align-items:center;gap:8px;margin-top:12px!important;padding-top:12px;border-top:1px solid var(--line);color:var(--ink)!important;font-size:13px!important}.avail i{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
 .stamp{position:absolute;right:-12px;top:-15px;transform:rotate(7deg);border:2.5px solid var(--red);color:var(--red);background:var(--paper);font:600 11.5px var(--f-label);letter-spacing:.14em;padding:6px 9px;cursor:pointer;user-select:none}
 aside nav{display:grid;gap:2px;margin:30px 0;font-size:15px}
-aside nav a{color:var(--mute);text-decoration:none;display:flex;align-items:center;gap:12px;padding:3px 0}
-aside nav a i{width:22px;height:1px;background:var(--line2);transition:width .2s}
-aside nav a.on{color:var(--ink);font-weight:600}aside nav a.on i{width:46px;background:var(--ink)}
+aside nav a{color:var(--mute);text-decoration:none;padding:3px 0;transition:color .15s}
+aside nav a:hover{color:var(--ink)}
+aside nav a.on{color:var(--ink);font-weight:600}
 .links{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;font-weight:500}
 .links a,.links button{color:var(--ink);text-decoration:none;border:0;border-bottom:1px solid var(--line2);background:none;font:inherit;padding:0;cursor:pointer}
 .links a:hover,.links button:hover{border-color:var(--red);color:var(--red)}
@@ -307,14 +307,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <p class="avail"><i></i>Open to SOC roles, remote or Pakistan</p>
   </div>
   <nav aria-label="Sections">
-    <a class="on" href="#top"><i></i>About</a>
-    <a href="#work"><i></i>Case files</a>
-    <a href="#experience"><i></i>Experience</a>
-    <a href="#skills"><i></i>Detection coverage</a>
-    <a href="#attack"><i></i>ATT&amp;CK coverage</a>
-    <a href="#certs"><i></i>Certifications</a>
-    <a href="#message"><i></i>Send a message</a>
-    <a href="#contact"><i></i>Contact</a>
+    <a class="on" href="#top">About</a>
+    <a href="#work">Case files</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Detection coverage</a>
+    <a href="#attack">ATT&amp;CK coverage</a>
+    <a href="#certs">Certifications</a>
+    <a href="#message">Send a message</a>
+    <a href="#contact">Contact</a>
   </nav>
   <div class="links">
     <a href="https://github.com/CyberAhmedX" target="_blank" rel="noopener">GitHub ↗</a>
