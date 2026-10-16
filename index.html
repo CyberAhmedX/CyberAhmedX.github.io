@@ -142,6 +142,7 @@ h2 small{font:500 12px var(--f-label);letter-spacing:.12em;color:var(--mute);tex
 .shot:hover{border-color:var(--ink)}
 .go{display:inline-block;margin-top:16px;font:600 14px var(--f-body);text-decoration:none;border-bottom:1.5px solid var(--ink)}
 .go:hover{color:var(--red);border-color:var(--red)}
+.go + .go{margin-left:22px}
 
 /* experience */
 .job{display:grid;grid-template-columns:130px minmax(0,1fr);gap:26px}
@@ -386,7 +387,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <article class="case">
       <div class="tab">CASE // CIPHERVAULT-2026 <span>LAB</span></div>
       <h3><a href="https://github.com/CyberAhmedX/CipherVault" target="_blank" rel="noopener">CipherVault: browser-based encryption tool</a></h3>
-      <p>A client-side encryption tool built with vanilla JavaScript and the Web Crypto API. Messages use hybrid RSA-OAEP + AES-256-GCM encryption, and saved results live in a vault encrypted with a key derived from your passphrase (PBKDF2, 600,000 iterations). A self-review found and fixed a stored XSS bug, plaintext storage and a hardcoded login, and a strict Content Security Policy blocks all network access.</p>
+      <p>A client-side encryption tool built with vanilla JavaScript and the Web Crypto API. Messages use hybrid RSA-OAEP + AES-256-GCM encryption, and saved results live in a vault encrypted with a key derived from your passphrase (PBKDF2, 600,000 iterations). A self-review found and fixed a stored XSS bug, plaintext storage and a hardcoded login, and a strict Content Security Policy blocks all network access. 38 automated tests check the crypto and click through the app in Chrome, Firefox and Safari's engine on every change.</p>
       <div class="tags"><span>JavaScript</span><span>Web Crypto API</span><span>RSA + AES-GCM</span><span>PBKDF2</span><span>Client-side only</span></div>
       <div class="shots">
         <button type="button" class="shot" data-caption="Encrypting with hybrid RSA + AES - each method is labeled for what it really is: secure, classical, encoding or hash."><img src="assets/screenshots/ciphervault/encrypt.webp" alt="CipherVault encrypting a message with RSA and AES" loading="lazy"></button>
@@ -394,6 +395,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
         <button type="button" class="shot" data-caption="Key management - SHA-256 fingerprint, shareable public key, and a private key backup that stays hidden until asked for."><img src="assets/screenshots/ciphervault/keys.webp" alt="CipherVault key management with fingerprint and public key" loading="lazy"></button>
         <button type="button" class="shot" data-caption="Creating the vault - the passphrase replaced a hardcoded demo login, and there is no recovery by design."><img src="assets/screenshots/ciphervault/create-vault.webp" alt="CipherVault create vault screen with a combination dial" loading="lazy"></button>
       </div>
+      <a class="go" href="https://cyberahmedx.github.io/CipherVault/" target="_blank" rel="noopener">Try it live →</a>
       <a class="go" href="https://github.com/CyberAhmedX/CipherVault" target="_blank" rel="noopener">View repository →</a>
     </article>
 
@@ -713,7 +715,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   const hist = []; let hp = 0, booted = false;
   const cases = {
     vigil: { title: 'Vigil: SOC Detection Lab & Incident Response', summary: 'Wazuh SIEM, OpenSearch, and TheHive behind an Nginx reverse proxy. A four-stage web app compromise, each stage detected, escalated, and closed with a written verdict.', tags: 'Wazuh, TheHive, Docker, OpenSearch | T1190, T1059.007, T1213, T1486', url: 'https://github.com/CyberAhmedX/Vigil' },
-    ciphervault: { title: 'CipherVault: Browser-Based Encryption Tool', summary: 'Client-side encryption on the Web Crypto API: hybrid RSA-OAEP + AES-256-GCM, plus a passphrase vault (PBKDF2) that never stores plaintext. A self-review fixed stored XSS, plaintext storage and a hardcoded login.', tags: 'JavaScript, Web Crypto API, RSA + AES-GCM, PBKDF2', url: 'https://github.com/CyberAhmedX/CipherVault' },
+    ciphervault: { title: 'CipherVault: Browser-Based Encryption Tool', summary: 'Client-side encryption on the Web Crypto API: hybrid RSA-OAEP + AES-256-GCM, plus a passphrase vault (PBKDF2) that never stores plaintext. A self-review fixed stored XSS, plaintext storage and a hardcoded login.', tags: 'JavaScript, Web Crypto API, RSA + AES-GCM, PBKDF2', url: 'https://github.com/CyberAhmedX/CipherVault', demo: 'https://cyberahmedx.github.io/CipherVault/' },
     netscan: { title: 'Network Security Scanner with Firewall Rule Simulator', summary: 'Flask + Nmap scanner with live WebSocket updates. With admin rights, deny rules run real netsh or iptables commands and allow rules win over them. Scan diff flags newly opened ports, blocks can auto-expire with an audit log, and a command injection found in self-review was fixed.', tags: 'Flask, Nmap, WebSockets, iptables / netsh', url: 'https://github.com/CyberAhmedX/Network-Security-Scanner-with-Firewall-Rule-Simulator' },
     'sentinel-forge': { title: 'Sentinel Forge: SOC Home Lab, SIEM Deployment & Incident Triage', summary: 'Cloud lab on Vultr with the ELK Stack, Sysmon telemetry, custom Kibana detections, Mythic C2 adversary simulation, and automated ticketing.', tags: 'ELK Stack, Sysmon, Kibana, Mythic C2', url: 'https://github.com/CyberAhmedX/Sentinel-Forge' },
     fyp: { title: 'Federated Learning IDS for IoT Healthcare (Team Lead)', summary: 'CNN, BiLSTM, and GRU intrusion detection model, 99.8% accuracy, Grade A. Published in IEEE Xplore, presented at DataSciMI 2026.', tags: 'CNN / BiLSTM / GRU, Federated Learning, IEEE Xplore', url: 'https://ieeexplore.ieee.org/document/11523932' }
@@ -752,6 +754,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       const c = cases[arg.toLowerCase()];
       if (!c) return line('cat: ' + arg + ': No such case file. Try: ls', 'errc');
       line(c.title, 'sig'); line(c.summary); line('tags: ' + c.tags, 'dim'); link(c.url, c.url, 'repo: ');
+      if (c.demo) link(c.demo, c.demo, 'live: ');
     },
     open(arg) {
       const c = cases[(arg || '').toLowerCase()];
