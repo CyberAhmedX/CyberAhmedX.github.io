@@ -25,6 +25,7 @@
 <script>try{var t=localStorage.getItem('asb-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 <title>Ahmed Sajid Butt, SOC Analyst / Detection Engineer</title>
 <meta name="description" content="Portfolio of Ahmed Sajid Butt, SOC Analyst L1 and detection engineer. Threat hunting, incident investigation, and SIEM detection engineering.">
+<meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#ffffff">
 <meta name="google-site-verification" content="jmIQd6gaxiiL6YAweoHELFa5cYlEZ8gtvebucDtrLBo" />
 <meta property="og:type" content="website">
@@ -225,6 +226,8 @@ footer h2{margin:6px 0 10px}footer p{margin:0;color:var(--mute);max-width:480px}
 /* boot intro */
 .boot{position:fixed;inset:0;z-index:80;background:var(--b-bg);color:var(--b-txt);display:flex;align-items:center;justify-content:center;padding:24px max(18px,env(safe-area-inset-right,0px)) 24px max(18px,env(safe-area-inset-left,0px));border-bottom:3px solid #c8102e;cursor:pointer;overflow:hidden}
 .boot[hidden]{display:none}
+.boot.bt-light{--b-bg:#ffffff;--b-txt:#111418;--b-mute:#555b65;--b-faint:#8a919b;--b-dots:#d3d7dc;--b-cell:#f3f4f6;--b-cell-line:#e4e6ea;--b-hot:#111418;--b-hot-glow:rgba(17,20,24,.25);--b-s3:#c8102e;--b-s3-glow:rgba(200,16,46,.35);--b-s2:#e0566b;--b-s1:#f2b3bd;--b-s0:#e4e6ea;--b-ok:#1f7a45;--b-gr:#c8102e;--b-track:#e4e6ea;--b-glow:rgba(200,16,46,.07);--b-scan:rgba(0,0,0,.02);}
+.boot.bt-dark{--b-bg:#0a0c0e;--b-txt:#eceef1;--b-mute:#959ca7;--b-faint:#7d8590;--b-dots:#3a3f48;--b-cell:#15181c;--b-cell-line:#20242a;--b-hot:#eceef1;--b-hot-glow:rgba(236,238,241,.55);--b-s3:#c8102e;--b-s3-glow:rgba(200,16,46,.55);--b-s2:#8e1426;--b-s1:#561620;--b-s0:#262a31;--b-ok:#5cc98a;--b-gr:#ff5c70;--b-track:#20242a;--b-glow:rgba(200,16,46,.16);--b-scan:rgba(255,255,255,.025);color-scheme:dark}}}
 .boot:before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 45%,var(--b-glow),transparent 70%);opacity:0;animation:glow 1.6s .2s ease forwards;pointer-events:none}
 .boot:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,var(--b-scan) 0 1px,transparent 1px 3px);pointer-events:none}
 @keyframes glow{to{opacity:1}}
@@ -589,6 +592,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   const label = () => { themeBtn.textContent = isDark() ? 'Light mode' : 'Dark mode'; };
   try { const t = localStorage.getItem('asb-theme'); if (t) root.dataset.theme = t; } catch (_) {}
   label();
+  const schemeMq = matchMedia('(prefers-color-scheme: dark)');
+  schemeMq.addEventListener ? schemeMq.addEventListener('change', label) : schemeMq.addListener(label);
   themeBtn.addEventListener('click', () => {
     root.dataset.theme = isDark() ? 'light' : 'dark';
     try { localStorage.setItem('asb-theme', root.dataset.theme); } catch (_) {}
@@ -819,6 +824,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   const ROWS = 4;
   const GLYPHS = 'ABCDEF0123456789#%&@/\\<>[]{}=+';
   let booting = false;
+  // read the page's actual background, so the intro always matches what is on screen
+  function pageIsDark() {
+    const m = getComputedStyle(document.body).backgroundColor.match(/\d+/g);
+    if (!m) return matchMedia('(prefers-color-scheme: dark)').matches;
+    const [r, g, b] = m.map(Number);
+    return (0.299 * r + 0.587 * g + 0.114 * b) < 128;
+  }
 
   function boot(replay) {
     if (booting) return;
@@ -829,7 +841,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     const later = (ms, fn) => timers.push(setTimeout(fn, ms));
     let raf = 0, done = false;
 
-    bootEl.classList.remove('out');
+    bootEl.classList.remove('out', 'bt-light', 'bt-dark');
+    bootEl.classList.add(pageIsDark() ? 'bt-dark' : 'bt-light');
     bootEl.hidden = false;
     document.documentElement.classList.add('is-booting');
     $('#bootSid').textContent = Math.floor(Math.random() * 0xffff).toString(16).toUpperCase().padStart(4, '0');
