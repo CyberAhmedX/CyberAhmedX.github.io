@@ -24,7 +24,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ahmed Sajid Butt, SOC Analyst / Detection Engineer</title>
 <meta name="description" content="Portfolio of Ahmed Sajid Butt, SOC Analyst L1 and detection engineer. Threat hunting, incident investigation, and SIEM detection engineering.">
-<meta name="theme-color" content="#0A0D12">
+<meta name="theme-color" content="#ffffff">
 <meta name="google-site-verification" content="jmIQd6gaxiiL6YAweoHELFa5cYlEZ8gtvebucDtrLBo" />
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cyberahmedx.github.io/">
@@ -37,1595 +37,730 @@
 <meta name="twitter:title" content="Ahmed Sajid Butt - SOC Analyst L1 / Detection Engineer">
 <meta name="twitter:description" content="Threat hunting, incident investigation, and SIEM detection engineering across Microsoft Defender XDR, Wazuh, and the ELK Stack.">
 <meta name="twitter:image" content="https://cyberahmedx.github.io/assets/og-image.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0D12'/%3E%3Crect x='3' y='3' width='94' height='94' rx='19' fill='none' stroke='%235EB4E7' stroke-opacity='0.35' stroke-width='2'/%3E%3Ctext x='50' y='67' font-size='52' font-family='monospace' font-weight='800' fill='%235EB4E7' text-anchor='middle'%3E&gt;_%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23111418'/%3E%3Ctext x='46' y='67' font-size='52' font-family='monospace' font-weight='700' fill='%23ffffff' text-anchor='middle'%3E&gt;%3C/text%3E%3Crect x='62' y='60' width='22' height='8' fill='%23c8102e'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 <style>
-  :root{
-    --void:#0A0D12;
-    --panel:#131822;
-    --panel-hi:#171E2A;
-    --hairline:#232B38;
-    --text:#E9EDF2;
-    --muted:#7C8798;
-    --dim:#4B5568;
-    --signal:#5EB4E7;
-    --signal-dim:#3B7FA0;
-    --crit:#E8544A;
-    --warn:#F2A93B;
-    --ok:#4FBE8A;
-    --mono-display: 'JetBrains Mono', monospace;
-    --mono-data: 'IBM Plex Mono', monospace;
-    --sans: 'IBM Plex Sans', sans-serif;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.35);
-    --shadow-md: 0 14px 34px -12px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
-    --shadow-glow: 0 0 0 1px rgba(94,180,231,0.16), 0 16px 40px -14px rgba(94,180,231,0.28);
-    --ease: cubic-bezier(.19,1,.22,1);
-  }
+/* Layout: sticky profile sidebar, one reading column, case files as tabbed folders, one dark console for ATT&CK. */
+:root{
+  --paper:#ffffff;--card:#ffffff;--ink:#111418;--mute:#555b65;--line:#e4e6ea;--line2:#c9cdd3;--red:#c8102e;
+  --manila:#f1f2f4;--manila-line:#dfe2e6;--tag-bg:#f6f7f8;--tag-line:#dcdfe3;--tagr-bg:#fdf1f3;--tagr-line:#f0b9c2;--ok:#1f7a45;
+  --d-bg:#111418;--d-panel:#191d22;--d-line:#2b3038;--d-txt:#eceef1;--d-mute:#959ca7;--d-acc:#ff8a9a;--d-live:#eceef1;
+  --h3:#c8102e;--h2:#8e1426;--h1:#561620;--h0:#262a31;
+  --f-display:'IBM Plex Sans',system-ui,-apple-system,sans-serif;--f-body:'IBM Plex Sans',system-ui,-apple-system,sans-serif;--f-label:'IBM Plex Mono',ui-monospace,monospace;--f-code:'IBM Plex Mono',ui-monospace,monospace;
+  color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0f1114;--card:#15181c;--ink:#eceef1;--mute:#9aa1ab;--line:#262a31;--line2:#3a3f48;--red:#ff5c70;
+  --manila:#1b1f24;--manila-line:#2e333b;--tag-bg:#1b1f24;--tag-line:#343a43;--tagr-bg:#2a1418;--tagr-line:#6e2632;--ok:#5cc98a;
+  --d-bg:#0a0c0e;--d-panel:#14171b;--d-line:#262a31;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0f1114;--card:#15181c;--ink:#eceef1;--mute:#9aa1ab;--line:#262a31;--line2:#3a3f48;--red:#ff5c70;
+  --manila:#1b1f24;--manila-line:#2e333b;--tag-bg:#1b1f24;--tag-line:#343a43;--tagr-bg:#2a1418;--tagr-line:#6e2632;--ok:#5cc98a;
+  --d-bg:#0a0c0e;--d-panel:#14171b;--d-line:#262a31;color-scheme:dark}
+*{box-sizing:border-box}
+.h-captcha{min-height:144px}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 var(--f-body)}
+a{color:inherit}
+h2,h3{text-wrap:balance}
+.layout{display:grid;grid-template-columns:320px minmax(0,1fr);max-width:1360px;margin:0 auto}
 
-  *{ box-sizing:border-box; margin:0; padding:0; }
+/* sidebar */
+aside{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;padding:40px 30px;border-right:1px solid var(--line);display:flex;flex-direction:column;overflow-y:auto}
+.file{font:500 11px var(--f-label);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}.file b{color:var(--red);font-weight:500}
+.idcard{position:relative;background:var(--card);border:1.5px solid var(--ink);padding:22px 20px;margin:14px 0 0}
+.idcard h1{font:700 30px/1.08 var(--f-display);letter-spacing:-.02em;margin:0 0 10px}
+.idcard p{margin:0;color:var(--mute);font-size:14px;line-height:1.5}
+.avail{display:flex;align-items:center;gap:8px;margin-top:12px!important;padding-top:12px;border-top:1px solid var(--line);color:var(--ink)!important;font-size:13px!important}.avail i{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
+.stamp{position:absolute;right:-12px;top:-15px;transform:rotate(7deg);border:2.5px solid var(--red);color:var(--red);background:var(--paper);font:600 11.5px var(--f-label);letter-spacing:.14em;padding:6px 9px;cursor:pointer;user-select:none}
+aside nav{display:grid;gap:2px;margin:30px 0;font-size:15px}
+aside nav a{color:var(--mute);text-decoration:none;display:flex;align-items:center;gap:12px;padding:3px 0}
+aside nav a i{width:22px;height:1px;background:var(--line2);transition:width .2s}
+aside nav a.on{color:var(--ink);font-weight:600}aside nav a.on i{width:46px;background:var(--ink)}
+.links{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;font-weight:500}
+.links a,.links button{color:var(--ink);text-decoration:none;border:0;border-bottom:1px solid var(--line2);background:none;font:inherit;padding:0;cursor:pointer}
+.links a:hover,.links button:hover{border-color:var(--red);color:var(--red)}
+.tools{display:flex;gap:8px;margin-top:16px}
+.tool{font:500 12px var(--f-label);border:1px solid var(--line2);background:transparent;color:var(--ink);padding:6px 10px;cursor:pointer}
+.tool:hover{border-color:var(--ink)}
 
-  html{ scroll-behavior:smooth; scrollbar-color:var(--hairline) var(--void); scrollbar-width:thin; }
+main{padding:56px 60px 72px;min-width:0}
 
-  ::-webkit-scrollbar{ width:10px; height:10px; }
-  ::-webkit-scrollbar-track{ background:var(--void); }
-  ::-webkit-scrollbar-thumb{ background:var(--hairline); border-radius:5px; }
-  ::-webkit-scrollbar-thumb:hover{ background:var(--signal-dim); }
+/* hero */
+.query{display:flex;align-items:center;gap:12px;font:13px var(--f-code);color:var(--d-mute);background:var(--d-bg);border-radius:10px;padding:10px 14px;margin-bottom:44px;min-width:0}
+.query .q{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.query b{color:var(--d-acc);font-weight:400}
+.live{margin-left:auto;color:var(--d-live);display:flex;align-items:center;gap:7px;white-space:nowrap}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--d-live);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+.kick{font:500 12px var(--f-label);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.big{font:500 38px/1.25 var(--f-body);letter-spacing:-.02em;margin:0 0 18px;max-width:860px;text-wrap:balance}
+.big em{font-style:normal;color:var(--red)}
+.sub{margin:0 0 28px;color:var(--mute);max-width:640px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.b{padding:12px 20px;border:1.5px solid var(--ink);font:600 14px var(--f-body);color:var(--ink);text-decoration:none;background:transparent;cursor:pointer}
+.b:hover{background:var(--ink);color:var(--paper)}
+.b.p{background:var(--ink);color:var(--paper)}.b.p:hover{background:var(--red);border-color:var(--red)}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line);margin:52px 0 0}
+.nums div{padding:22px 18px 20px;border-right:1px solid var(--line)}.nums div:first-child{padding-left:0}.nums div:last-child{border:0}
+.nums b{font:600 48px/1 var(--f-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}.nums p{margin:8px 0 0;color:var(--mute);font-size:14px;line-height:1.4}
 
-  ::selection{ background:var(--signal); color:var(--void); }
+section{margin-top:88px;scroll-margin-top:24px}
+h2{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;font:700 34px/1.1 var(--f-display);letter-spacing:-.02em;margin:0 0 26px}
+h2 small{font:500 12px var(--f-label);letter-spacing:.12em;color:var(--mute);text-transform:uppercase}
 
-  /* ---------- BOOT INTRO ---------- */
-  .boot{
-    position:fixed; inset:0; z-index:300;
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;
-    background:var(--void);
-    animation:bootOut 1.5s ease forwards;
-    user-select:none; -webkit-user-select:none;
-  }
-  .boot-ring{
-    width:44px; height:44px; border-radius:50%;
-    border:2px solid var(--hairline); border-top-color:var(--signal);
-    animation:bootSpin .9s linear infinite;
-  }
-  .boot-lines{ font-family:var(--mono-data); font-size:12.5px; color:var(--dim); text-align:center; line-height:1.9; }
-  .boot-lines .ok{ color:var(--ok); }
-  .boot-bar{ width:180px; height:2px; background:var(--hairline); border-radius:2px; overflow:hidden; }
-  .boot-bar span{ display:block; height:100%; width:0%; background:linear-gradient(90deg, var(--signal), var(--ok)); animation:bootFill 1.3s ease forwards; }
-  @keyframes bootSpin{ to{ transform:rotate(360deg); } }
-  @keyframes bootFill{ to{ width:100%; } }
-  @keyframes bootOut{
-    0%, 78%{ opacity:1; visibility:visible; pointer-events:auto; }
-    100%{ opacity:0; visibility:hidden; pointer-events:none; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .boot{ animation:none; opacity:0; visibility:hidden; pointer-events:none; }
-  }
+/* case files */
+.case{position:relative;margin-top:44px;background:var(--card);border:1px solid var(--line2);border-radius:0 10px 10px 10px;padding:26px 28px}
+.case:first-of-type{margin-top:30px}
+.tab{position:absolute;left:-1px;top:-28px;display:flex;gap:10px;align-items:center;background:var(--manila);border:1px solid var(--line);border-bottom:0;border-radius:8px 8px 0 0;padding:4px 14px;font:500 11px var(--f-label);letter-spacing:.1em;white-space:nowrap}
+.tab span{color:var(--mute)}
+.case.feat{border-top:3px solid var(--red)}.case.feat .tab{top:-30px}
+.case h3{font:600 22px/1.3 var(--f-display);margin:0 0 8px}
+.case h3 a{text-decoration:none}.case h3 a:hover{color:var(--red)}
+.case p{margin:0 0 16px;color:var(--mute);font-size:15.5px;max-width:72ch}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tags span{font:500 12px var(--f-label);border:1px solid var(--tag-line);padding:3px 9px;background:var(--tag-bg)}
+.tags span.t{border-color:var(--tagr-line);color:var(--red);background:var(--tagr-bg)}
+.shots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}
+.shots.two{grid-template-columns:repeat(2,minmax(0,1fr));max-width:50%}
+.shot{padding:0;border:1px solid var(--line2);background:var(--tag-bg);cursor:zoom-in;aspect-ratio:16/10;overflow:hidden;max-width:100%}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .25s}
+.shot:hover{border-color:var(--ink)}
+.go{display:inline-block;margin-top:16px;font:600 14px var(--f-body);text-decoration:none;border-bottom:1.5px solid var(--ink)}
+.go:hover{color:var(--red);border-color:var(--red)}
 
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; }
-    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
-  }
+/* experience */
+.job{display:grid;grid-template-columns:130px minmax(0,1fr);gap:26px}
+.when{font:500 13px var(--f-label);color:var(--mute);padding-top:5px}
+.job h3{font:600 20px/1.35 var(--f-display);margin:0}.job .org{color:var(--mute);margin:2px 0 10px}
+.job ul{margin:0;padding-left:18px;color:var(--mute)}.job li{margin:7px 0}.job li b{color:var(--ink);font-weight:600}
 
-  body{
-    background:var(--void);
-    color:var(--text);
-    font-family:var(--sans);
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  /* fixed background on its own layer, so scrolling doesn't repaint it every frame */
-  body::before{
-    content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
-    background:
-      radial-gradient(1100px 560px at 50% -8%, rgba(94,180,231,0.10), transparent 62%) no-repeat,
-      radial-gradient(760px 420px at 100% 0%, rgba(94,180,231,0.05), transparent 55%) no-repeat,
-      repeating-linear-gradient(0deg, rgba(94,180,231,0.015) 0px, rgba(94,180,231,0.015) 1px, transparent 1px, transparent 3px) repeat;
-    transform:translateZ(0);
-  }
+/* skills */
+.skills{border-top:1.5px solid var(--ink)}
+.skrow{display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.skrow h3{margin:0;font:600 13px var(--f-label);letter-spacing:.1em;text-transform:uppercase}
 
-  a{ color:inherit; text-decoration:none; }
-  ul{ list-style:none; }
+/* ATT&CK console */
+.lead{color:var(--mute);max-width:70ch;margin:-8px 0 22px}
+.dark{background:var(--d-bg);color:var(--d-txt);border-radius:16px;padding:24px}
+.ph{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font:500 11.5px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--d-mute);margin-bottom:14px}
+.leg{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--d-mute);text-transform:none;letter-spacing:0}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.mx-scroll{overflow-x:auto;padding-bottom:4px}
+.mx{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:6px;min-width:780px}
+.col{display:flex;flex-direction:column;gap:6px}
+.ct{font:500 10.5px var(--f-label);letter-spacing:.06em;text-transform:uppercase;color:var(--d-mute);padding:0 2px 6px;border-bottom:1px solid var(--d-line);min-height:40px;display:flex;align-items:flex-end}
+.tech{all:unset;box-sizing:border-box;border-radius:6px;padding:8px;font:500 11px var(--f-code);min-height:64px;cursor:pointer;color:#fff;outline:2px solid transparent;outline-offset:1px}
+.tech b{display:block;font:500 11px/1.3 var(--f-body);color:rgba(255,255,255,.88);margin-top:3px}
+.tech:focus-visible{outline-color:var(--d-acc)}
+.tech.sel{outline-color:var(--d-txt)}
+.s3{background:var(--h3)}.s2{background:var(--h2)}.s1{background:var(--h1)}.s0{background:var(--h0);color:var(--d-mute)}.s0 b{color:var(--d-mute)}
+.lower{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px;margin-top:18px}
+.pnl{background:var(--d-panel);border:1px solid var(--d-line);border-radius:12px;padding:18px}
+.readout{font-size:14px;min-height:72px}
+.readout .tg{display:block;font:500 12px var(--f-code);color:var(--d-acc);margin-bottom:6px}
+.readout p{margin:0}.readout p b{color:var(--d-txt)}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px;border-top:1px solid var(--d-line);padding-top:16px}
+.count b{display:block;font:600 28px/1 var(--f-display);color:var(--d-txt);font-variant-numeric:tabular-nums}
+.count span{font-size:12px;color:var(--d-mute);line-height:1.3;display:block;margin-top:6px}
+.tl{list-style:none;margin:0;padding:0 0 0 16px;border-left:2px solid var(--d-line)}
+.tl li{position:relative;padding:0 0 13px 4px}
+.tl li:before{content:"";position:absolute;left:-23px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--d-line);border:2px solid var(--d-panel)}
+.tl li.on:before{background:var(--d-acc)}
+.tl small{display:block;font:500 11.5px var(--f-code);color:var(--d-acc)}.tl span{font-weight:600;font-size:14.5px}.tl em{font-style:normal;color:var(--d-mute);font-size:13px}
 
-  :focus-visible{
-    outline:2px solid var(--signal);
-    outline-offset:3px;
-    border-radius:2px;
-  }
+/* certifications: filed stamps */
+.certs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.cert{position:relative;display:block;text-decoration:none;border:1px solid var(--line2);padding:18px 18px 16px;background:var(--card)}
+.cert:hover{border-color:var(--red)}
+.cert .iss{font:600 11px var(--f-label);letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.cert h3{font:600 18px/1.3 var(--f-display);margin:6px 0 14px}
+.cert .ft{display:flex;justify-content:space-between;font:500 12px var(--f-label);color:var(--mute);border-top:1px solid var(--line);padding-top:10px}
 
-  .wrap{
-    max-width:920px;
-    margin:0 auto;
-    padding:0 28px;
-  }
+/* message form */
+.form{display:grid;gap:16px;max-width:720px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font:500 12px var(--f-label);letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.field input,.field textarea{font:16px var(--f-body);color:var(--ink);background:var(--card);border:1.5px solid var(--line2);padding:12px 14px;border-radius:0;width:100%}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--ink)}
+.hp{position:absolute;left:-9999px}
+.fst{margin:0;font:500 14px var(--f-label);min-height:1.4em}.fst.ok{color:var(--ok)}.fst.err{color:var(--red)}
 
-  /* ---------- NAV ---------- */
-  header.nav{
-    position:sticky; top:0; z-index:50;
-    backdrop-filter:blur(10px);
-    background:rgba(10,13,18,0.82);
-    border-bottom:1px solid var(--hairline);
-    box-shadow:0 12px 28px -18px rgba(0,0,0,0.6);
-  }
-  .nav-inner{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:16px 28px;
-    max-width:920px; margin:0 auto;
-  }
-  .nav-id{
-    font-family:var(--mono-data);
-    font-size:13px;
-    color:var(--signal);
-    letter-spacing:0.04em;
-    display:flex; align-items:center;
-  }
-  .nav-id .dim{ color:var(--dim); }
-  .nav-id .cursor{
-    display:inline-block; width:7px; height:14px; background:var(--signal);
-    margin-left:4px;
-    animation:cursorBlink 1s step-end infinite;
-  }
-  @keyframes cursorBlink{ 50%{ opacity:0; } }
-  .nav-links{ display:flex; align-items:center; gap:22px; }
-  .nav-links a{
-    font-family:var(--mono-data);
-    font-size:12.5px;
-    color:var(--muted);
-    text-transform:uppercase;
-    letter-spacing:0.06em;
-    transition:color .15s ease;
-  }
-  .nav-links a:not(.cta)::before{ content:'./'; color:var(--dim); }
-  .nav-links a:hover{ color:var(--text); }
-  .nav-links a.cta{
-    color:var(--void);
-    background:var(--signal);
-    padding:7px 13px;
-    border-radius:3px;
-    font-weight:600;
-    box-shadow:0 4px 14px -4px rgba(94,180,231,0.5);
-    transition:background .15s ease, box-shadow .15s ease, transform .15s ease;
-  }
-  .nav-links a.cta:hover{ background:#7CC5EF; color:var(--void); box-shadow:0 6px 18px -4px rgba(94,180,231,0.65); transform:translateY(-1px); }
+footer{margin-top:88px;border-top:1.5px solid var(--ink);padding-top:26px;scroll-margin-top:24px}
+.fgrid{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+footer h2{margin:6px 0 10px}footer p{margin:0;color:var(--mute);max-width:480px}
+.flinks{display:grid;gap:8px;font:500 15px var(--f-label);justify-items:start}
+.flinks a{text-decoration:none;border-bottom:1px solid var(--line2)}.flinks a:hover{color:var(--red);border-color:var(--red)}
+.copy{font:600 12px var(--f-label);border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:5px 10px;margin-left:8px;cursor:pointer}
+.copy:hover{background:var(--ink);color:var(--paper)}
+.fnote{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:32px;font:500 12px var(--f-label);color:var(--mute)}
 
-  /* ---------- HERO ---------- */
-  @keyframes fadeUp{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
+/* overlays */
+.ov{position:fixed;inset:0;z-index:50;background:rgba(10,9,8,.72);display:none;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.ov.open{display:flex}
+.lb-in{max-width:1100px;width:100%;display:grid;gap:12px}
+.lb-in img{width:100%;max-height:78vh;object-fit:contain;background:#000;border:1px solid #2b3038}
+.lb-in p{margin:0;color:#eceef1;font-size:14.5px}
+.ov-x{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));font:600 13px var(--f-label);background:#eceef1;color:#17181c;border:0;padding:8px 12px;cursor:pointer}
+.term{width:100%;max-width:820px;height:min(560px,80vh);background:#0a0c0e;border:1px solid #2b3038;border-radius:12px;display:flex;flex-direction:column;overflow:hidden;font:13.5px/1.6 var(--f-code);color:#e4e7eb}
+.term-bar{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;background:#15181c;border-bottom:1px solid #2b3038;color:#959ca7;font-size:12px}
+.term-bar button{all:unset;cursor:pointer;color:#959ca7}.term-bar button:hover{color:#eceef1}
+.term-out{flex:1;overflow-y:auto;padding:14px;white-space:pre-wrap;word-break:break-word}
+.term-out a{color:#ff8a9a}
+.term-line{display:flex;gap:8px;padding:10px 14px;border-top:1px solid #2b3038}
+.term-line label{color:#e4e7eb;white-space:nowrap}
+.term-line input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#eceef1;font:inherit}
+.sig{color:#ff8a9a}.muted{color:#c3c8cf}.dim{color:#7d8590}.okc{color:#5cc98a}.warn{color:#e4e7eb}.errc{color:#ff8a7a}
+.konami{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:60;width:min(360px,calc(100vw - 32px));background:#0a0c0e;color:#eceef1;border:1px solid #c8102e;border-radius:10px;font:12.5px/1.7 var(--f-code);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.konami .kh{display:flex;justify-content:space-between;padding:9px 14px;background:#c8102e;border-radius:9px 9px 0 0;font-weight:600}
+.konami .kh button{all:unset;cursor:pointer}
+.konami .kb{padding:10px 14px 12px}.konami .k{color:#959ca7}
+.max{position:fixed;inset:0;z-index:70;background:#0a0c0e;color:#eceef1;display:flex;align-items:center;justify-content:center;font:600 18px/2 var(--f-code);text-align:left}
+.max p{margin:0;opacity:0;animation:inl .3s forwards}.max p:nth-child(2){animation-delay:.5s}.max p:nth-child(3){animation-delay:1s;color:#5cc98a}.max p:nth-child(4){animation-delay:1.5s;color:#ff8a9a}
+@keyframes inl{to{opacity:1}}
 
-  .hero{ padding:76px 0 60px; border-bottom:1px solid var(--hairline); }
-  .hero .ticket-row{ animation:fadeUp .7s var(--ease) both; }
-  .hero h1{ animation:fadeUp .7s var(--ease) .07s both; }
-  .hero p.summary{ animation:fadeUp .7s var(--ease) .14s both; }
-  .hero-actions{ animation:fadeUp .7s var(--ease) .21s both; }
-  .stats{ animation:fadeUp .7s var(--ease) .28s both; }
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 
-  .ticket-row{
-    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-    font-family:var(--mono-data); font-size:12.5px; color:var(--muted);
-    margin-bottom:22px;
-  }
-  .pill{
-    display:inline-flex; align-items:center; gap:6px;
-    padding:4px 10px; border:1px solid var(--hairline); border-radius:20px;
-    background:var(--panel);
-    box-shadow:var(--shadow-sm);
-  }
-  .pill .dot{ width:6px; height:6px; border-radius:50%; background:var(--ok); box-shadow:0 0 6px var(--ok); animation:pulseDot 2.4s ease-in-out infinite; }
-  @keyframes pulseDot{ 0%,100%{ opacity:1; } 50%{ opacity:0.45; } }
-  .hero h1{
-    font-family:var(--mono-display);
-    font-weight:800;
-    font-size:clamp(42px, 9vw, 80px);
-    line-height:0.98;
-    letter-spacing:-0.02em;
-    margin-bottom:20px;
-  }
-  .hero h1 .accent{
-    color:var(--signal);
-    text-shadow:0 0 32px rgba(94,180,231,0.4);
-  }
-  .hero h1 .cursor{
-    display:inline-block;
-    width:0.46em; height:0.8em;
-    background:var(--signal);
-    margin-left:0.1em;
-    vertical-align:-0.08em;
-    box-shadow:0 0 18px rgba(94,180,231,0.6);
-    animation:cursorBlink 1s step-end infinite;
-    user-select:none; -webkit-tap-highlight-color:transparent;
-  }
-  .hero h1 .nowrap{ white-space:nowrap; }
-  .boot.replay .boot-lines .max{ color:var(--signal); font-weight:500; }
-  .hero h1 .role{
-    display:block;
-    font-size:clamp(16px, 2.6vw, 24px);
-    font-weight:700;
-    color:var(--signal);
-    margin-top:14px;
-    letter-spacing:0.02em;
-    text-shadow:0 0 28px rgba(94,180,231,0.35);
-  }
-  .hero p.summary{
-    max-width:600px;
-    color:var(--muted);
-    font-size:16.5px;
-    margin-bottom:34px;
-  }
-  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:48px; }
-  .btn{
-    font-family:var(--mono-data); font-size:13px; letter-spacing:0.03em;
-    padding:11px 20px; border-radius:4px; border:1px solid var(--hairline);
-    transition:background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease, box-shadow .15s ease;
-    display:inline-flex; align-items:center; gap:8px;
-  }
-  .btn-primary{ background:var(--signal); color:var(--void); border-color:var(--signal); font-weight:500; box-shadow:0 6px 18px -4px rgba(94,180,231,0.45); }
-  .btn-primary:hover{ background:#7CC5EF; transform:translateY(-2px); box-shadow:0 10px 24px -4px rgba(94,180,231,0.6); }
-  .btn-ghost{ background:rgba(255,255,255,0.015); }
-  .btn-ghost:hover{ border-color:var(--signal-dim); color:var(--signal); transform:translateY(-2px); background:rgba(94,180,231,0.06); }
-
-  /* stat strip */
-  .stats{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    border:1px solid var(--hairline);
-    border-radius:8px;
-    overflow:hidden;
-    box-shadow:var(--shadow-md);
-  }
-  .stat{
-    padding:18px 16px;
-    border-right:1px solid var(--hairline);
-    background:var(--panel);
-    transition:background .2s ease;
-  }
-  .stat:hover{ background:var(--panel-hi); }
-  .stat:last-child{ border-right:none; }
-  .stat .num{
-    font-family:var(--mono-display); font-weight:800; font-size:26px; color:var(--signal);
-    display:block; margin-bottom:4px;
-    text-shadow:0 0 20px rgba(94,180,231,0.3);
-  }
-  .stat .label{
-    font-family:var(--mono-data); font-size:11px; color:var(--muted);
-    text-transform:uppercase; letter-spacing:0.05em;
-  }
-
-  /* ---------- SECTION HEADERS ---------- */
-  section{ padding:64px 0; border-bottom:1px solid var(--hairline); }
-  .sec-head{
-    display:flex; align-items:baseline; gap:14px;
-    margin-bottom:34px;
-  }
-  .sec-head .idx{
-    font-family:var(--mono-data); color:var(--signal-dim); font-size:13px;
-    letter-spacing:0.02em;
-  }
-  .sec-head .idx::before{ content:'['; opacity:0.55; }
-  .sec-head .idx::after{ content:']'; opacity:0.55; }
-  .sec-head h2{
-    font-family:var(--mono-display); font-weight:800; font-size:clamp(24px, 3.4vw, 34px);
-    letter-spacing:0.01em;
-    text-transform:uppercase;
-  }
-  .sec-head .line{ flex:1; height:1px; background:linear-gradient(90deg, var(--hairline), transparent); }
-
-  /* ---------- PROJECTS (case files) ---------- */
-  .case{
-    background:var(--panel);
-    border:1px solid var(--hairline);
-    border-radius:10px;
-    margin-bottom:20px;
-    overflow:hidden;
-    opacity:0; transform:translateY(14px);
-    box-shadow:var(--shadow-sm);
-    transition:opacity .5s ease, transform .5s var(--ease), border-color .25s ease, box-shadow .25s ease;
-  }
-  .case.visible{ opacity:1; transform:translateY(0); }
-  .case.visible:hover{
-    transform:translateY(-4px);
-    border-color:var(--signal-dim);
-    box-shadow:var(--shadow-glow);
-  }
-  .case-head{
-    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
-    padding:16px 22px;
-    border-bottom:1px solid var(--hairline);
-    background:var(--panel-hi);
-    position:relative;
-  }
-  .case-head::before{
-    content:''; position:absolute; top:0; left:0; right:0; height:2px;
-    background:linear-gradient(90deg, var(--signal-dim), transparent 70%);
-    opacity:0.6;
-  }
-  .case-id{
-    font-family:var(--mono-data); font-size:12px; color:var(--muted); letter-spacing:0.04em;
-  }
-  .status{
-    font-family:var(--mono-data); font-size:11px; text-transform:uppercase; letter-spacing:0.04em;
-    padding:3px 8px; border-radius:3px; font-weight:600;
-  }
-  .status::before{ content:'['; opacity:0.6; }
-  .status::after{ content:']'; opacity:0.6; }
-  .status.featured{ background:rgba(94,180,231,0.14); color:var(--signal); box-shadow:0 0 0 1px rgba(94,180,231,0.12) inset; }
-  .status.lab{ background:rgba(79,190,138,0.14); color:var(--ok); box-shadow:0 0 0 1px rgba(79,190,138,0.12) inset; }
-  .status.research{ background:rgba(242,169,59,0.14); color:var(--warn); box-shadow:0 0 0 1px rgba(242,169,59,0.12) inset; }
-
-  .case-body{ padding:22px; }
-  .case-body h3{
-    font-family:var(--mono-display); font-size:19px; font-weight:700; margin-bottom:10px;
-  }
-  .case-body h3 a{ transition:color .15s ease; }
-  .case-body h3 a:hover{ color:var(--signal); }
-  .case-body p{ color:var(--muted); font-size:15px; margin-bottom:16px; max-width:640px; }
-  .tags{ display:flex; flex-wrap:wrap; gap:7px; margin-bottom:16px; }
-  .tag{
-    font-family:var(--mono-data); font-size:11px; color:var(--muted);
-    border:1px solid var(--hairline); padding:3px 9px; border-radius:3px;
-    background:rgba(255,255,255,0.015);
-    transition:border-color .15s ease, color .15s ease;
-  }
-  .tag:hover{ border-color:var(--signal-dim); color:var(--text); }
-  .tag.mitre{ color:var(--crit); border-color:rgba(232,84,74,0.3); }
-  .tag.mitre:hover{ border-color:var(--crit); }
-  /* ---------- SCREENSHOT GALLERY ---------- */
-  .shot-grid{
-    display:grid; grid-template-columns:repeat(2, 1fr); gap:10px;
-    margin-bottom:16px;
-  }
-  .shot-thumb{
-    padding:0; border:1px solid var(--hairline); border-radius:6px; overflow:hidden;
-    background:var(--void); cursor:zoom-in; display:block; line-height:0;
-    transition:border-color .15s ease, transform .15s ease;
-  }
-  .shot-thumb:hover{ border-color:var(--signal-dim); transform:translateY(-2px); }
-  .shot-thumb img{ width:100%; height:130px; object-fit:cover; object-position:top; display:block; }
-
-  .lightbox{
-    position:fixed; inset:0; z-index:200; display:none;
-    align-items:center; justify-content:center; padding:28px;
-    background:rgba(10,13,18,0.92); backdrop-filter:blur(4px);
-  }
-  .lightbox.open{ display:flex; }
-  .lightbox-inner{ max-width:min(1100px, 92vw); max-height:88vh; display:flex; flex-direction:column; gap:12px; }
-  .lightbox-inner img{ max-width:100%; max-height:72vh; border-radius:8px; border:1px solid var(--hairline); box-shadow:var(--shadow-md); }
-  .lightbox-caption{ font-family:var(--mono-data); font-size:12.5px; color:var(--muted); }
-  .lightbox-close{
-    position:absolute; top:24px; right:28px;
-    font-family:var(--mono-data); font-size:13px; color:var(--muted);
-    background:var(--panel); border:1px solid var(--hairline); border-radius:4px; padding:8px 14px;
-    cursor:pointer; transition:color .15s ease, border-color .15s ease;
-  }
-  .lightbox-close:hover{ color:var(--text); border-color:var(--signal-dim); }
-
-  /* ---------- TERMINAL MODE ---------- */
-  .term-overlay{
-    position:fixed; inset:0; z-index:240; display:none;
-    align-items:center; justify-content:center; padding:24px 16px;
-    background:rgba(10,13,18,0.78); backdrop-filter:blur(4px);
-  }
-  .term-overlay.open{ display:flex; }
-  .term{
-    width:min(760px, 100%); height:min(520px, 78vh);
-    display:flex; flex-direction:column;
-    background:#0B0F15; border:1px solid var(--hairline); border-radius:10px;
-    box-shadow:var(--shadow-glow), var(--shadow-md); overflow:hidden;
-    font-family:var(--mono-data); font-size:13px; color:var(--text);
-  }
-  .term-bar{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:9px 14px; background:var(--panel-hi); border-bottom:1px solid var(--hairline);
-    color:var(--muted); font-size:11.5px; letter-spacing:0.04em;
-  }
-  .term-bar .lights{ display:flex; gap:6px; margin-right:12px; }
-  .term-bar .lights span{ width:9px; height:9px; border-radius:50%; background:var(--hairline); }
-  .term-bar .lights span:first-child{ background:var(--crit); }
-  .term-bar .title{ display:flex; align-items:center; }
-  .term-exit{ background:none; border:none; color:var(--dim); font-family:inherit; font-size:12px; cursor:pointer; }
-  .term-exit:hover{ color:var(--text); }
-  .term-out{ flex:1; overflow-y:auto; padding:14px 16px 6px; line-height:1.65; white-space:pre-wrap; word-break:break-word; }
-  .term-out .dim{ color:var(--dim); }
-  .term-out .muted{ color:var(--muted); }
-  .term-out .sig{ color:var(--signal); }
-  .term-out .ok{ color:var(--ok); }
-  .term-out .err{ color:var(--crit); }
-  .term-out .warn{ color:var(--warn); }
-  .term-out a{ color:var(--signal); border-bottom:1px solid rgba(94,180,231,0.35); }
-  .term-out a:hover{ border-bottom-color:var(--signal); }
-  .term-line{ display:flex; align-items:center; gap:8px; padding:8px 16px 14px; }
-  .term-prompt{ color:var(--ok); white-space:nowrap; }
-  .term-prompt .path{ color:var(--signal); }
-  .term-input{
-    flex:1; min-width:0; background:none; border:none; outline:none;
-    color:var(--text); font-family:inherit; font-size:16px; caret-color:var(--signal);
-  }
-  @media (min-width:700px){ .term-input{ font-size:13px; } }
-  .nav-id{ cursor:pointer; }
-
-  /* ---------- KONAMI ALERT ---------- */
-  .konami-alert{
-    position:fixed; right:24px; bottom:24px; z-index:250;
-    width:min(380px, calc(100vw - 32px));
-    background:var(--panel); border:1px solid rgba(232,84,74,0.45); border-left:3px solid var(--crit);
-    border-radius:8px; box-shadow:0 0 0 1px rgba(232,84,74,0.12), 0 18px 40px -12px rgba(232,84,74,0.35);
-    font-family:var(--mono-data); font-size:12.5px; color:var(--muted);
-    opacity:0; transform:translateY(16px); pointer-events:none;
-    transition:opacity .3s ease, transform .3s var(--ease);
-  }
-  .konami-alert.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
-  .konami-head{
-    display:flex; align-items:center; justify-content:space-between; gap:10px;
-    padding:10px 14px; border-bottom:1px solid var(--hairline);
-    color:var(--crit); font-weight:500; letter-spacing:0.04em; text-transform:uppercase; font-size:11px;
-  }
-  .konami-head .dot{ width:7px; height:7px; border-radius:50%; background:var(--crit); box-shadow:0 0 8px var(--crit); display:inline-block; margin-right:8px; animation:pulseDot 1s ease-in-out infinite; }
-  .konami-close{ background:none; border:none; color:var(--dim); font-family:inherit; font-size:13px; cursor:pointer; }
-  .konami-close:hover{ color:var(--text); }
-  .konami-body{ padding:12px 14px 14px; line-height:1.7; }
-  .konami-body .k{ color:var(--dim); }
-  .konami-body .v{ color:var(--text); }
-  .konami-body .ok{ color:var(--ok); }
-  @media (max-width:480px){ .konami-alert{ right:16px; bottom:16px; } }
-  @media (max-width:480px){ .shot-thumb img{ height:100px; } }
-
-  .case-links{ display:flex; gap:16px; }
-  .case-links a{
-    font-family:var(--mono-data); font-size:12.5px; color:var(--signal);
-    border-bottom:1px solid transparent;
-    transition:border-color .15s ease, opacity .15s ease;
-  }
-  .case-links a:hover{ border-bottom-color:var(--signal); opacity:0.85; }
-
-  /* ---------- EXPERIENCE TIMELINE ---------- */
-  .timeline-entry{ display:grid; grid-template-columns:110px 1fr; gap:20px; margin-bottom:0; }
-  .tl-date{
-    font-family:var(--mono-data); font-size:12px; color:var(--dim);
-    padding-top:3px;
-  }
-  .tl-content{ border-left:1px solid var(--hairline); padding:0 0 34px 22px; position:relative; }
-  .tl-content::before{
-    content:''; position:absolute; left:-5px; top:5px;
-    width:9px; height:9px; border-radius:50%;
-    background:var(--void); border:2px solid var(--signal);
-    box-shadow:0 0 0 4px rgba(94,180,231,0.12);
-    animation:pulseDot 2.4s ease-in-out infinite;
-  }
-  .tl-content h3{ font-family:var(--mono-display); font-size:17px; margin-bottom:2px; }
-  .tl-content .org{ font-family:var(--mono-data); font-size:12.5px; color:var(--signal); margin-bottom:14px; display:block; }
-  .tl-content ul{ display:flex; flex-direction:column; gap:9px; }
-  .tl-content li{
-    font-size:14.5px; color:var(--muted); padding-left:16px; position:relative;
-  }
-  .tl-content li::before{
-    content:'›'; position:absolute; left:0; color:var(--signal-dim); font-family:var(--mono-data);
-  }
-  .tl-content li strong{ color:var(--text); font-weight:600; }
-
-  /* ---------- SKILLS ---------- */
-  .skill-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:18px; }
-  .skill-cat{
-    background:var(--panel); border:1px solid var(--hairline); border-radius:8px; padding:18px 20px;
-    box-shadow:var(--shadow-sm);
-    transition:transform .2s var(--ease), border-color .2s ease, box-shadow .2s ease;
-  }
-  .skill-cat:hover{ transform:translateY(-3px); border-color:var(--signal-dim); box-shadow:var(--shadow-md); }
-  .skill-cat h4{
-    font-family:var(--mono-data); font-size:11.5px; text-transform:uppercase; letter-spacing:0.06em;
-    color:var(--signal); margin-bottom:12px;
-  }
-  .skill-cat h4::before{ content:'// '; color:var(--dim); }
-  .skill-cat ul{ display:flex; flex-wrap:wrap; gap:7px; }
-  .skill-cat li{
-    font-size:13.5px; color:var(--muted); border:1px solid var(--hairline);
-    padding:4px 10px; border-radius:3px;
-    background:rgba(255,255,255,0.015);
-    transition:border-color .15s ease, color .15s ease;
-  }
-  .skill-cat li:hover{ border-color:var(--signal-dim); color:var(--text); }
-  
-/* ---------- CERTS ---------- */
-  .cert-list{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
-    gap:14px;
-  }
-  .cert-row{
-    display:flex;
-    flex-direction:column;
-    gap:5px;
-    padding:18px 20px;
-    border:1px solid var(--hairline);
-    border-top:2px solid var(--ok);
-    border-radius:4px;
-    background:var(--panel);
-    box-shadow:var(--shadow-sm);
-    font-size:14.5px;
-    transition:transform .2s var(--ease), box-shadow .2s ease, background .15s ease;
-  }
-  .cert-row:hover{
-    transform:translateY(-3px);
-    box-shadow:var(--shadow-md);
-    background:var(--panel-hi);
-  }
-  .cert-row .name{
-    color:var(--text);
-    font-weight:600;
-    font-size:15px;
-  }
-  .cert-row .issuer{
-    color:var(--muted);
-    font-size:13px;
-    font-family:var(--mono-data);
-  }
-  .cert-row .issuer::before{ content:'// '; color:var(--dim); }
-  .cert-row .year{
-    font-family:var(--mono-data);
-    color:var(--dim);
-    font-size:12px;
-    margin-top:4px;
-  }
-  .cert-badge{
-    align-self:flex-start;
-    font-family:var(--mono-data); font-size:10px; letter-spacing:0.06em; text-transform:uppercase;
-    padding:2px 7px; border-radius:3px; font-weight:700;
-    border:1px solid currentColor;
-    margin-bottom:2px;
-  }
-  .cert-badge.platform-credly{ color:var(--ok); background:rgba(79,190,138,0.12); }
-  .cert-badge.platform-skillfront{ color:var(--warn); background:rgba(242,169,59,0.12); }
-  .cert-badge.platform-tryhackme{ color:var(--crit); background:rgba(232,84,74,0.12); }
-  .cert-badge.platform-kc7{ color:var(--signal); background:rgba(94,180,231,0.12); }
-
-  /* ---------- CONTACT FORM ---------- */
-  .contact-form{
-    background:var(--panel); border:1px solid var(--hairline); border-radius:10px;
-    padding:28px; box-shadow:var(--shadow-sm); max-width:640px;
-  }
-  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  .field{ display:flex; flex-direction:column; gap:6px; margin-bottom:18px; }
-  .field label{
-    font-family:var(--mono-data); font-size:11.5px; color:var(--text);
-    text-transform:uppercase; letter-spacing:0.06em;
-  }
-  .field input, .field textarea{
-    font-family:var(--sans); font-size:14px; color:var(--text);
-    background:rgba(255,255,255,0.02); border:1px solid var(--hairline); border-radius:4px;
-    padding:10px 12px; resize:vertical;
-    transition:border-color .15s ease, box-shadow .15s ease;
-  }
-  .field input:focus, .field textarea:focus{
-    outline:none; border-color:var(--signal); box-shadow:0 0 0 3px rgba(94,180,231,0.12);
-  }
-  .hp-field{ position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; overflow:hidden; }
-  .h-captcha{ margin-bottom:20px; max-width:100%; overflow-x:auto; }
-  .cf-status{
-    font-family:var(--mono-data); font-size:13px; margin-top:14px; min-height:18px; color:var(--muted);
-  }
-  .cf-status.ok{ color:var(--ok); }
-  .cf-status.err{ color:var(--crit); }
-  #cf-submit{ font-family:var(--mono-data); font-size:13px; border:1px solid var(--signal); cursor:pointer; }
-  #cf-submit:disabled{ opacity:0.55; cursor:not-allowed; transform:none !important; }
-  @media (max-width:700px){ .form-row{ grid-template-columns:1fr; } }
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    padding:56px 0 70px;
-    background:radial-gradient(720px 320px at 15% 0%, rgba(94,180,231,0.06), transparent 60%);
-  }
-  .footer-inner{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:26px; }
-  footer h2{
-    font-family:var(--mono-display); font-weight:800; font-size:28px; margin-bottom:12px; max-width:420px;
-  }
-  footer p{ color:var(--muted); font-size:14.5px; margin-bottom:20px; max-width:420px; }
-  .footer-links{ display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
-  .footer-links a{
-    font-family:var(--mono-data); font-size:13.5px; color:var(--muted);
-    transition:color .15s ease, transform .15s ease;
-    display:inline-block;
-  }
-  .footer-links a:hover{ color:var(--signal); transform:translateX(-2px); }
-  .foot-note{
-    margin-top:50px; padding-top:20px; border-top:1px solid var(--hairline);
-    font-family:var(--mono-data); font-size:11.5px; color:var(--dim);
-    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
-  }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 700px){
-    .stats{ grid-template-columns:repeat(2, 1fr); }
-    .stat:nth-child(2){ border-right:none; }
-    .stat{ border-bottom:1px solid var(--hairline); }
-    .skill-grid{ grid-template-columns:1fr; }
-    .timeline-entry{ grid-template-columns:1fr; }
-    .tl-date{ padding-top:0; }
-    .nav-links{ gap:14px; }
-    .nav-links a:not(.cta){ display:none; }
-    .footer-inner{ flex-direction:column; align-items:flex-start; }
-    .footer-links{ align-items:flex-start; }
-    .atk-matrix{ min-width:820px; }
-  }
-
-  /* ---------- ATT&CK COVERAGE MATRIX ---------- */
-  .atk-lead{ color:var(--muted); max-width:70ch; margin:-14px 0 22px; font-size:15px; }
-  .atk-meta{ display:flex; flex-wrap:wrap; gap:12px 22px; margin-bottom:20px; font-size:12.5px; color:var(--muted); }
-  .atk-meta .k{ display:inline-flex; align-items:center; gap:7px; }
-  .atk-sw{ width:12px; height:12px; border-radius:3px; display:inline-block; }
-  .atk-sw.hit{ background:var(--signal); } .atk-sw.det{ background:var(--ok); }
-  .atk-sw.exec{ background:var(--warn); } .atk-sw.idle{ background:#3A4455; }
-  .atk-scroll{ overflow-x:auto; padding:2px 2px 10px; }
-  .atk-matrix{ display:grid; grid-auto-flow:column; grid-auto-columns:minmax(138px,1fr); gap:9px; }
-  .atk-col .ct{ font-family:var(--mono-data); font-size:10.5px; text-transform:uppercase; letter-spacing:0.04em;
-    color:var(--muted); padding:0 2px 9px; border-bottom:1px solid var(--hairline); margin-bottom:9px;
-    min-height:40px; display:flex; align-items:flex-end; }
-  .atk-tech{ display:block; width:100%; text-align:left; font-family:var(--mono-data); font-size:11px; color:var(--dim);
-    cursor:default; padding:9px 10px; border-radius:6px; background:var(--panel); border:1px solid var(--hairline);
-    margin-bottom:7px; line-height:1.3; transition:transform .12s ease, background .12s ease; }
-  .atk-tech .id{ display:block; font-weight:600; color:var(--muted); font-size:11.5px; }
-  .atk-tech .nm{ display:block; font-size:10px; margin-top:3px; opacity:0.85; }
-  .atk-tech[data-s]{ color:var(--text); cursor:pointer; }
-  .atk-tech[data-s="hit"]{ border-color:var(--signal-dim); box-shadow:inset 3px 0 0 var(--signal); }
-  .atk-tech[data-s="hit"] .id{ color:var(--signal); }
-  .atk-tech[data-s="det"]{ border-color:#2F6A4E; box-shadow:inset 3px 0 0 var(--ok); }
-  .atk-tech[data-s="det"] .id{ color:var(--ok); }
-  .atk-tech[data-s="exec"]{ border-color:#7A5A24; box-shadow:inset 3px 0 0 var(--warn); }
-  .atk-tech[data-s="exec"] .id{ color:var(--warn); }
-  .atk-tech[data-s]:hover{ transform:translateY(-2px); background:var(--panel-hi); }
-  .atk-tech:focus-visible{ outline:2px solid var(--signal); outline-offset:2px; }
-  .atk-readout{ margin-top:18px; background:var(--panel); border:1px solid var(--hairline);
-    border-left:3px solid var(--signal-dim); border-radius:8px; padding:16px 18px; min-height:70px; }
-  .atk-readout .tag{ font-family:var(--mono-data); font-size:11px; color:var(--dim); letter-spacing:0.04em; text-transform:uppercase; }
-  .atk-readout p{ margin-top:7px; color:var(--muted); font-size:14px; }
-  .atk-readout p b{ color:var(--text); font-weight:600; }
-  .atk-count{ display:flex; flex-wrap:wrap; gap:16px; margin-top:22px; font-family:var(--mono-data); font-size:12px; color:var(--dim); }
-  .atk-count b{ color:var(--text); font-weight:600; font-size:17px; margin-right:4px; }
+@media (max-width:1100px){.shots{grid-template-columns:repeat(2,minmax(0,1fr))}.shots.two{max-width:100%}.certs{grid-template-columns:repeat(2,minmax(0,1fr))}.lower{grid-template-columns:1fr}}
+@media (max-width:900px){
+  .layout{display:block}
+  aside{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:28px max(18px,env(safe-area-inset-right,0px)) 24px max(18px,env(safe-area-inset-left,0px));overflow:visible}
+  aside nav{display:none}.links{margin-top:22px}
+  main{padding:28px max(18px,env(safe-area-inset-right,0px)) 56px max(18px,env(safe-area-inset-left,0px))}
+  .big{font-size:28px}.nums{grid-template-columns:repeat(2,1fr)}.nums div{padding:16px 12px!important;border-bottom:1px solid var(--line)}.nums b{font-size:42px}
+  .query{font-size:11.5px}.dark{padding:14px}.job{grid-template-columns:1fr;gap:6px}.case{padding:22px 18px}
+  h2{font-size:32px}.skrow{grid-template-columns:1fr;gap:8px}.row2{grid-template-columns:1fr}.count{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){.certs{grid-template-columns:1fr}.live span{display:none}.tab{font-size:10px;padding:4px 10px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}.max p{opacity:1}}
 </style>
 </head>
 <body>
-
-<div class="boot" aria-hidden="true">
-  <div class="boot-ring"></div>
-  <div class="boot-lines">
-    <p>&gt; INITIALIZING SOC WORKSTATION...</p>
-    <p>&gt; LOADING CASE FILES...</p>
-    <p class="ok">&gt; ANALYST READY.</p>
+<div class="layout">
+<aside>
+  <div class="idcard">
+    <div class="stamp" id="stamp" title="Open to work">OPEN TO WORK</div>
+    <h1>Ahmed Sajid Butt</h1>
+    <p>SOC Analyst L1 / Detection Engineer<br>Lahore, Pakistan · BS CS 2025</p>
+    <p class="avail"><i></i>Open to SOC roles, remote or Pakistan</p>
   </div>
-  <div class="boot-bar"><span></span></div>
-</div>
-
-<header class="nav">
-  <div class="nav-inner">
-    <div class="nav-id">ASB<span class="dim">::</span>SOC-PORTFOLIO<span class="cursor"></span></div>
-    <nav class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#attack">ATT&amp;CK</a>
-      <a href="assets/Ahmed_Sajid_Butt_Resume.pdf" download="Ahmed_Sajid_Butt_SOC_Analyst_L1_Resume.pdf">Resume</a>
-      <a href="#message" class="cta">Contact</a>
-    </nav>
+  <nav aria-label="Sections">
+    <a class="on" href="#top"><i></i>About</a>
+    <a href="#work"><i></i>Case files</a>
+    <a href="#experience"><i></i>Experience</a>
+    <a href="#skills"><i></i>Detection coverage</a>
+    <a href="#attack"><i></i>ATT&amp;CK coverage</a>
+    <a href="#certs"><i></i>Certifications</a>
+    <a href="#message"><i></i>Send a message</a>
+    <a href="#contact"><i></i>Contact</a>
+  </nav>
+  <div class="links">
+    <a href="https://github.com/CyberAhmedX" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://linkedin.com/in/a-sajid" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="assets/Ahmed_Sajid_Butt_Resume.pdf" download="Ahmed_Sajid_Butt_SOC_Analyst_L1_Resume.pdf">Resume ↓</a>
+    <a href="mailto:ahmedsajid_bw@proton.me">Email ↗</a>
   </div>
-</header>
+  <div class="tools">
+    <button class="tool" id="themeBtn" type="button">Dark mode</button>
+    <button class="tool" id="termBtn" type="button">&gt;_ Terminal</button>
+  </div>
+</aside>
 
-<main class="wrap">
+<main id="top">
+  <p class="big">I investigate incidents, hunt for <em>what alerts miss</em>, and build detection content from the ground up across Microsoft Defender XDR, Wazuh and the ELK Stack.</p>
+  <p class="sub">Computer Science graduate (2025) with a completed SOC internship and hands-on detection engineering labs.</p>
+  <div class="cta">
+    <a class="b p" href="#work">Open case files</a>
+    <a class="b" href="assets/Ahmed_Sajid_Butt_Resume.pdf" download="Ahmed_Sajid_Butt_SOC_Analyst_L1_Resume.pdf">Download resume ↓</a>
+    <a class="b" href="mailto:ahmedsajid_bw@proton.me">Email me</a>
+  </div>
+  <div class="nums">
+    <div><b>14</b><p>alerts correlated in one investigation</p></div>
+    <div><b>7</b><p>ATT&amp;CK techniques executed and analyzed</p></div>
+    <div><b>4</b><p>endpoints onboarded via GPO and Intune</p></div>
+    <div><b>3</b><p>detection labs built end to end</p></div>
+  </div>
 
-  <!-- HERO -->
-  <section class="hero" style="border-bottom:none; padding-top:64px;">
-    <div class="ticket-row">
-      <span class="pill"><span class="dot"></span> OPEN TO OPPORTUNITIES</span>
-      <span>LAHORE, PAKISTAN</span>
-    </div>
-    <h1>Ahmed Sajid <span class="nowrap"><span class="accent">Butt</span><span class="cursor"></span></span>
-      <span class="role">SOC Analyst L1 / Detection Engineer</span>
-    </h1>
-    <p class="summary">
-      I investigate incidents, hunt for what alerts miss, and build detection content
-      from the ground up, across Microsoft Defender XDR, Wazuh, and the ELK Stack.
-      Computer Science graduate (2025) with a completed SOC internship and
-      hands-on detection engineering labs.
-    </p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="#work">View case files ↓</a>
-      <a class="btn btn-ghost" href="assets/Ahmed_Sajid_Butt_Resume.pdf" download="Ahmed_Sajid_Butt_SOC_Analyst_L1_Resume.pdf">Download Resume ↓</a>
-      <a class="btn btn-ghost" href="https://github.com/CyberAhmedX" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="btn btn-ghost" href="https://linkedin.com/in/a-sajid" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn btn-ghost" href="mailto:ahmedsajid_bw@proton.me">Email ↗</a>
-    </div>
-    <div class="stats">
-      <div class="stat"><span class="num">14</span><span class="label">Alerts correlated<br>in one investigation</span></div>
-      <div class="stat"><span class="num">7</span><span class="label">ATT&amp;CK techniques<br>executed &amp; analyzed</span></div>
-      <div class="stat"><span class="num">4</span><span class="label">Endpoints onboarded<br>via GPO + Intune</span></div>
-      <div class="stat"><span class="num">3</span><span class="label">Detection labs<br>built end to end</span></div>
-    </div>
-  </section>
-
-  <!-- WORK -->
   <section id="work">
-    <div class="sec-head"><span class="idx">01</span><h2>Case Files</h2><span class="line"></span></div>
+    <h2>Case files</h2>
 
-    <article class="case">
-      <div class="case-head">
-        <span class="case-id">CASE // VIGIL-2026</span>
-        <span class="status featured">Featured</span>
+    <article class="case feat">
+      <div class="tab">CASE // VIGIL-2026 <span>FEATURED</span></div>
+      <h3><a href="https://github.com/CyberAhmedX/Vigil" target="_blank" rel="noopener">Vigil: SOC detection lab and incident response</a></h3>
+      <p>A self built detection lab on Zorin OS running Wazuh SIEM, OpenSearch and TheHive case management behind an Nginx reverse proxy. Simulated a four stage web application compromise end to end, each stage independently detected, escalated and closed with a written verdict.</p>
+      <div class="tags"><span>Wazuh</span><span>TheHive</span><span>Docker</span><span>OpenSearch</span><span class="t">T1190</span><span class="t">T1059.007</span><span class="t">T1213</span><span class="t">T1486</span></div>
+      <div class="shots">
+        <button type="button" class="shot" data-caption="SQL injection payload detected - Wazuh flags the raw ' OR 1=1-- string in the nginx access log, rule level 12."><img src="assets/screenshots/vigil/sqli-alert-detected.webp" alt="Wazuh alert detail showing a detected SQL injection payload" loading="lazy"></button>
+        <button type="button" class="shot" data-caption="Automated escalation - the Wazuh integration creates a TheHive alert the moment the rule fires, no manual step."><img src="assets/screenshots/vigil/thehive-automated-alert.webp" alt="TheHive alert automatically created from a Wazuh detection" loading="lazy"></button>
+        <button type="button" class="shot" data-caption="CRITICAL: mass file modification detected - the ransomware simulation stage, rule level 15."><img src="assets/screenshots/vigil/ransomware-critical-alert.webp" alt="Wazuh critical alert for possible ransomware activity" loading="lazy"></button>
+        <button type="button" class="shot" data-caption="Case closed - TruePositive, High severity, resolved in 2 hours with full triage timing captured in TheHive."><img src="assets/screenshots/vigil/case-closed-verdict.webp" alt="Closed TheHive case marked TruePositive with resolution time metrics" loading="lazy"></button>
       </div>
-      <div class="case-body">
-        <h3><a href="https://github.com/CyberAhmedX/Vigil" target="_blank" rel="noopener">Vigil: SOC Detection Lab & Incident Response</a></h3>
-        <p>
-          A self built detection lab on Zorin OS running Wazuh SIEM, OpenSearch, and TheHive
-          case management behind an Nginx reverse proxy. Simulated a four stage web application
-          compromise end to end, each stage independently detected, escalated, and closed with
-          a written verdict.
-        </p>
-        <div class="tags">
-          <span class="tag">Wazuh</span>
-          <span class="tag">TheHive</span>
-          <span class="tag">Docker</span>
-          <span class="tag">OpenSearch</span>
-          <span class="tag mitre">T1190</span>
-          <span class="tag mitre">T1059.007</span>
-          <span class="tag mitre">T1213</span>
-          <span class="tag mitre">T1486</span>
-        </div>
-        <div class="shot-grid">
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/vigil/sqli-alert-detected.webp" data-caption="SQL injection payload detected - Wazuh flags the raw ' OR 1=1-- string in the nginx access log, rule level 12.">
-            <img src="assets/screenshots/vigil/sqli-alert-detected.webp" alt="Wazuh alert detail showing a detected SQL injection payload" loading="lazy">
-          </button>
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/vigil/thehive-automated-alert.webp" data-caption="Automated escalation - the Wazuh integration creates a TheHive alert the moment the rule fires, no manual step.">
-            <img src="assets/screenshots/vigil/thehive-automated-alert.webp" alt="TheHive alert automatically created from a Wazuh detection" loading="lazy">
-          </button>
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/vigil/ransomware-critical-alert.webp" data-caption="CRITICAL: mass file modification detected - the ransomware simulation stage, rule level 15.">
-            <img src="assets/screenshots/vigil/ransomware-critical-alert.webp" alt="Wazuh critical alert for possible ransomware activity" loading="lazy">
-          </button>
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/vigil/case-closed-verdict.webp" data-caption="Case closed - TruePositive, High severity, resolved in 2 hours with full triage timing captured in TheHive.">
-            <img src="assets/screenshots/vigil/case-closed-verdict.webp" alt="Closed TheHive case marked TruePositive with resolution time metrics" loading="lazy">
-          </button>
-        </div>
-        <div class="case-links">
-          <a href="https://github.com/CyberAhmedX/Vigil" target="_blank" rel="noopener">View repository →</a>
-        </div>
-      </div>
+      <a class="go" href="https://github.com/CyberAhmedX/Vigil" target="_blank" rel="noopener">View repository →</a>
     </article>
 
     <article class="case">
-      <div class="case-head">
-        <span class="case-id">CASE // CIPHERVAULT-2026</span>
-        <span class="status lab">Lab</span>
+      <div class="tab">CASE // CIPHERVAULT-2026 <span>LAB</span></div>
+      <h3><a href="https://github.com/CyberAhmedX/CipherVault" target="_blank" rel="noopener">CipherVault: browser-based encryption tool</a></h3>
+      <p>A client-side encryption tool built with vanilla JavaScript and the Web Crypto API. Messages use hybrid RSA-OAEP + AES-256-GCM encryption, and saved results live in a vault encrypted with a key derived from your passphrase (PBKDF2, 600,000 iterations). A self-review found and fixed a stored XSS bug, plaintext storage and a hardcoded login, and a strict Content Security Policy blocks all network access.</p>
+      <div class="tags"><span>JavaScript</span><span>Web Crypto API</span><span>RSA + AES-GCM</span><span>PBKDF2</span><span>Client-side only</span></div>
+      <div class="shots">
+        <button type="button" class="shot" data-caption="Encrypting with hybrid RSA + AES - each method is labeled for what it really is: secure, classical, encoding or hash."><img src="assets/screenshots/ciphervault/encrypt.webp" alt="CipherVault encrypting a message with RSA and AES" loading="lazy"></button>
+        <button type="button" class="shot" data-caption="The vault - saved results encrypted at rest with AES-256-GCM. The original text is never stored."><img src="assets/screenshots/ciphervault/vault.webp" alt="CipherVault vault with saved encrypted results" loading="lazy"></button>
+        <button type="button" class="shot" data-caption="Key management - SHA-256 fingerprint, shareable public key, and a private key backup that stays hidden until asked for."><img src="assets/screenshots/ciphervault/keys.webp" alt="CipherVault key management with fingerprint and public key" loading="lazy"></button>
+        <button type="button" class="shot" data-caption="Creating the vault - the passphrase replaced a hardcoded demo login, and there is no recovery by design."><img src="assets/screenshots/ciphervault/create-vault.webp" alt="CipherVault create vault screen with a combination dial" loading="lazy"></button>
       </div>
-      <div class="case-body">
-        <h3><a href="https://github.com/CyberAhmedX/CipherVault" target="_blank" rel="noopener">CipherVault: Browser-Based Encryption Tool</a></h3>
-        <p>
-          A client-side encryption tool built with vanilla JavaScript and the Web
-          Crypto API. Messages use hybrid RSA-OAEP + AES-256-GCM encryption, and saved
-          results live in a vault encrypted with a key derived from your passphrase
-          (PBKDF2, 600,000 iterations). A self-review found and fixed a stored XSS bug,
-          plaintext storage and a hardcoded login, and a strict Content Security Policy
-          blocks all network access.
-        </p>
-        <div class="tags">
-          <span class="tag">JavaScript</span>
-          <span class="tag">Web Crypto API</span>
-          <span class="tag">RSA + AES-GCM</span>
-          <span class="tag">PBKDF2</span>
-          <span class="tag">Client-Side Only</span>
-        </div>
-        <div class="shot-grid">
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/ciphervault/encrypt.webp" data-caption="Encrypting with hybrid RSA + AES - each method is labeled for what it really is: secure, classical, encoding or hash.">
-            <img src="assets/screenshots/ciphervault/encrypt.webp" alt="CipherVault encrypting a message with RSA and AES" loading="lazy">
-          </button>
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/ciphervault/vault.webp" data-caption="The vault - saved results encrypted at rest with AES-256-GCM. The original text is never stored.">
-            <img src="assets/screenshots/ciphervault/vault.webp" alt="CipherVault vault with saved encrypted results" loading="lazy">
-          </button>
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/ciphervault/keys.webp" data-caption="Key management - SHA-256 fingerprint, shareable public key, and a private key backup that stays hidden until asked for.">
-            <img src="assets/screenshots/ciphervault/keys.webp" alt="CipherVault key management with fingerprint and public key" loading="lazy">
-          </button>
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/ciphervault/create-vault.webp" data-caption="Creating the vault - the passphrase replaced a hardcoded demo login, and there is no recovery by design.">
-            <img src="assets/screenshots/ciphervault/create-vault.webp" alt="CipherVault create vault screen with a combination dial" loading="lazy">
-          </button>
-        </div>
-        <div class="case-links">
-          <a href="https://github.com/CyberAhmedX/CipherVault" target="_blank" rel="noopener">View repository →</a>
-        </div>
-      </div>
+      <a class="go" href="https://github.com/CyberAhmedX/CipherVault" target="_blank" rel="noopener">View repository →</a>
     </article>
 
     <article class="case">
-      <div class="case-head">
-        <span class="case-id">CASE // NETSCAN-2026</span>
-        <span class="status lab">Lab</span>
+      <div class="tab">CASE // NETSCAN-2026 <span>LAB</span></div>
+      <h3><a href="https://github.com/CyberAhmedX/Network-Security-Scanner-with-Firewall-Rule-Simulator" target="_blank" rel="noopener">Network Security Scanner with Firewall Rule Simulator</a></h3>
+      <p>A real time network scanner and firewall simulator built with Flask and Nmap. Supports TCP SYN, UDP and service version scans with live WebSocket updates. With admin or root rights, deny rules run a real netsh or iptables command for that IP and port, dropping matching traffic at the OS level, and allow rules win over deny rules on both Linux and Windows. Later added a scan diff that flags newly opened ports, auto-expiring blocks with an audit log, subnet and port-range rules, and fixed a command injection found in self-review.</p>
+      <div class="tags"><span>Flask</span><span>Nmap</span><span>WebSockets</span><span>iptables / netsh</span></div>
+      <div class="shots two">
+        <button type="button" class="shot" data-caption="The scanner console - port 8080 blocked by a real iptables rule, with the exact firewall commands in the activity log."><img src="assets/screenshots/netscan/dashboard.webp" alt="Network Security Scanner console with a port blocked by an iptables rule" loading="lazy"></button>
+        <button type="button" class="shot" data-caption="A rescan compared with the last one - a newly opened port is flagged as NEW. Real Nmap output against localhost, not staged."><img src="assets/screenshots/netscan/scan-diff.webp" alt="Scan results with a new open port flagged since the last scan" loading="lazy"></button>
       </div>
-      <div class="case-body">
-        <h3><a href="https://github.com/CyberAhmedX/Network-Security-Scanner-with-Firewall-Rule-Simulator" target="_blank" rel="noopener">Network Security Scanner with Firewall Rule Simulator</a></h3>
-        <p>
-          A real time network scanner and firewall simulator built with Flask and Nmap.
-          Supports TCP SYN, UDP, and service version scans with live WebSocket updates.
-          When run with admin or root privileges, deny rules aren't just visual, they
-          execute a real netsh or iptables command scoped to that specific IP and port
-          pair, actually dropping matching traffic at the OS level. Later added a scan
-          diff that flags newly opened ports, auto-expiring blocks with an audit log,
-          subnet and port-range rules, and fixed a command injection found in self-review.
-        </p>
-        <div class="tags">
-          <span class="tag">Flask</span>
-          <span class="tag">Nmap</span>
-          <span class="tag">WebSockets</span>
-          <span class="tag">iptables / netsh</span>
-        </div>
-        <div class="shot-grid">
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/netscan/dashboard.webp" data-caption="The scanner console - port 8080 blocked by a real iptables rule, with the exact firewall commands in the activity log.">
-            <img src="assets/screenshots/netscan/dashboard.webp" alt="Network Security Scanner console with a port blocked by an iptables rule" loading="lazy">
-          </button>
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/netscan/scan-diff.webp" data-caption="A rescan compared with the last one - a newly opened port is flagged as NEW. Real Nmap output against localhost, not staged.">
-            <img src="assets/screenshots/netscan/scan-diff.webp" alt="Scan results with a new open port flagged since the last scan" loading="lazy">
-          </button>
-        </div>
-        <div class="case-links">
-          <a href="https://github.com/CyberAhmedX/Network-Security-Scanner-with-Firewall-Rule-Simulator" target="_blank" rel="noopener">View repository →</a>
-        </div>
-      </div>
-    </article>
-
-  <article class="case">
-      <div class="case-head">
-        <span class="case-id">CASE // SENTINEL-FORGE-2025</span>
-        <span class="status lab">Lab</span>
-      </div>
-      <div class="case-body">
-        <h3><a href="https://github.com/CyberAhmedX/Sentinel-Forge" target="_blank" rel="noopener">Sentinel Forge: SOC Home Lab, SIEM Deployment &amp; Incident Triage</a></h3>
-        <p>
-          A cloud hosted security lab on Vultr built around the ELK Stack, with Sysmon
-          deployed for endpoint telemetry, custom Kibana detection rules, adversary
-          simulation via Mythic C2, and automated ticket creation on alert.
-        </p>
-        <div class="tags">
-          <span class="tag">ELK Stack</span>
-          <span class="tag">Sysmon</span>
-          <span class="tag">Kibana</span>
-          <span class="tag">Mythic C2</span>
-        </div>
-        <div class="shot-grid">
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/sentinel-forge/project-overview.webp" data-caption="Project overview - the 30-day build broken into Foundation, Detection & Visualization, and Response & Automation phases.">
-            <img src="assets/screenshots/sentinel-forge/project-overview.webp" alt="Sentinel-Forge project overview infographic showing the 30-day build phases" loading="lazy">
-          </button>
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/sentinel-forge/network-diagram.webp" data-caption="Lab architecture - Vultr VPC with an Elastic/Kibana server, Fleet-managed Windows and Ubuntu targets, an OSTicket server, and an external Mythic C2.">
-            <img src="assets/screenshots/sentinel-forge/network-diagram.webp" alt="Logical network diagram of the Sentinel-Forge lab on Vultr" loading="lazy">
-          </button>
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/sentinel-forge/attack-diagram.webp" data-caption="Attack chain - RDP brute force → discovery → defense evasion → Mythic C2 execution → exfiltration, the scenario each detection rule was built against.">
-            <img src="assets/screenshots/sentinel-forge/attack-diagram.webp" alt="Six-phase attack diagram from initial access to exfiltration" loading="lazy">
-          </button>
-          <button type="button" class="shot-thumb" data-full="assets/screenshots/sentinel-forge/title-card.webp" data-caption="Sentinel-Forge - forging elite SOC capabilities in a 30-day detection lab.">
-            <img src="assets/screenshots/sentinel-forge/title-card.webp" alt="Sentinel-Forge project title card" loading="lazy">
-          </button>
-        </div>
-        <div class="case-links">
-          <a href="https://github.com/CyberAhmedX/Sentinel-Forge" target="_blank" rel="noopener">View repository →</a>
-        </div>
-      </div>
+      <a class="go" href="https://github.com/CyberAhmedX/Network-Security-Scanner-with-Firewall-Rule-Simulator" target="_blank" rel="noopener">View repository →</a>
     </article>
 
     <article class="case">
-      <div class="case-head">
-        <span class="case-id">CASE // FYP-IEEE-2025</span>
-        <span class="status research">Research</span>
+      <div class="tab">CASE // SENTINEL-FORGE-2025 <span>LAB</span></div>
+      <h3><a href="https://github.com/CyberAhmedX/Sentinel-Forge" target="_blank" rel="noopener">Sentinel Forge: SOC home lab, SIEM deployment and incident triage</a></h3>
+      <p>A cloud hosted security lab on Vultr built around the ELK Stack, with Sysmon deployed for endpoint telemetry, custom Kibana detection rules, adversary simulation via Mythic C2, and automated ticket creation on alert.</p>
+      <div class="tags"><span>ELK Stack</span><span>Sysmon</span><span>Kibana</span><span>Mythic C2</span><span class="t">T1110</span><span class="t">T1071.001</span></div>
+      <div class="shots">
+        <button type="button" class="shot" data-caption="Project overview - the 30-day build broken into Foundation, Detection & Visualization, and Response & Automation phases."><img src="assets/screenshots/sentinel-forge/project-overview.webp" alt="Sentinel-Forge project overview showing the 30-day build phases" loading="lazy"></button>
+        <button type="button" class="shot" data-caption="Lab architecture - Vultr VPC with an Elastic/Kibana server, Fleet-managed Windows and Ubuntu targets, an OSTicket server, and an external Mythic C2."><img src="assets/screenshots/sentinel-forge/network-diagram.webp" alt="Logical network diagram of the Sentinel-Forge lab on Vultr" loading="lazy"></button>
+        <button type="button" class="shot" data-caption="Attack chain - RDP brute force → discovery → defense evasion → Mythic C2 execution → exfiltration, the scenario each detection rule was built against."><img src="assets/screenshots/sentinel-forge/attack-diagram.webp" alt="Six-phase attack diagram from initial access to exfiltration" loading="lazy"></button>
+        <button type="button" class="shot" data-caption="Sentinel-Forge - forging elite SOC capabilities in a 30-day detection lab."><img src="assets/screenshots/sentinel-forge/title-card.webp" alt="Sentinel-Forge project title card" loading="lazy"></button>
       </div>
-      <div class="case-body">
-        <h3>Federated Learning IDS for IoT Healthcare</h3>
-        <p>
-          Team lead on a CNN, BiLSTM, and GRU based intrusion detection model for
-          IoT enabled healthcare systems, 99.8% detection accuracy, Grade A evaluation.
-          Co-authored and published in IEEE Xplore, presented at DataSciMI 2026.
-        </p>
-        <div class="tags">
-          <span class="tag">CNN / BiLSTM / GRU</span>
-          <span class="tag">Federated Learning</span>
-          <span class="tag">IEEE Xplore</span>
-        </div>
-        <div class="case-links">
-          <a href="https://ieeexplore.ieee.org/document/11523932" target="_blank" rel="noopener">Read the paper →</a>
-        </div>
-      </div>
+      <a class="go" href="https://github.com/CyberAhmedX/Sentinel-Forge" target="_blank" rel="noopener">View repository →</a>
+    </article>
+
+    <article class="case">
+      <div class="tab">CASE // FYP-IEEE-2025 <span>RESEARCH</span></div>
+      <h3><a href="https://ieeexplore.ieee.org/document/11523932" target="_blank" rel="noopener">Federated Learning IDS for IoT Healthcare</a></h3>
+      <p>Team lead on a CNN, BiLSTM and GRU based intrusion detection model for IoT enabled healthcare systems, 99.8% detection accuracy, Grade A evaluation. Co-authored and published in IEEE Xplore, presented at DataSciMI 2026.</p>
+      <div class="tags"><span>CNN / BiLSTM / GRU</span><span>Federated Learning</span><span>IEEE Xplore</span></div>
+      <a class="go" href="https://ieeexplore.ieee.org/document/11523932" target="_blank" rel="noopener">Read the paper →</a>
     </article>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience">
-    <div class="sec-head"><span class="idx">02</span><h2>Experience</h2><span class="line"></span></div>
-
-    <div class="timeline-entry">
-      <div class="tl-date">JAN 2026<br>to<br>JUN 2026</div>
-      <div class="tl-content">
-        <h3>Threat Detection &amp; SOC Research Intern (Cybersecurity Intern)</h3>
-        <span class="org">CNS Engineering, Lahore</span>
+    <h2>Experience</h2>
+    <div class="job">
+      <div class="when">JAN 2026 to<br>JUN 2026</div>
+      <div>
+        <h3>Threat Detection &amp; SOC Research Intern</h3>
+        <div class="org">CNS Engineering, Lahore · Cybersecurity Intern</div>
         <ul>
-          <li>Investigated a high severity incident correlating <strong>14 alerts</strong> and 13 pieces of forensic evidence, tracing the attack chain to root cause via VirusTotal hash verification.</li>
-          <li>Executed <strong>7 MITRE ATT&amp;CK techniques</strong> via Atomic Red Team: 3 blocked outright by EDR, 3 detected through behavioral analysis alone.</li>
-          <li>Wrote KQL queries in Advanced Hunting across a 2 hour telemetry window, surfacing 5 findings mapped to 6 ATT&amp;CK techniques.</li>
-          <li>Ran a phishing simulation campaign measuring a <strong>20% credential compromise rate</strong>, with credential entry occurring in under 2 minutes of delivery.</li>
+          <li>Investigated a high severity incident correlating <b>14 alerts</b> and 13 pieces of forensic evidence, tracing the attack chain to root cause via VirusTotal hash verification.</li>
+          <li>Executed <b>7 MITRE ATT&amp;CK techniques</b> via Atomic Red Team: 3 blocked outright by EDR, 3 detected through behavioral analysis alone.</li>
+          <li>Wrote KQL queries in Advanced Hunting across a 2 hour telemetry window, surfacing <b>5 findings</b> mapped to 6 ATT&amp;CK techniques.</li>
+          <li>Ran a phishing simulation campaign measuring a <b>20% credential compromise rate</b>, with credential entry occurring in under 2 minutes of delivery.</li>
           <li>Authored a 6 phase Phishing Response Playbook aligned to NIST SP 800-61.</li>
-          <li>Onboarded 4 endpoints to Microsoft Defender for Endpoint across GPO and Intune deployment methods.</li>
+          <li>Onboarded <b>4 endpoints</b> to Microsoft Defender for Endpoint across GPO and Intune deployment methods.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills">
-    <div class="sec-head"><span class="idx">03</span><h2>Detection Coverage</h2><span class="line"></span></div>
-    <div class="skill-grid">
-      <div class="skill-cat">
-        <h4>SIEM &amp; XDR</h4>
-        <ul>
-          <li>Microsoft Defender XDR</li>
-          <li>Microsoft Sentinel</li>
-          <li>Wazuh SIEM</li>
-          <li>ELK Stack</li>
-          <li>TheHive</li>
-        </ul>
-      </div>
-      <div class="skill-cat">
-        <h4>Endpoint &amp; Identity</h4>
-        <ul>
-          <li>Defender for Endpoint</li>
-          <li>Microsoft Intune</li>
-          <li>Active Directory</li>
-          <li>GPO Deployment</li>
-        </ul>
-      </div>
-      <div class="skill-cat">
-        <h4>Query &amp; Analysis</h4>
-        <ul>
-          <li>KQL</li>
-          <li>Log Analysis</li>
-          <li>Threat Hunting</li>
-          <li>Incident Triage</li>
-        </ul>
-      </div>
-      <div class="skill-cat">
-        <h4>Tools &amp; Infra</h4>
-        <ul>
-          <li>Docker</li>
-          <li>OpenSearch</li>
-          <li>Sysmon</li>
-          <li>Mythic C2</li>
-          <li>Linux</li>
-          <li>Windows Server</li>
-        </ul>
-      </div>
+    <h2>Detection coverage</h2>
+    <div class="skills">
+      <div class="skrow"><h3>SIEM &amp; XDR</h3><div class="tags"><span>Microsoft Defender XDR</span><span>Microsoft Sentinel</span><span>Wazuh SIEM</span><span>ELK Stack</span><span>TheHive</span></div></div>
+      <div class="skrow"><h3>Endpoint &amp; Identity</h3><div class="tags"><span>Defender for Endpoint</span><span>Microsoft Intune</span><span>Active Directory</span><span>GPO Deployment</span></div></div>
+      <div class="skrow"><h3>Query &amp; Analysis</h3><div class="tags"><span>KQL</span><span>Log Analysis</span><span>Threat Hunting</span><span>Incident Triage</span></div></div>
+      <div class="skrow"><h3>Tools &amp; Infra</h3><div class="tags"><span>Docker</span><span>OpenSearch</span><span>Sysmon</span><span>Mythic C2</span><span>Linux</span><span>Windows Server</span></div></div>
     </div>
   </section>
 
-  <!-- ATT&CK COVERAGE -->
   <section id="attack">
-    <div class="sec-head"><span class="idx">04</span><h2>ATT&amp;CK Coverage</h2><span class="line"></span></div>
-    <p class="atk-lead">MITRE ATT&amp;CK techniques I have worked hands-on across my detection labs and SOC internship, laid out by tactic. Each lit cell is something I detected, wrote a rule for, or executed myself. Select one to see the work behind it.</p>
-    <div class="atk-meta">
-      <span class="k"><span class="atk-sw hit"></span>Detected in my lab</span>
-      <span class="k"><span class="atk-sw det"></span>Detection rule written</span>
-      <span class="k"><span class="atk-sw exec"></span>Executed (Atomic Red Team)</span>
-      <span class="k"><span class="atk-sw idle"></span>Adjacent / learning</span>
-    </div>
-    <div class="atk-scroll">
-      <div class="atk-matrix" id="atkMatrix">
-        <div class="atk-col">
-          <div class="ct">Initial Access</div>
-          <button class="atk-tech" data-s="hit" data-tag="T1190 · Exploit Public-Facing App" data-note="<b>Vigil lab.</b> Detected an SQL injection against a public web app in Wazuh, stage 1 of a 4-stage compromise."><span class="id">T1190</span><span class="nm">Exploit Public-Facing App</span></button>
-          <button class="atk-tech" data-tag="T1133 · External Remote Services" data-note="Adjacent - RDP/SSH exposure was the entry point in Sentinel-Forge; the rule I wrote targets the brute force (T1110), not the service itself."><span class="id">T1133</span><span class="nm">External Remote Services</span></button>
+    <h2>ATT&amp;CK coverage</h2>
+    <p class="lead">MITRE ATT&amp;CK techniques I have worked hands-on across my detection labs and SOC internship, laid out by tactic. Select one to see the work behind it.</p>
+    <div class="dark">
+      <div class="ph"><span>Techniques by tactic</span>
+        <span class="leg"><span><i style="background:var(--h3)"></i>Detected in my lab</span><span><i style="background:var(--h2)"></i>Detection rule written</span><span><i style="background:var(--h1)"></i>Executed (Atomic Red Team)</span><span><i style="background:var(--h0)"></i>Adjacent / learning</span></span></div>
+      <div class="mx-scroll"><div class="mx" id="mx">
+        <div class="col"><div class="ct">Initial Access</div>
+          <button class="tech s3" data-tag="T1190 · Exploit Public-Facing App" data-note="<b>Vigil lab.</b> Detected an SQL injection against a public web app in Wazuh, stage 1 of a 4-stage compromise.">T1190<b>Exploit Public-Facing App</b></button>
+          <button class="tech s0" data-tag="T1133 · External Remote Services" data-note="Adjacent - RDP/SSH exposure was the entry point in Sentinel-Forge; the rule I wrote targets the brute force (T1110), not the service itself.">T1133<b>External Remote Services</b></button></div>
+        <div class="col"><div class="ct">Credential Access</div>
+          <button class="tech s2" data-tag="T1110 · Brute Force" data-note="<b>Sentinel-Forge.</b> Built threshold and advanced Kibana rules for SSH and RDP brute force, verified against live attack traffic.">T1110<b>Brute Force</b></button>
+          <button class="tech s0" data-tag="T1003 · OS Credential Dumping" data-note="Adjacent - studied as part of post-exploitation, not yet executed in a lab.">T1003<b>OS Credential Dumping</b></button></div>
+        <div class="col"><div class="ct">Execution</div>
+          <button class="tech s3" data-tag="T1059.007 · JavaScript" data-note="<b>Vigil lab.</b> Detected malicious JavaScript execution during the web compromise chain.">T1059.007<b>JavaScript</b></button>
+          <button class="tech s1" data-tag="T1059.001 · PowerShell" data-note="<b>Internship.</b> One of 7 ATT&amp;CK techniques I ran via Atomic Red Team and reviewed for detection coverage.">T1059.001<b>PowerShell</b></button></div>
+        <div class="col"><div class="ct">Defense Evasion</div>
+          <button class="tech s2" data-tag="T1562.001 · Disable or Modify Tools" data-note="<b>Sentinel-Forge.</b> Adversary disabled Defender real-time protection; built a dashboard panel to flag &quot;Defender Disabled&quot; events.">T1562.001<b>Disable or Modify Tools</b></button></div>
+        <div class="col"><div class="ct">Discovery</div>
+          <button class="tech s2" data-tag="T1057 · Process Discovery" data-note="<b>Sentinel-Forge.</b> Wrote a &quot;suspicious process creation&quot; detection panel covering post-access discovery commands.">T1057<b>Process Discovery</b></button>
+          <button class="tech s0" data-tag="T1016 · System Network Config" data-note="Adjacent - observed in the attack chain, no dedicated rule yet.">T1016<b>System Network Config</b></button></div>
+        <div class="col"><div class="ct">Command &amp; Control</div>
+          <button class="tech s2" data-tag="T1071.001 · Web Protocols" data-note="<b>Sentinel-Forge.</b> Simulated C2 over HTTP with Mythic, then wrote detection for the beacon's process and network behavior.">T1071.001<b>Web Protocols (C2)</b></button>
+          <button class="tech s0" data-tag="T1105 · Ingress Tool Transfer" data-note="Adjacent - part of the C2 chain, studied but not separately detected.">T1105<b>Ingress Tool Transfer</b></button></div>
+        <div class="col"><div class="ct">Collection</div>
+          <button class="tech s3" data-tag="T1213 · Data from Info Repositories" data-note="<b>Vigil lab.</b> Detected data gathering from an internal information repository during the compromise.">T1213<b>Data from Info Repos</b></button></div>
+        <div class="col"><div class="ct">Exfiltration</div>
+          <button class="tech s2" data-tag="T1041 · Exfiltration Over C2 Channel" data-note="<b>Sentinel-Forge.</b> Exfil staged over the C2 channel; alert fired and auto-created an osTicket case for triage.">T1041<b>Exfil Over C2 Channel</b></button></div>
+        <div class="col"><div class="ct">Impact</div>
+          <button class="tech s3" data-tag="T1486 · Data Encrypted for Impact" data-note="<b>Vigil lab.</b> Detected ransomware-style encryption as the final stage, raised a critical alert, and closed the case with a written verdict.">T1486<b>Data Encrypted for Impact</b></button></div>
+      </div></div>
+      <div class="lower">
+        <div class="pnl">
+          <div class="ph"><span>Readout</span><span>Host ASB-01</span></div>
+          <div class="readout" id="readout"><span class="tg">T1190 · Exploit Public-Facing App</span><p><b>Vigil lab.</b> Detected an SQL injection against a public web app in Wazuh, stage 1 of a 4-stage compromise.</p></div>
+          <div class="count">
+            <div><b>10</b><span>techniques worked</span></div>
+            <div><b>5</b><span>detection rules written</span></div>
+            <div><b>4</b><span>detected in lab</span></div>
+            <div><b>9</b><span>ATT&amp;CK tactics covered</span></div>
+          </div>
         </div>
-        <div class="atk-col">
-          <div class="ct">Credential Access</div>
-          <button class="atk-tech" data-s="det" data-tag="T1110 · Brute Force" data-note="<b>Sentinel-Forge.</b> Built threshold and advanced Kibana rules for SSH and RDP brute force, verified against live attack traffic."><span class="id">T1110</span><span class="nm">Brute Force</span></button>
-          <button class="atk-tech" data-tag="T1003 · OS Credential Dumping" data-note="Adjacent - studied as part of post-exploitation, not yet executed in a lab."><span class="id">T1003</span><span class="nm">OS Credential Dumping</span></button>
-        </div>
-        <div class="atk-col">
-          <div class="ct">Execution</div>
-          <button class="atk-tech" data-s="hit" data-tag="T1059.007 · JavaScript" data-note="<b>Vigil lab.</b> Detected malicious JavaScript execution during the web compromise chain."><span class="id">T1059.007</span><span class="nm">JavaScript</span></button>
-          <button class="atk-tech" data-s="exec" data-tag="T1059.001 · PowerShell" data-note="<b>Internship.</b> One of 7 ATT&amp;CK techniques I ran via Atomic Red Team and reviewed for detection coverage."><span class="id">T1059.001</span><span class="nm">PowerShell</span></button>
-        </div>
-        <div class="atk-col">
-          <div class="ct">Defense Evasion</div>
-          <button class="atk-tech" data-s="det" data-tag="T1562.001 · Disable or Modify Tools" data-note="<b>Sentinel-Forge.</b> Adversary disabled Defender real-time protection; built a dashboard panel to flag &quot;Defender Disabled&quot; events."><span class="id">T1562.001</span><span class="nm">Disable or Modify Tools</span></button>
-        </div>
-        <div class="atk-col">
-          <div class="ct">Discovery</div>
-          <button class="atk-tech" data-s="det" data-tag="T1057 · Process Discovery" data-note="<b>Sentinel-Forge.</b> Wrote a &quot;suspicious process creation&quot; detection panel covering post-access discovery commands."><span class="id">T1057</span><span class="nm">Process Discovery</span></button>
-          <button class="atk-tech" data-tag="T1016 · System Network Config" data-note="Adjacent - observed in the attack chain, no dedicated rule yet."><span class="id">T1016</span><span class="nm">System Network Config</span></button>
-        </div>
-        <div class="atk-col">
-          <div class="ct">Command &amp; Control</div>
-          <button class="atk-tech" data-s="det" data-tag="T1071.001 · Web Protocols" data-note="<b>Sentinel-Forge.</b> Simulated C2 over HTTP with Mythic, then wrote detection for the beacon's process and network behavior."><span class="id">T1071.001</span><span class="nm">Web Protocols (C2)</span></button>
-          <button class="atk-tech" data-tag="T1105 · Ingress Tool Transfer" data-note="Adjacent - part of the C2 chain, studied but not separately detected."><span class="id">T1105</span><span class="nm">Ingress Tool Transfer</span></button>
-        </div>
-        <div class="atk-col">
-          <div class="ct">Collection</div>
-          <button class="atk-tech" data-s="hit" data-tag="T1213 · Data from Info Repositories" data-note="<b>Vigil lab.</b> Detected data gathering from an internal information repository during the compromise."><span class="id">T1213</span><span class="nm">Data from Info Repos</span></button>
-        </div>
-        <div class="atk-col">
-          <div class="ct">Exfiltration</div>
-          <button class="atk-tech" data-s="det" data-tag="T1041 · Exfiltration Over C2 Channel" data-note="<b>Sentinel-Forge.</b> Exfil staged over the C2 channel; alert fired and auto-created an osTicket case for triage."><span class="id">T1041</span><span class="nm">Exfil Over C2 Channel</span></button>
-        </div>
-        <div class="atk-col">
-          <div class="ct">Impact</div>
-          <button class="atk-tech" data-s="hit" data-tag="T1486 · Data Encrypted for Impact" data-note="<b>Vigil lab.</b> Detected ransomware-style encryption as the final stage, raised a critical alert, and closed the case with a written verdict."><span class="id">T1486</span><span class="nm">Data Encrypted for Impact</span></button>
+        <div class="pnl">
+          <div class="ph"><span>Timeline</span></div>
+          <ul class="tl">
+            <li><small>2021 to 2025</small><span>BS Computer Science</span> <em>Bahria University</em></li>
+            <li><small>2025</small><span>Sentinel-Forge</span> <em>ELK SOC lab</em></li>
+            <li><small>2025</small><span>Federated IDS for IoT</span> <em>Grade A</em></li>
+            <li class="on"><small>JAN to JUN 2026</small><span>SOC Research Intern</span> <em>CNS Engineering</em></li>
+            <li><small>2026</small><span>Vigil</span> <em>detection lab &amp; IR</em></li>
+            <li><small>2026</small><span>IEEE Xplore paper</span> <em>DataSciMI 2026</em></li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="atk-readout" id="atkReadout">
-      <span class="tag">Select a technique</span>
-      <p>Click any highlighted cell above to read what I actually did on that technique.</p>
-    </div>
-    <div class="atk-count">
-      <span><b>10</b>techniques worked</span>
-      <span><b>5</b>detection rules written</span>
-      <span><b>4</b>detected in lab</span>
-      <span><b>9</b>ATT&amp;CK tactics covered</span>
-    </div>
   </section>
 
-  <!-- CERTS -->
   <section id="certs">
-    <div class="sec-head"><span class="idx">05</span><h2>Certifications</h2><span class="line"></span></div>
-    <div class="cert-list">
-      <a class="cert-row" href="https://kc7cyber.com/badges/earned/53957" target="_blank" rel="noopener"><span class="cert-badge platform-kc7">KC7</span><span class="name">KC7 Security Analyst II</span><span class="issuer">KC7</span><span class="year">2026</span></a>
-      <a class="cert-row" href="https://kc7cyber.com/badges/earned/52218" target="_blank" rel="noopener"><span class="cert-badge platform-kc7">KC7</span><span class="name">KC7 Security Analyst I</span><span class="issuer">KC7</span><span class="year">2026</span></a>
-      <a class="cert-row" href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-BWVW6461OE.pdf" target="_blank" rel="noopener"><span class="cert-badge platform-tryhackme">TryHackMe</span><span class="name">Pre Security</span><span class="issuer">TryHackMe</span><span class="year">2025</span></a>
-      <a class="cert-row" href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-ZATJFPRVUB.pdf" target="_blank" rel="noopener"><span class="cert-badge platform-tryhackme">TryHackMe</span><span class="name">Cyber Security 101</span><span class="issuer">TryHackMe</span><span class="year">2025</span></a>
-      <a class="cert-row" href="https://www.skillfront.com/Badges/37132229470615" target="_blank" rel="noopener"><span class="cert-badge platform-skillfront">SkillFront</span><span class="name">ISO 27001 Associate</span><span class="issuer">SkillFront</span><span class="year">2024</span></a>
-      <a class="cert-row" href="https://www.credly.com/badges/26d8a0ab-a3b7-4365-bc92-66244c444d70/public_url" target="_blank" rel="noopener"><span class="cert-badge platform-credly">Credly</span><span class="name">Google Cybersecurity</span><span class="issuer">Coursera</span><span class="year">2023</span></a>
+    <h2>Certifications</h2>
+    <div class="certs">
+      <a class="cert" href="https://kc7cyber.com/badges/earned/53957" target="_blank" rel="noopener"><div class="iss">KC7</div><h3>KC7 Security Analyst II</h3><div class="ft"><span>Verify ↗</span><span>2026</span></div></a>
+      <a class="cert" href="https://kc7cyber.com/badges/earned/52218" target="_blank" rel="noopener"><div class="iss">KC7</div><h3>KC7 Security Analyst I</h3><div class="ft"><span>Verify ↗</span><span>2026</span></div></a>
+      <a class="cert" href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-ZATJFPRVUB.pdf" target="_blank" rel="noopener"><div class="iss">TryHackMe</div><h3>Cyber Security 101</h3><div class="ft"><span>Verify ↗</span><span>2025</span></div></a>
+      <a class="cert" href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-BWVW6461OE.pdf" target="_blank" rel="noopener"><div class="iss">TryHackMe</div><h3>Pre Security</h3><div class="ft"><span>Verify ↗</span><span>2025</span></div></a>
+      <a class="cert" href="https://www.skillfront.com/Badges/37132229470615" target="_blank" rel="noopener"><div class="iss">SkillFront</div><h3>ISO 27001 Associate</h3><div class="ft"><span>Verify ↗</span><span>2024</span></div></a>
+      <a class="cert" href="https://www.credly.com/badges/26d8a0ab-a3b7-4365-bc92-66244c444d70/public_url" target="_blank" rel="noopener"><div class="iss">Coursera · Credly</div><h3>Google Cybersecurity</h3><div class="ft"><span>Verify ↗</span><span>2023</span></div></a>
     </div>
   </section>
 
-  <!-- MESSAGE -->
   <section id="message">
-    <div class="sec-head"><span class="idx">06</span><h2>Send a Message</h2><span class="line"></span></div>
-    <form id="contactForm" class="contact-form" action="https://formspree.io/f/mnpqpvbq" method="POST">
-      <div class="form-row">
-        <div class="field">
-          <label for="cf-name">Name</label>
-          <input type="text" id="cf-name" name="name" required autocomplete="name">
-        </div>
-        <div class="field">
-          <label for="cf-email">Email</label>
-          <input type="email" id="cf-email" name="email" required autocomplete="email">
-        </div>
+    <h2>Send a message</h2>
+    <form class="form" id="contactForm" action="https://formspree.io/f/mnpqpvbq" method="POST" novalidate>
+      <div class="row2">
+        <div class="field"><label for="cf-name">Name</label><input type="text" id="cf-name" name="name" required autocomplete="name"></div>
+        <div class="field"><label for="cf-email">Email</label><input type="email" id="cf-email" name="email" required autocomplete="email"></div>
       </div>
-      <div class="field">
-        <label for="cf-message">Message</label>
-        <textarea id="cf-message" name="message" rows="5" required></textarea>
-      </div>
-
-      <!-- honeypot: hidden from real visitors, Formspree silently drops any submission where this is filled -->
-      <div class="hp-field" aria-hidden="true">
-        <label for="cf-company">Company</label>
-        <input type="text" id="cf-company" name="_gotcha" tabindex="-1" autocomplete="off">
-      </div>
-
+      <div class="field"><label for="cf-message">Message</label><textarea id="cf-message" name="message" rows="5" required></textarea></div>
+      <div class="hp" aria-hidden="true"><label for="cf-company">Company</label><input type="text" id="cf-company" name="_gotcha" tabindex="-1" autocomplete="off"></div>
       <div class="h-captcha" data-sitekey="4fec1012-8a52-4ce4-8a60-7202f9145a8e" data-size="compact"></div>
-
       <input type="hidden" name="_subject" value="New message from cyberahmedx.github.io">
-
-      <button type="submit" class="btn btn-primary" id="cf-submit">Send Message →</button>
-      <p id="cf-status" class="cf-status" role="status" aria-live="polite"></p>
+      <div><button type="submit" class="b p" id="cf-submit">Send message →</button></div>
+      <p id="cf-status" class="fst" role="status" aria-live="polite"></p>
     </form>
   </section>
 
-</main>
-
-<footer id="contact">
-  <div class="wrap">
-    <div class="footer-inner">
+  <footer id="contact">
+    <div class="fgrid">
       <div>
-        <h2>Let's Connect.</h2>
-        <p>Open to entry level SOC Analyst, security analyst, and detection engineering roles, remote or based in Pakistan.</p>
+        <h2>Let's talk.</h2>
+        <p>Open to entry level SOC Analyst, security analyst and detection engineering roles, remote or based in Pakistan.</p>
       </div>
-      <div class="footer-links">
-        <a href="mailto:ahmedsajid_bw@proton.me">ahmedsajid_bw@proton.me</a>
+      <div class="flinks">
+        <div><a href="mailto:ahmedsajid_bw@proton.me" id="mail">ahmedsajid_bw@proton.me</a><button class="copy" id="copy" type="button">Copy</button></div>
         <a href="https://github.com/CyberAhmedX" target="_blank" rel="noopener">github.com/CyberAhmedX</a>
         <a href="https://linkedin.com/in/a-sajid" target="_blank" rel="noopener">linkedin.com/in/a-sajid</a>
       </div>
     </div>
-    <div class="foot-note">
-      <span>© 2026 Ahmed Sajid Butt</span>
-      <span>Last updated · Oct 2026</span>
-    </div>
-  </div>
-</footer>
+    <div class="fnote"><span>© 2026 Ahmed Sajid Butt</span><span>Last updated · Oct 2026</span></div>
+  </footer>
+</main>
+</div>
 
-<script>
-  const introBoot = document.querySelector('.boot');
-  if (introBoot) {
-    introBoot.addEventListener('animationend', (e) => { if (e.target === introBoot) introBoot.remove(); });
-    setTimeout(() => introBoot.remove(), 2500);
-  }
+<div class="ov" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot" aria-hidden="true">
+  <button type="button" class="ov-x" id="lbClose">Close ✕</button>
+  <div class="lb-in"><img id="lbImg" src="" alt=""><p id="lbCap"></p></div>
+</div>
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.case').forEach(el => observer.observe(el));
-
-  // ATT&CK matrix readout
-  const atkReadout = document.getElementById('atkReadout');
-  if (atkReadout) {
-    const atkTechs = document.querySelectorAll('.atk-tech[data-s]');
-    atkTechs.forEach(t => t.addEventListener('click', () => {
-      atkTechs.forEach(x => { x.style.outline = ''; });
-      t.style.outline = '2px solid var(--signal)';
-      t.style.outlineOffset = '2px';
-      atkReadout.innerHTML = '<span class="tag"></span><p></p>';
-      atkReadout.querySelector('.tag').textContent = t.dataset.tag;
-      atkReadout.querySelector('p').innerHTML = t.dataset.note;
-    }));
-  }
-</script>
-
-<script>
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const submitBtn = document.getElementById('cf-submit');
-      const status = document.getElementById('cf-status');
-
-      submitBtn.disabled = true;
-      status.textContent = '> transmitting...';
-      status.className = 'cf-status';
-
-      const formData = new FormData(contactForm);
-
-      try {
-        const res = await fetch(contactForm.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (res.ok) {
-          status.textContent = "> message sent. i'll get back to you soon.";
-          status.classList.add('ok');
-          contactForm.reset();
-          if (window.hcaptcha) hcaptcha.reset();
-        } else {
-          const data = await res.json().catch(() => ({}));
-          const msg = (data.errors && data.errors.map(x => x.message).join(', '))
-            || 'something went wrong. try again or email me directly.';
-          status.textContent = '> error: ' + msg;
-          status.classList.add('err');
-          if (window.hcaptcha) hcaptcha.reset();
-        }
-      } catch (err) {
-        status.textContent = '> network error. try again or email me directly.';
-        status.classList.add('err');
-      } finally {
-        submitBtn.disabled = false;
-      }
-    });
-  }
-</script>
-
-<script>
-  (() => {
-    const banner = 'font-family:monospace;font-size:14px;font-weight:800;color:#5EB4E7;background:#0A0D12;padding:8px 14px;border-radius:4px;';
-    const head = 'font-family:monospace;font-size:12px;color:#5EB4E7;';
-    const line = 'font-family:monospace;font-size:12px;color:#7C8798;';
-    const ok = 'font-family:monospace;font-size:12px;color:#4FBE8A;';
-
-    console.log('%cASB :: SOC-PORTFOLIO', banner);
-    console.log('%c> whoami', head);
-    console.log('%cAhmed Sajid Butt, SOC Analyst L1 / Detection Engineer', line);
-    console.log('%c> status', head);
-    console.log('%cOpen to opportunities. Nice find, by the way. Recruiters welcome.', ok);
-    console.log('%c> contact', head);
-    console.log('%cahmedsajid_bw@proton.me  |  github.com/CyberAhmedX  |  linkedin.com/in/a-sajid', line);
-    console.log('%c> note', head);
-    console.log('%cIf you check dev tools on a portfolio site, you probably read logs at work too. See you in the SOC.', line);
-    console.log('%c> hint', head);
-    console.log('%c↑ ↑ ↓ ↓ ← → ← → B A', line);
-    console.log('%cOr press ~ for a terminal.', line);
-  })();
-</script>
-
-<div class="term-overlay" id="termOverlay" role="dialog" aria-modal="true" aria-label="Terminal" aria-hidden="true">
+<div class="ov" id="termOv" role="dialog" aria-modal="true" aria-label="Terminal" aria-hidden="true">
   <div class="term">
-    <div class="term-bar">
-      <span class="title"><span class="lights"><span></span><span></span><span></span></span>visitor@asb-soc: ~</span>
-      <button type="button" class="term-exit" id="termExit">exit ✕</button>
-    </div>
+    <div class="term-bar"><span>visitor@asb-soc: ~</span><button type="button" id="termExit">exit ✕</button></div>
     <div class="term-out" id="termOut" aria-live="polite"></div>
     <form class="term-line" id="termForm" autocomplete="off">
-      <label class="term-prompt" for="termInput">visitor@asb-soc:<span class="path">~</span>$</label>
-      <input class="term-input" id="termInput" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go">
+      <label for="termInput">visitor@asb-soc:~$</label>
+      <input id="termInput" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go">
     </form>
   </div>
 </div>
 
+<div class="konami" id="konami" role="alert" hidden>
+  <div class="kh"><span>Alert · Level 15 · Critical</span><button type="button" id="konamiClose" aria-label="Dismiss alert">✕</button></div>
+  <div class="kb">
+    <div><span class="k">rule.id:</span> 100777</div>
+    <div><span class="k">rule.description:</span> Unauthorized cheat code detected</div>
+    <div><span class="k">mitre.technique:</span> T1337 - Konami Code Execution</div>
+    <div><span class="k">src.user:</span> curious_visitor</div>
+    <div><span class="k">action:</span> <span class="okc">Analyst notified. Nice find.</span></div>
+  </div>
+</div>
+
 <script>
-  (() => {
-    const overlay = document.getElementById('termOverlay');
-    const out = document.getElementById('termOut');
-    const form = document.getElementById('termForm');
-    const input = document.getElementById('termInput');
-    const exitBtn = document.getElementById('termExit');
-    const history = [];
-    let histPos = 0;
-    let booted = false;
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  
 
-    const cases = {
-      vigil: {
-        title: 'Vigil: SOC Detection Lab & Incident Response',
-        summary: 'Wazuh SIEM, OpenSearch, and TheHive behind an Nginx reverse proxy. A four-stage web app compromise, each stage detected, escalated, and closed with a written verdict.',
-        tags: 'Wazuh, TheHive, Docker, OpenSearch | T1190, T1059.007, T1213, T1486',
-        url: 'https://github.com/CyberAhmedX/Vigil'
-      },
-      ciphervault: {
-        title: 'CipherVault: Browser-Based Encryption Tool',
-        summary: 'Client-side encryption on the Web Crypto API: hybrid RSA-OAEP + AES-256-GCM, plus a passphrase vault (PBKDF2) that never stores plaintext. A self-review fixed stored XSS, plaintext storage and a hardcoded login.',
-        tags: 'JavaScript, Web Crypto API, RSA + AES-GCM, PBKDF2',
-        url: 'https://github.com/CyberAhmedX/CipherVault'
-      },
-      netscan: {
-        title: 'Network Security Scanner with Firewall Rule Simulator',
-        summary: 'Flask + Nmap scanner with live WebSocket updates. With admin rights, deny rules run real netsh or iptables commands. Scan diff flags newly opened ports, blocks can auto-expire with an audit log, and a command injection found in self-review was fixed.',
-        tags: 'Flask, Nmap, WebSockets, iptables / netsh',
-        url: 'https://github.com/CyberAhmedX/Network-Security-Scanner-with-Firewall-Rule-Simulator'
-      },
-      'sentinel-forge': {
-        title: 'Sentinel Forge: SOC Home Lab, SIEM Deployment & Incident Triage',
-        summary: 'Cloud lab on Vultr with the ELK Stack, Sysmon telemetry, custom Kibana detections, Mythic C2 adversary simulation, and automated ticketing.',
-        tags: 'ELK Stack, Sysmon, Kibana, Mythic C2',
-        url: 'https://github.com/CyberAhmedX/Sentinel-Forge'
-      },
-      fyp: {
-        title: 'Federated Learning IDS for IoT Healthcare (Team Lead)',
-        summary: 'CNN, BiLSTM, and GRU intrusion detection model, 99.8% accuracy, Grade A. Published in IEEE Xplore, presented at DataSciMI 2026.',
-        tags: 'CNN / BiLSTM / GRU, Federated Learning, IEEE Xplore',
-        url: 'https://ieeexplore.ieee.org/document/11523932'
-      }
+  function openTab(url) {
+    const a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  /* theme */
+  const root = document.documentElement, themeBtn = $('#themeBtn');
+  const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  const label = () => { themeBtn.textContent = isDark() ? 'Light mode' : 'Dark mode'; };
+  try { const t = localStorage.getItem('asb-theme'); if (t) root.dataset.theme = t; } catch (_) {}
+  label();
+  themeBtn.addEventListener('click', () => {
+    root.dataset.theme = isDark() ? 'light' : 'dark';
+    try { localStorage.setItem('asb-theme', root.dataset.theme); } catch (_) {}
+    label();
+  });
+
+  /* scroll spy */
+  const navs = $$('aside nav a');
+  const ids = navs.map(a => a.getAttribute('href').slice(1));
+  function spy() {
+    let cur = 'top';
+    for (const id of ids.slice(1)) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight * 0.4) cur = id; }
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = 'contact';
+    navs.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + cur));
+  }
+  addEventListener('scroll', spy, { passive: true }); spy();
+
+  /* ATT&CK readout */
+  const readout = $('#readout'), techs = $$('.tech');
+  techs[0].classList.add('sel');
+  techs.forEach(t => {
+    const show = () => {
+      techs.forEach(x => x.classList.remove('sel')); t.classList.add('sel');
+      readout.innerHTML = '<span class="tg"></span><p></p>';
+      readout.querySelector('.tg').textContent = t.dataset.tag;
+      readout.querySelector('p').innerHTML = t.dataset.note;
     };
+    t.addEventListener('click', show);
+    t.addEventListener('mouseenter', show);
+  });
 
-    function line(text = '', cls) {
-      const div = document.createElement('div');
-      if (cls) div.className = cls;
-      div.textContent = text;
-      out.appendChild(div);
-      return div;
-    }
-    function link(label, href, prefix = '') {
-      const div = document.createElement('div');
-      if (prefix) div.append(prefix);
+  /* lightbox */
+  const lb = $('#lightbox'), lbImg = $('#lbImg'), lbCap = $('#lbCap');
+  let lastFocus = null;
+  function openOv(ov) { lastFocus = document.activeElement; ov.classList.add('open'); ov.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+  function closeOv(ov) { ov.classList.remove('open'); ov.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
+  $$('.shot').forEach(b => b.addEventListener('click', () => {
+    const img = b.querySelector('img');
+    lbImg.src = img.src; lbImg.alt = img.alt; lbCap.textContent = b.dataset.caption;
+    openOv(lb); $('#lbClose').focus();
+  }));
+  $('#lbClose').addEventListener('click', () => closeOv(lb));
+  lb.addEventListener('click', e => { if (e.target === lb || e.target.closest('.lb-in')) closeOv(lb); });
+
+  /* copy email */
+  $('#copy').addEventListener('click', e => {
+    const b = e.currentTarget, t = 'ahmedsajid_bw@proton.me';
+    const done = () => { b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy', 1600); };
+    const sel = () => { const r = document.createRange(); r.selectNodeContents($('#mail')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Selected'; };
+    try { navigator.clipboard.writeText(t).then(done, sel); } catch (_) { sel(); }
+  });
+
+  /* contact form (Formspree) */
+  const form = $('#contactForm'), status = $('#cf-status'), submit = $('#cf-submit');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    status.className = 'fst';
+    if (!form.checkValidity()) { status.textContent = '> fill in your name, a valid email and a message.'; status.classList.add('err'); return; }
+    submit.disabled = true; status.textContent = '> transmitting...';
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (res.ok) { status.textContent = "> message sent. i'll get back to you soon."; status.classList.add('ok'); form.reset(); if (window.hcaptcha) hcaptcha.reset(); }
+      else {
+        const data = await res.json().catch(() => ({}));
+        status.textContent = '> error: ' + ((data.errors && data.errors.map(x => x.message).join(', ')) || 'something went wrong. try again or email me directly.');
+        status.classList.add('err');
+        if (window.hcaptcha) hcaptcha.reset();
+      }
+    } catch (_) {
+      status.textContent = '> network error. try again or email me directly.';
+      status.classList.add('err');
+    } finally { submit.disabled = false; }
+  });
+
+  /* console */
+  const banner = 'font-family:monospace;font-size:14px;font-weight:800;color:#ff8a9a;background:#111418;padding:8px 14px;border-radius:4px;';
+  const head = 'font-family:monospace;font-size:12px;color:#c8102e;';
+  const ln = 'font-family:monospace;font-size:12px;color:#6b7280;';
+  const ok = 'font-family:monospace;font-size:12px;color:#1f7a45;';
+  console.log('%cASB :: SOC-PORTFOLIO', banner);
+  console.log('%c> whoami', head); console.log('%cAhmed Sajid Butt, SOC Analyst L1 / Detection Engineer', ln);
+  console.log('%c> status', head); console.log('%cOpen to opportunities. Nice find, by the way. Recruiters welcome.', ok);
+  console.log('%c> contact', head); console.log('%cahmedsajid_bw@proton.me  |  github.com/CyberAhmedX  |  linkedin.com/in/a-sajid', ln);
+  console.log('%c> note', head); console.log('%cIf you check dev tools on a portfolio site, you probably read logs at work too. See you in the SOC.', ln);
+  console.log('%c> hint', head); console.log('%c↑ ↑ ↓ ↓ ← → ← → B A', ln); console.log('%cOr press ~ for a terminal. Or stamp the stamp five times.', ln);
+
+  /* terminal */
+  const ov = $('#termOv'), out = $('#termOut'), input = $('#termInput');
+  const hist = []; let hp = 0, booted = false;
+  const cases = {
+    vigil: { title: 'Vigil: SOC Detection Lab & Incident Response', summary: 'Wazuh SIEM, OpenSearch, and TheHive behind an Nginx reverse proxy. A four-stage web app compromise, each stage detected, escalated, and closed with a written verdict.', tags: 'Wazuh, TheHive, Docker, OpenSearch | T1190, T1059.007, T1213, T1486', url: 'https://github.com/CyberAhmedX/Vigil' },
+    ciphervault: { title: 'CipherVault: Browser-Based Encryption Tool', summary: 'Client-side encryption on the Web Crypto API: hybrid RSA-OAEP + AES-256-GCM, plus a passphrase vault (PBKDF2) that never stores plaintext. A self-review fixed stored XSS, plaintext storage and a hardcoded login.', tags: 'JavaScript, Web Crypto API, RSA + AES-GCM, PBKDF2', url: 'https://github.com/CyberAhmedX/CipherVault' },
+    netscan: { title: 'Network Security Scanner with Firewall Rule Simulator', summary: 'Flask + Nmap scanner with live WebSocket updates. With admin rights, deny rules run real netsh or iptables commands and allow rules win over them. Scan diff flags newly opened ports, blocks can auto-expire with an audit log, and a command injection found in self-review was fixed.', tags: 'Flask, Nmap, WebSockets, iptables / netsh', url: 'https://github.com/CyberAhmedX/Network-Security-Scanner-with-Firewall-Rule-Simulator' },
+    'sentinel-forge': { title: 'Sentinel Forge: SOC Home Lab, SIEM Deployment & Incident Triage', summary: 'Cloud lab on Vultr with the ELK Stack, Sysmon telemetry, custom Kibana detections, Mythic C2 adversary simulation, and automated ticketing.', tags: 'ELK Stack, Sysmon, Kibana, Mythic C2', url: 'https://github.com/CyberAhmedX/Sentinel-Forge' },
+    fyp: { title: 'Federated Learning IDS for IoT Healthcare (Team Lead)', summary: 'CNN, BiLSTM, and GRU intrusion detection model, 99.8% accuracy, Grade A. Published in IEEE Xplore, presented at DataSciMI 2026.', tags: 'CNN / BiLSTM / GRU, Federated Learning, IEEE Xplore', url: 'https://ieeexplore.ieee.org/document/11523932' }
+  };
+  function line(text = '', cls) { const d = document.createElement('div'); if (cls) d.className = cls; d.textContent = text; out.appendChild(d); }
+  function link(lbl, href, prefix = '') {
+    const d = document.createElement('div'); if (prefix) d.append(prefix);
+    const a = document.createElement('a'); a.href = href; a.textContent = lbl;
+    if (/^https?:/.test(href)) { a.target = '_blank'; a.rel = 'noopener'; }
+    d.appendChild(a); out.appendChild(d);
+  }
+  const commands = {
+    help() {
+      line('Available commands:', 'sig');
+      [['whoami', 'who runs this workstation'], ['ls', 'list case files'], ['cat <case>', 'read a case file, e.g. cat vigil'], ['open <case>', 'open a case repo in a new tab'], ['experience', 'work history'], ['skills', 'detection coverage'], ['certs', 'certifications'], ['resume', 'download the resume'], ['contact', 'how to reach me'], ['history', 'commands you ran'], ['clear', 'clear the screen'], ['exit', 'close the terminal (or press Esc)']]
+        .forEach(([c, d]) => line('  ' + c.padEnd(14) + d, 'muted'));
+    },
+    whoami() {
+      line('Ahmed Sajid Butt', 'sig'); line('SOC Analyst L1 / Detection Engineer · Lahore, Pakistan');
+      line('BS Computer Science, Bahria University (2021 - 2025)', 'muted'); line('Former OWASP BULC Chapter Lead · IEEE co-author', 'muted'); line('Status: open to opportunities', 'okc');
+    },
+    ls() {
+      const narrow = out.clientWidth < 520;
+      Object.keys(cases).forEach(k => { if (narrow) { line('  ' + k, 'sig'); line('    ' + cases[k].title, 'muted'); } else line('  ' + k.padEnd(16) + cases[k].title, 'muted'); });
+      line('Tip: cat <name> to read one.', 'dim');
+    },
+    cat(arg) {
+      if (!arg) return line('usage: cat <case>. Try: ls', 'warn');
+      if (arg === 'resume') return commands.resume();
+      if (arg === 'security.txt' || arg === '.well-known/security.txt') {
+        return fetch('.well-known/security.txt')
+          .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+          .then(t => { t.trimEnd().split('\n').forEach(l => line(l, l.startsWith('#') ? 'dim' : 'muted')); out.scrollTop = out.scrollHeight; })
+          .catch(() => line('cat: security.txt: could not be read', 'errc'));
+      }
+      const c = cases[arg.toLowerCase()];
+      if (!c) return line('cat: ' + arg + ': No such case file. Try: ls', 'errc');
+      line(c.title, 'sig'); line(c.summary); line('tags: ' + c.tags, 'dim'); link(c.url, c.url, 'repo: ');
+    },
+    open(arg) {
+      const c = cases[(arg || '').toLowerCase()];
+      if (!c) return line('usage: open <case>. Try: ls', 'warn');
+      openTab(c.url); line('Opening ' + c.url + ' ...', 'okc');
+    },
+    experience() {
+      line('Threat Detection & SOC Research Intern · CNS Engineering, Lahore', 'sig'); line('Jan 2026 - Jun 2026', 'dim');
+      ['Correlated 14 alerts and 13 pieces of evidence to root cause in a high-severity incident', 'Executed 7 MITRE ATT&CK techniques via Atomic Red Team: 3 blocked, 3 caught behaviorally', 'KQL hunting in Advanced Hunting: 5 findings mapped to 6 techniques', 'Phishing simulation: 20% compromise rate; wrote a 6-phase NIST SP 800-61 playbook', 'Onboarded 4 endpoints to Defender for Endpoint via GPO and Intune']
+        .forEach(t => line('  › ' + t, 'muted'));
+    },
+    skills() {
+      line('SIEM & XDR       Defender XDR, Sentinel, Wazuh, ELK Stack, TheHive', 'muted');
+      line('Endpoint & ID    Defender for Endpoint, Intune, Active Directory, GPO', 'muted');
+      line('Query & Analysis KQL, Log Analysis, Threat Hunting, Incident Triage', 'muted');
+      line('Tools & Infra    Docker, OpenSearch, Sysmon, Mythic C2, Linux, Windows Server', 'muted');
+    },
+    certs() {
+      [['KC7 Security Analyst II', '2026', 'https://kc7cyber.com/badges/earned/53957'], ['KC7 Security Analyst I', '2026', 'https://kc7cyber.com/badges/earned/52218'], ['TryHackMe Cyber Security 101', '2025', 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-ZATJFPRVUB.pdf'], ['TryHackMe Pre Security', '2025', 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-BWVW6461OE.pdf'], ['ISO 27001 Associate (SkillFront)', '2024', 'https://www.skillfront.com/Badges/37132229470615'], ['Google Cybersecurity (Coursera)', '2023', 'https://www.credly.com/badges/26d8a0ab-a3b7-4365-bc92-66244c444d70/public_url']]
+        .forEach(([n, y, u]) => link(n + ' · ' + y, u, '  ✓ '));
+    },
+    resume() {
       const a = document.createElement('a');
-      a.href = href;
-      a.textContent = label;
-      if (/^https?:/.test(href)) { a.target = '_blank'; a.rel = 'noopener'; }
-      div.appendChild(a);
-      out.appendChild(div);
-    }
-    function echo(cmd) {
-      const div = document.createElement('div');
-      const p = document.createElement('span');
-      p.className = 'ok';
-      p.textContent = 'visitor@asb-soc:~$ ';
-      div.append(p, cmd);
-      out.appendChild(div);
-    }
-
-    const commands = {
-      help() {
-        line('Available commands:', 'sig');
-        [
-          ['whoami', 'who runs this workstation'],
-          ['ls', 'list case files'],
-          ['cat <case>', 'read a case file, e.g. cat vigil'],
-          ['open <case>', 'open a case repo in a new tab'],
-          ['experience', 'work history'],
-          ['skills', 'detection coverage'],
-          ['certs', 'certifications'],
-          ['resume', 'download the resume'],
-          ['contact', 'how to reach me'],
-          ['history', 'commands you ran'],
-          ['clear', 'clear the screen'],
-          ['exit', 'close the terminal (or press Esc)']
-        ].forEach(([c, d]) => line('  ' + c.padEnd(14) + d, 'muted'));
-      },
-      whoami() {
-        line('Ahmed Sajid Butt', 'sig');
-        line('SOC Analyst L1 / Detection Engineer · Lahore, Pakistan');
-        line('BS Computer Science, Bahria University (2021 - 2025)', 'muted');
-        line('Former OWASP BULC Chapter Lead · IEEE co-author', 'muted');
-        line('Status: open to opportunities', 'ok');
-      },
-      ls() {
-        const narrow = out.clientWidth < 520;
-        Object.keys(cases).forEach(k => {
-          if (narrow) { line('  ' + k, 'sig'); line('    ' + cases[k].title, 'muted'); }
-          else line('  ' + k.padEnd(16) + cases[k].title, 'muted');
-        });
-        line('Tip: cat <name> to read one.', 'dim');
-      },
-      cat(arg) {
-        if (!arg) return line('usage: cat <case>. Try: ls', 'warn');
-        if (arg === 'resume') return commands.resume();
-        if (arg === 'security.txt' || arg === '.well-known/security.txt') {
-          return fetch('.well-known/security.txt')
-            .then(r => { if (!r.ok) throw new Error(); return r.text(); })
-            .then(t => { t.trimEnd().split('\n').forEach(l => line(l, l.startsWith('#') ? 'dim' : 'muted')); out.scrollTop = out.scrollHeight; })
-            .catch(() => line('cat: security.txt: could not be read', 'err'));
-        }
-        const c = cases[arg.toLowerCase()];
-        if (!c) return line('cat: ' + arg + ': No such case file. Try: ls', 'err');
-        line(c.title, 'sig');
-        line(c.summary);
-        line('tags: ' + c.tags, 'dim');
-        link(c.url, c.url, 'repo: ');
-      },
-      open(arg) {
-        const c = cases[(arg || '').toLowerCase()];
-        if (!c) return line('usage: open <case>. Try: ls', 'warn');
-        window.open(c.url, '_blank', 'noopener');
-        line('Opening ' + c.url + ' ...', 'ok');
-      },
-      experience() {
-        line('Threat Detection & SOC Research Intern · CNS Engineering, Lahore', 'sig');
-        line('Jan 2026 - Jun 2026', 'dim');
-        [
-          'Correlated 14 alerts and 13 pieces of evidence to root cause in a high-severity incident',
-          'Executed 7 MITRE ATT&CK techniques via Atomic Red Team: 3 blocked, 3 caught behaviorally',
-          'KQL hunting in Sentinel and Advanced Hunting: 5 findings mapped to 6 techniques',
-          'Phishing simulation: 20% compromise rate; wrote a 6-phase NIST SP 800-61 playbook',
-          'Onboarded 4 endpoints to Defender for Endpoint via GPO and Intune'
-        ].forEach(t => line('  › ' + t, 'muted'));
-      },
-      skills() {
-        line('SIEM & XDR       Defender XDR, Sentinel, Wazuh, ELK Stack, TheHive', 'muted');
-        line('Endpoint & ID    Defender for Endpoint, Intune, Active Directory, GPO', 'muted');
-        line('Query & Analysis KQL, Log Analysis, Threat Hunting, Incident Triage', 'muted');
-        line('Tools & Infra    Docker, OpenSearch, Sysmon, Mythic C2, Linux, Windows Server', 'muted');
-      },
-      certs() {
-        [
-          ['KC7 Security Analyst II', '2026', 'https://kc7cyber.com/badges/earned/53957'],
-          ['KC7 Security Analyst I', '2026', 'https://kc7cyber.com/badges/earned/52218'],
-          ['TryHackMe Cyber Security 101', '2025', 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-ZATJFPRVUB.pdf'],
-          ['TryHackMe Pre Security', '2025', 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-BWVW6461OE.pdf'],
-          ['ISO 27001 Associate (SkillFront)', '2024', 'https://www.skillfront.com/Badges/37132229470615'],
-          ['Google Cybersecurity (Coursera)', '2023', 'https://www.credly.com/badges/26d8a0ab-a3b7-4365-bc92-66244c444d70/public_url']
-        ].forEach(([n, y, u]) => link(n + ' · ' + y, u, '  ✓ '));
-      },
-      resume() {
-        const a = document.createElement('a');
-        a.href = 'assets/Ahmed_Sajid_Butt_Resume.pdf';
-        a.download = 'Ahmed_Sajid_Butt_SOC_Analyst_L1_Resume.pdf';
-        document.body.appendChild(a); a.click(); a.remove();
-        line('Downloading Ahmed_Sajid_Butt_SOC_Analyst_L1_Resume.pdf ...', 'ok');
-      },
-      contact() {
-        link('ahmedsajid_bw@proton.me', 'mailto:ahmedsajid_bw@proton.me', '  email     ');
-        link('linkedin.com/in/a-sajid', 'https://linkedin.com/in/a-sajid', '  linkedin  ');
-        link('github.com/CyberAhmedX', 'https://github.com/CyberAhmedX', '  github    ');
-        line('Or use the contact form: type exit, then scroll to Send a Message.', 'dim');
-      },
-      history() {
-        history.forEach((h, i) => line('  ' + String(i + 1).padStart(3) + '  ' + h, 'muted'));
-      },
-      clear() { out.textContent = ''; },
-      exit() { close(); },
-      sudo() {
-        line('visitor is not in the sudoers file. This incident will be reported.', 'err');
-        line('[ALERT] Privilege escalation attempt (T1548) logged for review.', 'warn');
-      },
-      rm(arg) {
-        if (/-rf/.test(arg || '')) return line('Nice try. Blocked by EDR: destructive command prevented (T1485).', 'err');
-        line('rm: missing operand', 'warn');
-      },
-      date() { line(new Date().toString(), 'muted'); },
-      pwd() { line('/home/visitor', 'muted'); },
-      echo(arg) { line(arg || ''); },
-      hack() { line('Access denied. Try the Konami code instead.', 'warn'); }
-    };
-    commands.cd = () => line('You are already where you need to be.', 'muted');
-
-    function run(raw) {
-      const cmd = raw.trim();
-      echo(cmd);
-      if (!cmd) return;
-      history.push(cmd);
-      const [name, ...rest] = cmd.split(/\s+/);
-      const fn = commands[name.toLowerCase()];
-      if (fn) fn(rest.join(' '));
-      else line('command not found: ' + name + '. Type help.', 'err');
-    }
-
-    function boot() {
-      line('ASB :: SOC-PORTFOLIO terminal v1.0', 'sig');
-      line('Session opened for visitor. All commands are logged (just kidding).', 'dim');
-      line('Type help to get started.', 'muted');
-      line();
-      booted = true;
-    }
-
-    function open() {
-      if (overlay.classList.contains('open')) return;
-      overlay.classList.add('open');
-      overlay.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      if (!booted) boot();
-      setTimeout(() => input.focus(), 30);
-    }
-    function close() {
-      overlay.classList.remove('open');
-      overlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-
-    form.addEventListener('submit', (e) => {
+      a.href = 'assets/Ahmed_Sajid_Butt_Resume.pdf'; a.download = 'Ahmed_Sajid_Butt_SOC_Analyst_L1_Resume.pdf';
+      document.body.appendChild(a); a.click(); a.remove();
+      line('Downloading Ahmed_Sajid_Butt_SOC_Analyst_L1_Resume.pdf ...', 'okc');
+    },
+    contact() {
+      link('ahmedsajid_bw@proton.me', 'mailto:ahmedsajid_bw@proton.me', '  email     ');
+      link('linkedin.com/in/a-sajid', 'https://linkedin.com/in/a-sajid', '  linkedin  ');
+      link('github.com/CyberAhmedX', 'https://github.com/CyberAhmedX', '  github    ');
+      line('Or use the contact form: type exit, then scroll to Send a message.', 'dim');
+    },
+    history() { hist.forEach((h, i) => line('  ' + String(i + 1).padStart(3) + '  ' + h, 'muted')); },
+    clear() { out.textContent = ''; },
+    exit() { closeTerm(); },
+    sudo() { line('visitor is not in the sudoers file. This incident will be reported.', 'errc'); line('[ALERT] Privilege escalation attempt (T1548) logged for review.', 'warn'); },
+    rm(arg) { if (/-rf/.test(arg || '')) return line('Nice try. Blocked by EDR: destructive command prevented (T1485).', 'errc'); line('rm: missing operand', 'warn'); },
+    date() { line(new Date().toString(), 'muted'); },
+    pwd() { line('/home/visitor', 'muted'); },
+    echo(arg) { line(arg || ''); },
+    hack() { line('Access denied. Try the Konami code instead.', 'warn'); },
+    cd() { line('You are already where you need to be.', 'muted'); }
+  };
+  function run(raw) {
+    const cmd = raw.trim();
+    const d = document.createElement('div'); const p = document.createElement('span'); p.className = 'okc'; p.textContent = 'visitor@asb-soc:~$ '; d.append(p, cmd); out.appendChild(d);
+    if (!cmd) return;
+    hist.push(cmd);
+    const [name, ...rest] = cmd.split(/\s+/);
+    const fn = commands[name.toLowerCase()];
+    fn ? fn(rest.join(' ')) : line('command not found: ' + name + '. Type help.', 'errc');
+  }
+  function openTerm() {
+    if (ov.classList.contains('open')) return;
+    openOv(ov);
+    if (!booted) { line('ASB :: SOC-PORTFOLIO terminal v1.0', 'sig'); line('Session opened for visitor. All commands are logged (just kidding).', 'dim'); line('Type help to get started.', 'muted'); line(); booted = true; }
+    setTimeout(() => input.focus(), 30);
+  }
+  function closeTerm() { closeOv(ov); }
+  $('#termForm').addEventListener('submit', e => { e.preventDefault(); run(input.value); input.value = ''; hp = hist.length; out.scrollTop = out.scrollHeight; });
+  input.addEventListener('keydown', e => {
+    if (e.key === 'ArrowUp' && hist.length) { e.preventDefault(); hp = Math.max(0, hp - 1); input.value = hist[hp]; }
+    else if (e.key === 'ArrowDown' && hist.length) { e.preventDefault(); hp = Math.min(hist.length, hp + 1); input.value = hist[hp] || ''; }
+    else if (e.key === 'Tab') {
       e.preventDefault();
-      run(input.value);
-      input.value = '';
-      histPos = history.length;
-      out.scrollTop = out.scrollHeight;
-    });
+      const parts = input.value.split(' ');
+      const pool = parts.length > 1 ? Object.keys(cases) : Object.keys(commands);
+      const m = pool.filter(k => k.startsWith(parts[parts.length - 1].toLowerCase()));
+      if (m.length === 1) { parts[parts.length - 1] = m[0]; input.value = parts.join(' ') + (parts.length === 1 ? ' ' : ''); }
+    }
+  });
+  $('#termBtn').addEventListener('click', openTerm);
+  $('#termExit').addEventListener('click', closeTerm);
+  ov.addEventListener('click', e => { if (e.target === ov) closeTerm(); });
+  out.addEventListener('click', () => input.focus());
 
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowUp' && history.length) {
-        e.preventDefault();
-        histPos = Math.max(0, histPos - 1);
-        input.value = history[histPos];
-      } else if (e.key === 'ArrowDown' && history.length) {
-        e.preventDefault();
-        histPos = Math.min(history.length, histPos + 1);
-        input.value = history[histPos] || '';
-      } else if (e.key === 'Tab') {
-        e.preventDefault();
-        const parts = input.value.split(' ');
-        const pool = parts.length > 1 ? Object.keys(cases) : Object.keys(commands);
-        const match = pool.filter(k => k.startsWith(parts[parts.length - 1].toLowerCase()));
-        if (match.length === 1) { parts[parts.length - 1] = match[0]; input.value = parts.join(' ') + (parts.length === 1 ? ' ' : ''); }
-      }
-    });
+  /* konami */
+  const seq = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  const kBox = $('#konami'); let recent = [], kTimer;
+  const kHide = () => { kBox.hidden = true; clearTimeout(kTimer); };
+  const kShow = () => { kBox.hidden = false; clearTimeout(kTimer); kTimer = setTimeout(kHide, 8000); };
+  $('#konamiClose').addEventListener('click', kHide);
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('open')) { close(); return; }
-      if ((e.key === '~' || e.key === '`') && !e.target.closest('input, textarea')) {
-        e.preventDefault();
-        overlay.classList.contains('open') ? close() : open();
-      }
-    });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { if (ov.classList.contains('open')) closeTerm(); if (lb.classList.contains('open')) closeOv(lb); return; }
+    if (e.target.closest('input, textarea')) return;
+    if (e.key === '~' || e.key === '`') { e.preventDefault(); ov.classList.contains('open') ? closeTerm() : openTerm(); return; }
+    const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    recent = [...recent, k].slice(-seq.length);
+    if (recent.join() === seq.join()) { recent = []; kShow(); }
+  });
 
-    document.querySelector('.nav-id').addEventListener('click', open);
-    exitBtn.addEventListener('click', close);
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
-    out.addEventListener('click', () => input.focus());
-  })();
+  /* stamp the stamp five times */
+  let clicks = 0, reset, playing = false;
+  $('#stamp').addEventListener('click', () => {
+    clicks++; clearTimeout(reset); reset = setTimeout(() => { clicks = 0; }, 1500);
+    if (clicks < 5 || playing) return;
+    clicks = 0; playing = true;
+    const m = document.createElement('div'); m.className = 'max'; m.setAttribute('aria-hidden', 'true');
+    m.innerHTML = '<div><p>&gt; PRIVILEGE ESCALATION REQUESTED...</p><p>&gt; VERIFYING ANALYST CLEARANCE...</p><p>&gt; ACCESS GRANTED.</p><p>&gt; ANALYST MODE: MAX</p></div>';
+    document.body.appendChild(m);
+    setTimeout(() => { m.remove(); playing = false; }, 2800);
+  });
+})();
 </script>
-
-<script>
-  (() => {
-    const cursor = document.querySelector('.hero h1 .cursor');
-    if (!cursor) return;
-    const needed = 5;
-    let clicks = 0;
-    let resetTimer;
-    let playing = false;
-
-    function replayBoot() {
-      if (playing || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      playing = true;
-      const boot = document.createElement('div');
-      boot.className = 'boot replay';
-      boot.setAttribute('aria-hidden', 'true');
-      boot.innerHTML =
-        '<div class="boot-ring"></div>' +
-        '<div class="boot-lines">' +
-          '<p>&gt; PRIVILEGE ESCALATION REQUESTED...</p>' +
-          '<p>&gt; VERIFYING ANALYST CLEARANCE...</p>' +
-          '<p class="ok">&gt; ACCESS GRANTED.</p>' +
-          '<p class="max">&gt; ANALYST MODE: MAX</p>' +
-        '</div>' +
-        '<div class="boot-bar"><span></span></div>';
-      boot.style.animationDuration = '2.4s';
-      boot.querySelector('.boot-bar span').style.animationDuration = '2.1s';
-      document.body.appendChild(boot);
-      boot.addEventListener('animationend', (e) => {
-        if (e.target !== boot) return;
-        boot.remove();
-        playing = false;
-      });
-    }
-
-    cursor.addEventListener('mousedown', (e) => { if (e.detail > 1) e.preventDefault(); });
-    cursor.addEventListener('click', () => {
-      clicks++;
-      clearTimeout(resetTimer);
-      resetTimer = setTimeout(() => { clicks = 0; }, 1500);
-      if (clicks >= needed) { clicks = 0; replayBoot(); }
-    });
-  })();
-</script>
-
-<div class="konami-alert" id="konamiAlert" role="alert" aria-live="assertive" hidden>
-  <div class="konami-head">
-    <span><span class="dot"></span>Alert · Level 15 · Critical</span>
-    <button type="button" class="konami-close" id="konamiClose" aria-label="Dismiss alert">✕</button>
-  </div>
-  <div class="konami-body">
-    <div><span class="k">rule.id:</span> <span class="v">100777</span></div>
-    <div><span class="k">rule.description:</span> <span class="v">Unauthorized cheat code detected</span></div>
-    <div><span class="k">mitre.technique:</span> <span class="v">T1337 - Konami Code Execution</span></div>
-    <div><span class="k">src.user:</span> <span class="v">curious_visitor</span></div>
-    <div><span class="k">action:</span> <span class="ok">Analyst notified. Nice find.</span></div>
-  </div>
-</div>
-
-<script>
-  (() => {
-    const sequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-    const alertBox = document.getElementById('konamiAlert');
-    const closeBtn = document.getElementById('konamiClose');
-    let recent = [];
-    let hideTimer;
-
-    function hide() {
-      alertBox.classList.remove('show');
-      clearTimeout(hideTimer);
-      setTimeout(() => { alertBox.hidden = true; }, 300);
-    }
-    function show() {
-      alertBox.hidden = false;
-      requestAnimationFrame(() => alertBox.classList.add('show'));
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(hide, 8000);
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.target.closest('input, textarea')) return;
-      const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-      recent = [...recent, key].slice(-sequence.length);
-      if (recent.join() === sequence.join()) { recent = []; show(); }
-    });
-    closeBtn.addEventListener('click', hide);
-  })();
-</script>
-
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
-  <button type="button" class="lightbox-close" id="lightboxClose">Close ✕</button>
-  <div class="lightbox-inner">
-    <img id="lightboxImg" src="" alt="">
-    <p class="lightbox-caption" id="lightboxCaption"></p>
-  </div>
-</div>
-
-<script>
-  (() => {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxCaption = document.getElementById('lightboxCaption');
-    const closeBtn = document.getElementById('lightboxClose');
-
-    function openLightbox(src, alt, caption) {
-      lightboxImg.src = src;
-      lightboxImg.alt = alt;
-      lightboxCaption.textContent = caption;
-      lightbox.classList.add('open');
-      lightbox.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      lightbox.setAttribute('aria-hidden', 'true');
-      lightboxImg.src = '';
-      document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll('.shot-thumb').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const img = btn.querySelector('img');
-        openLightbox(btn.dataset.full, img.alt, btn.dataset.caption);
-      });
-    });
-
-    closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-  })();
-</script>
-
 </body>
 </html>
