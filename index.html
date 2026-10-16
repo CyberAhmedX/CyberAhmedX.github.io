@@ -612,9 +612,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   const mark = id => navs.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + id));
   function spy() {
     if (picked) return mark(picked);
+    // The marker line sits 40% down the screen, and slides to the bottom edge over the last
+    // part of the page, so short sections at the end each get their turn before Contact.
+    const left = document.documentElement.scrollHeight - innerHeight - scrollY;
+    const slide = innerHeight * 0.6;
+    const line = innerHeight * 0.4 + Math.max(0, slide - left);
     let cur = 'top';
-    for (const id of ids.slice(1)) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight * 0.4) cur = id; }
-    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = 'contact';
+    for (const id of ids.slice(1)) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < line - 1) cur = id; }
     mark(cur);
   }
   navs.forEach(a => a.addEventListener('click', () => { picked = a.getAttribute('href').slice(1); mark(picked); }));
