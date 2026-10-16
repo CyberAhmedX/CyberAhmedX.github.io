@@ -218,9 +218,47 @@ footer h2{margin:6px 0 10px}footer p{margin:0;color:var(--mute);max-width:480px}
 .konami .kh{display:flex;justify-content:space-between;padding:9px 14px;background:#c8102e;border-radius:9px 9px 0 0;font-weight:600}
 .konami .kh button{all:unset;cursor:pointer}
 .konami .kb{padding:10px 14px 12px}.konami .k{color:#959ca7}
-.max{position:fixed;inset:0;z-index:70;background:#0a0c0e;color:#eceef1;display:flex;align-items:center;justify-content:center;font:600 18px/2 var(--f-code);text-align:left}
-.max p{margin:0;opacity:0;animation:inl .3s forwards}.max p:nth-child(2){animation-delay:.5s}.max p:nth-child(3){animation-delay:1s;color:#5cc98a}.max p:nth-child(4){animation-delay:1.5s;color:#ff8a9a}
-@keyframes inl{to{opacity:1}}
+/* boot intro */
+.boot{position:fixed;inset:0;z-index:80;background:#0a0c0e;color:#eceef1;display:flex;align-items:center;justify-content:center;padding:24px max(18px,env(safe-area-inset-right,0px)) 24px max(18px,env(safe-area-inset-left,0px));border-bottom:3px solid #c8102e;cursor:pointer;overflow:hidden}
+.boot[hidden]{display:none}
+.boot:before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 45%,rgba(200,16,46,.16),transparent 70%);opacity:0;animation:glow 1.6s .2s ease forwards;pointer-events:none}
+.boot:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);pointer-events:none}
+@keyframes glow{to{opacity:1}}
+.boot.out{transform:translateY(-100%);transition:transform .75s cubic-bezier(.77,0,.18,1)}
+.boot.out .boot-in{opacity:0;transform:scale(.97);transition:opacity .35s,transform .45s}
+.boot-in{position:relative;z-index:1;width:100%;max-width:660px;min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+.boot-top{display:flex;justify-content:space-between;font:500 11.5px var(--f-label);letter-spacing:.14em;color:#7d8590}
+.boot-top b{color:#c8102e;font-weight:500}
+.boot-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:5px}
+.boot-grid i{height:22px;border-radius:4px;background:#15181c;border:1px solid #20242a;transition:background .35s,border-color .35s,box-shadow .35s}
+.boot-grid i.hot{background:#eceef1;border-color:#eceef1;box-shadow:0 0 18px rgba(236,238,241,.55);transition:none}
+.boot-grid i.s3{background:#c8102e;border-color:#c8102e;box-shadow:0 0 14px rgba(200,16,46,.55)}
+.boot-grid i.s2{background:#8e1426;border-color:#8e1426}
+.boot-grid i.s1{background:#561620;border-color:#561620}
+.boot-grid i.s0{background:#262a31;border-color:#2b3038}
+.boot-log{font:13px/1.85 var(--f-code);color:#959ca7;min-height:calc(1.85em * 5)}
+.boot-log div{display:flex;gap:8px;animation:inl .18s ease both}
+.boot-log .dots{flex:1;min-width:0;overflow:hidden;white-space:nowrap;color:#3a3f48}
+.boot-log div span:first-child{white-space:nowrap}
+@media (max-width:480px){.boot-log{font-size:11.5px}.boot-grid i{height:16px}.boot-in{gap:18px}}
+.boot-log .ok{color:#5cc98a}.boot-log .gr{color:#ff5c70;font-weight:600;letter-spacing:.12em}
+@keyframes inl{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.boot-name{font:700 clamp(34px,7vw,64px)/1 var(--f-display);letter-spacing:-.03em;min-height:1em;white-space:nowrap}
+.boot-name span{color:#c8102e}
+.boot-role{font:500 12px var(--f-label);letter-spacing:.16em;text-transform:uppercase;color:#7d8590;margin-top:-10px;opacity:0;transition:opacity .4s}
+.boot-role.on{opacity:1}
+.boot-bar{position:relative;height:2px;background:#20242a}
+.boot-bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:#c8102e;box-shadow:0 0 12px #c8102e}
+.boot-foot{display:flex;justify-content:space-between;font:500 11px var(--f-label);letter-spacing:.12em;color:#5b636e;text-transform:uppercase}
+.boot-foot b{color:#eceef1;font-weight:500;font-variant-numeric:tabular-nums}
+html.is-booting,html.is-booting body{overflow:hidden}
+/* after the boot: hero rises in, stamp slams onto the card */
+.rise{animation:rise .7s cubic-bezier(.19,1,.22,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.stamp.slam{animation:slam .5s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes slam{0%{opacity:0;transform:scale(2.6) rotate(-10deg)}60%{opacity:1;transform:scale(.92) rotate(8deg)}100%{transform:scale(1) rotate(7deg)}}
+.idcard.thud{animation:thud .35s .28s ease both}
+@keyframes thud{30%{transform:translate(2px,2px)}60%{transform:translate(-1px,0)}}
 
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 
@@ -235,10 +273,31 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   h2{font-size:32px}.skrow{grid-template-columns:1fr;gap:8px}.row2{grid-template-columns:1fr}.count{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:560px){.certs{grid-template-columns:1fr}.live span{display:none}.tab{font-size:10px;padding:4px 10px}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}.max p{opacity:1}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}.boot{display:none!important}}
 </style>
 </head>
 <body>
+<div class="boot" id="boot" hidden aria-hidden="true">
+  <div class="boot-in">
+    <div class="boot-top"><span>ASB :: SOC-PORTFOLIO</span><span>SESSION <b id="bootSid">0000</b></span></div>
+    <div class="boot-grid" id="bootGrid"></div>
+    <div class="boot-log" id="bootLog"></div>
+    <div class="boot-name" id="bootName"></div>
+    <div class="boot-role" id="bootRole">SOC Analyst L1 / Detection Engineer</div>
+    <div class="boot-bar"><i id="bootFill"></i></div>
+    <div class="boot-foot"><span id="bootHint">Click or press any key to skip</span><b id="bootPct">0%</b></div>
+  </div>
+</div>
+<script>
+  (() => {
+    let seen = false;
+    try { seen = sessionStorage.getItem('asb-boot') === '1'; } catch (_) {}
+    if (!seen && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.getElementById('boot').hidden = false;
+      document.documentElement.classList.add('is-booting');
+    }
+  })();
+</script>
 <div class="layout">
 <aside>
   <div class="idcard">
@@ -749,16 +808,114 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     if (recent.join() === seq.join()) { recent = []; kShow(); }
   });
 
+  /* boot intro: ATT&CK cells scan, log types out, name decodes, screen lifts away */
+  const bootEl = $('#boot');
+  // the 9 tactic columns as on the map: lit techniques per column, top to bottom
+  const COLS = [['s3', 's0'], ['s2', 's0'], ['s3', 's1'], ['s2'], ['s2', 's0'], ['s2', 's0'], ['s3'], ['s2'], ['s3']];
+  const ROWS = 4;
+  const GLYPHS = 'ABCDEF0123456789#%&@/\\<>[]{}=+';
+  let booting = false;
+
+  function boot(replay) {
+    if (booting) return;
+    booting = true;
+    const grid = $('#bootGrid'), log = $('#bootLog'), name = $('#bootName'), role = $('#bootRole');
+    const fill = $('#bootFill'), pct = $('#bootPct');
+    const timers = [];
+    const later = (ms, fn) => timers.push(setTimeout(fn, ms));
+    let raf = 0, done = false;
+
+    bootEl.classList.remove('out');
+    bootEl.hidden = false;
+    document.documentElement.classList.add('is-booting');
+    $('#bootSid').textContent = Math.floor(Math.random() * 0xffff).toString(16).toUpperCase().padStart(4, '0');
+    grid.textContent = ''; log.textContent = ''; name.textContent = ''; role.classList.remove('on');
+    $('#bootHint').textContent = replay ? 'Privilege escalation in progress' : matchMedia('(pointer: coarse)').matches ? 'Tap to skip' : 'Click or press any key to skip';
+
+    // 1. ATT&CK grid scans left to right, settling on the real coverage
+    const cells = [];
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < 9; c++) {
+      const i = document.createElement('i'); grid.appendChild(i);
+      cells.push({ el: i, r, c, s: COLS[c][r] || '' });
+    }
+    cells.forEach(({ el, r, c, s }) => {
+      const t = 120 + c * 70 + r * 45;
+      later(t, () => el.classList.add('hot'));
+      later(t + 110, () => { el.classList.remove('hot'); if (s) el.classList.add(replay ? 's3' : s); });
+    });
+
+    // 2. log lines
+    const lines = replay
+      ? [['privilege escalation requested', 'T1548', ''], ['verifying analyst clearance', 'level 15', ''], ['loading every detection rule', '5 / 5', 'ok'], ['access', 'GRANTED', 'gr']]
+      : [['establishing session', 'ok', 'ok'], ['mounting case files', '5 found', ''], ['loading ATT&CK coverage', '10 techniques', ''], ['verifying analyst identity', 'match', 'ok'], ['access', 'GRANTED', 'gr']];
+    lines.forEach(([k, v, cls], n) => later(260 + n * 330, () => {
+      const d = document.createElement('div');
+      const a = document.createElement('span'); a.textContent = '> ' + k;
+      const dots = document.createElement('span'); dots.className = 'dots'; dots.textContent = ' ' + '.'.repeat(80);
+      const b = document.createElement('span'); b.textContent = v; if (cls) b.className = cls;
+      d.append(a, dots, b); log.appendChild(d);
+    }));
+
+    // 3. name decodes from noise
+    const target = replay ? 'ANALYST MODE: MAX' : 'Ahmed Sajid Butt';
+    const start = 1500, dur = 800;
+    later(start, () => {
+      const t0 = performance.now();
+      const tick = now => {
+        const k = Math.min(1, (now - t0) / dur), fixed = Math.floor(k * target.length);
+        let outTxt = target.slice(0, fixed);
+        for (let i = fixed; i < target.length; i++) outTxt += target[i] === ' ' ? ' ' : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+        name.textContent = outTxt;
+        if (k < 1) raf = requestAnimationFrame(tick);
+        else { name.textContent = target; const dot = document.createElement('span'); dot.textContent = replay ? '_' : '.'; name.append(dot); role.classList.add('on'); }
+      };
+      raf = requestAnimationFrame(tick);
+    });
+
+    // 4. progress bar
+    const total = 2500, p0 = performance.now();
+    const prog = now => {
+      const k = Math.min(1, (now - p0) / total), e = 1 - Math.pow(1 - k, 3);
+      fill.style.width = (e * 100) + '%'; pct.textContent = Math.round(e * 100) + '%';
+      if (k < 1 && !done) requestAnimationFrame(prog);
+    };
+    requestAnimationFrame(prog);
+
+    // 5. lift the screen away, then the stamp slams onto the card
+    function finish() {
+      if (done) return; done = true;
+      timers.forEach(clearTimeout); cancelAnimationFrame(raf);
+      fill.style.width = '100%'; pct.textContent = '100%';
+      bootEl.classList.add('out');
+      if (!replay) $$('.big, .sub, .cta, .nums').forEach((el, i) => { el.style.animationDelay = (0.15 + i * 0.08) + 's'; el.classList.add('rise'); });
+      const st = $('#stamp'), card = $('.idcard');
+      st.classList.remove('slam'); card.classList.remove('thud'); void st.offsetWidth;
+      setTimeout(() => { st.classList.add('slam'); card.classList.add('thud'); }, 450);
+      setTimeout(() => {
+        bootEl.hidden = true; bootEl.classList.remove('out');
+        document.documentElement.classList.remove('is-booting');
+        booting = false;
+      }, 800);
+      removeEventListener('keydown', skip, true);
+    }
+    function skip(e) { if (!replay) { e.preventDefault(); e.stopPropagation(); finish(); } }
+    later(replay ? 3000 : 2900, finish);
+    bootEl.onclick = () => { if (!replay) finish(); };
+    addEventListener('keydown', skip, true);
+  }
+
+  if (!bootEl.hidden) {
+    try { sessionStorage.setItem('asb-boot', '1'); } catch (_) {}
+    boot(false);
+  }
+
   /* stamp the stamp five times */
-  let clicks = 0, reset, playing = false;
+  let clicks = 0, reset;
   $('#stamp').addEventListener('click', () => {
     clicks++; clearTimeout(reset); reset = setTimeout(() => { clicks = 0; }, 1500);
-    if (clicks < 5 || playing) return;
-    clicks = 0; playing = true;
-    const m = document.createElement('div'); m.className = 'max'; m.setAttribute('aria-hidden', 'true');
-    m.innerHTML = '<div><p>&gt; PRIVILEGE ESCALATION REQUESTED...</p><p>&gt; VERIFYING ANALYST CLEARANCE...</p><p>&gt; ACCESS GRANTED.</p><p>&gt; ANALYST MODE: MAX</p></div>';
-    document.body.appendChild(m);
-    setTimeout(() => { m.remove(); playing = false; }, 2800);
+    if (clicks < 5) return;
+    clicks = 0;
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) boot(true);
   });
 })();
 </script>
