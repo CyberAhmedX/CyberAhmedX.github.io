@@ -63,7 +63,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 <style>
 /* Layout: sticky profile sidebar, one reading column, case files as tabbed folders, one dark console for ATT&CK. */
 :root{
@@ -257,7 +256,7 @@ footer h2{margin:6px 0 10px}footer p{margin:0;color:var(--mute);max-width:480px}
 .boot.out{transform:translateY(-100%);transition:transform .75s cubic-bezier(.77,0,.18,1)}
 .boot.out .boot-in{opacity:0;transform:scale(.97);transition:opacity .35s,transform .45s}
 .boot-in{position:relative;z-index:1;width:100%;max-width:660px;min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
-.boot-top{display:flex;justify-content:space-between;font:500 11.5px var(--f-label);letter-spacing:.14em;color:var(--b-faint)}
+.boot-top{display:flex;justify-content:space-between;font:500 11.5px/1.4 var(--f-label);letter-spacing:.14em;color:var(--b-faint)}
 .boot-top b{color:#c8102e;font-weight:500}
 .boot-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:5px}
 .boot-grid b{position:relative;display:grid;gap:5px;opacity:0;animation:cellIn .25s var(--d,0ms) ease-out forwards}
@@ -279,11 +278,11 @@ footer h2{margin:6px 0 10px}footer p{margin:0;color:var(--mute);max-width:480px}
 @keyframes inl{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .boot-name{font:700 clamp(34px,7vw,64px)/1 var(--f-display);letter-spacing:-.03em;min-height:1em;white-space:nowrap}
 .boot-name span{color:#c8102e}
-.boot-role{font:500 12px var(--f-label);letter-spacing:.16em;text-transform:uppercase;color:var(--b-faint);margin-top:-10px;opacity:0;transition:opacity .4s}
+.boot-role{font:500 12px/1.4 var(--f-label);letter-spacing:.16em;text-transform:uppercase;color:var(--b-faint);margin-top:-10px;opacity:0;transition:opacity .4s}
 .boot-role.on{opacity:1}
 .boot-bar{position:relative;height:2px;background:var(--b-track)}
 .boot-bar i{position:absolute;inset:0;background:#c8102e;transform:scaleX(0);transform-origin:left;will-change:transform}
-.boot-foot{display:flex;justify-content:space-between;font:500 11px var(--f-label);letter-spacing:.12em;color:var(--b-faint);text-transform:uppercase}
+.boot-foot{display:flex;justify-content:space-between;font:500 11px/1.4 var(--f-label);letter-spacing:.12em;color:var(--b-faint);text-transform:uppercase}
 .boot-foot b{color:var(--b-txt);font-weight:500;font-variant-numeric:tabular-nums}
 html.is-booting,html.is-booting body{overflow:hidden}
 /* after the boot: hero rises in, stamp slams onto the card */
@@ -707,12 +706,36 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     try { navigator.clipboard.writeText(t).then(done, sel); } catch (_) { sel(); }
   });
 
+  /* lazy-load hCaptcha: load only when the contact form nears the viewport */
+  let hcLoading = false;
+  function loadHCaptcha() {
+    if (hcLoading || window.hcaptcha) return;
+    hcLoading = true;
+    const s = document.createElement('script');
+    s.src = 'https://js.hcaptcha.com/1/api.js?onload=_hcReady&render=explicit';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  window._hcReady = function() {
+    const el = document.querySelector('.h-captcha');
+    if (el) window.hcaptcha.render(el, { sitekey: el.dataset.sitekey, size: el.dataset.size || 'normal' });
+  };
+  /* trigger: IntersectionObserver (200px ahead), plus focusin/pointerdown as fallback */
+  const contactSection = $('#contactForm');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry], obs) => { if (entry.isIntersecting) { loadHCaptcha(); obs.disconnect(); } }, { rootMargin: '200px' }).observe(contactSection);
+  }
+  contactSection.addEventListener('focusin', loadHCaptcha, { once: true });
+  contactSection.addEventListener('pointerdown', loadHCaptcha, { once: true });
+
   /* contact form (Formspree) */
   const form = $('#contactForm'), status = $('#cf-status'), submit = $('#cf-submit');
   form.addEventListener('submit', async e => {
     e.preventDefault();
     status.className = 'fst';
     if (!form.checkValidity()) { status.textContent = '> fill in your name, a valid email and a message.'; status.classList.add('err'); return; }
+    /* ensure hCaptcha is loaded before submitting */
+    if (!window.hcaptcha) { loadHCaptcha(); status.textContent = '> loading spam check, please wait...'; submit.disabled = true; await new Promise(r => { const t = setInterval(() => { if (window.hcaptcha) { clearInterval(t); r(); } }, 100); setTimeout(() => { clearInterval(t); r(); }, 5000); }); submit.disabled = false; if (!window.hcaptcha) { status.textContent = '> spam check failed to load. try again or email me directly.'; status.classList.add('err'); return; } }
     submit.disabled = true; status.textContent = '> transmitting...';
     try {
       const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
