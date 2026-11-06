@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://cyberahmedx.github.io/sitemap.xml
+Sitemap: https://cyberahmedx.github.io/sitemap.txt
