@@ -292,6 +292,15 @@ html.is-booting,html.is-booting body{overflow:hidden}
 @keyframes slam{0%{opacity:0;transform:scale(2.6) rotate(-10deg)}60%{opacity:1;transform:scale(.92) rotate(8deg)}100%{transform:scale(1) rotate(7deg)}}
 .idcard.thud{animation:thud .35s .28s ease both}
 @keyframes thud{30%{transform:translate(2px,2px)}60%{transform:translate(-1px,0)}}
+/* theme switch: a red beam sweeps down the page and the new theme follows it, same red and easing as the boot screen lifting away */
+/* the old theme holds still underneath while the new one is uncovered from the top */
+html[data-vt]::view-transition-old(root),html[data-vt]::view-transition-new(root){animation:none;mix-blend-mode:normal}
+html[data-vt]::view-transition-new(root){animation:vt-scan .9s cubic-bezier(.77,0,.18,1) both}
+@keyframes vt-scan{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 -4px 0)}}
+.vt-beam{position:fixed;left:0;top:0;z-index:90;width:100vw;height:120px;pointer-events:none;view-transition-name:vt-beam;background:linear-gradient(to bottom,rgba(200,16,46,0),rgba(200,16,46,.16));border-bottom:3px solid #c8102e;box-shadow:0 6px 24px rgba(200,16,46,.55)}
+::view-transition-new(vt-beam){animation:none}
+html[data-vt]::view-transition-group(vt-beam){animation:vt-beam .9s cubic-bezier(.77,0,.18,1) both}
+@keyframes vt-beam{from{transform:translateY(-120px)}to{transform:translateY(calc(var(--vt-h,100vh) - 116px))}}
 
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .term-line input:focus-visible{outline:none}
@@ -612,6 +621,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   </div>
 </div>
 
+<div class="vt-beam" id="vtBeam" hidden aria-hidden="true"></div>
+
 <div class="konami" id="konami" role="alert" hidden>
   <div class="kh"><span>Alert · Level 15 · Critical</span><button type="button" id="konamiClose" aria-label="Dismiss alert">✕</button></div>
   <div class="kb">
@@ -643,10 +654,27 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   label();
   const schemeMq = matchMedia('(prefers-color-scheme: dark)');
   schemeMq.addEventListener ? schemeMq.addEventListener('change', label) : schemeMq.addListener(label);
-  themeBtn.addEventListener('click', () => {
-    root.dataset.theme = isDark() ? 'light' : 'dark';
-    try { localStorage.setItem('asb-theme', root.dataset.theme); } catch (_) {}
+  function applyTheme(next) {
+    root.dataset.theme = next;
+    try { localStorage.setItem('asb-theme', next); } catch (_) {}
     label();
+  }
+  // The page is snapshotted, the theme flips underneath, and the new theme is uncovered behind a red beam.
+  // Browsers without View Transitions, and visitors who ask for reduced motion, get the instant switch.
+  const beam = $('#vtBeam'); let switching = false;
+  themeBtn.addEventListener('click', () => {
+    if (switching) return;
+    const next = isDark() ? 'light' : 'dark';
+    if (!document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches) return applyTheme(next);
+    switching = true;
+    root.style.setProperty('--vt-h', innerHeight + 'px');
+    root.dataset.vt = 'scan';
+    const done = () => { beam.hidden = true; delete root.dataset.vt; switching = false; };
+    let flipped = false;
+    try {
+      const t = document.startViewTransition(() => { flipped = true; applyTheme(next); beam.hidden = false; });
+      t.finished.then(done, done);
+    } catch (_) { if (!flipped) applyTheme(next); done(); }
   });
 
   /* scroll spy */
