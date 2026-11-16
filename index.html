@@ -981,7 +981,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     // 2. log lines
     const lines = replay
       ? [['privilege escalation requested', 'T1548', ''], ['verifying analyst clearance', 'level 15', ''], ['loading every detection rule', '5 / 5', 'ok'], ['access', 'GRANTED', 'gr']]
-      : [['establishing session', 'ok', 'ok'], ['mounting case files', '5 found', ''], ['loading ATT&CK coverage', '10 techniques', ''], ['verifying analyst identity', 'match', 'ok'], ['access', 'GRANTED', 'gr']];
+      : [['establishing session', 'ok', 'ok'], ['mounting case files', '6 found', ''], ['loading ATT&CK coverage', '10 techniques', ''], ['verifying analyst identity', 'match', 'ok'], ['access', 'GRANTED', 'gr']];
     lines.forEach(([k, v, cls], n) => later(260 + n * 330, () => {
       const d = document.createElement('div');
       const a = document.createElement('span'); a.textContent = '> ' + k;
